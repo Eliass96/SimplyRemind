@@ -1,0 +1,89 @@
+html, body {
+  min-height: 100%;
+}
+
+header {
+  display: inline-flex;
+  height: 86px;
+  position: fixed;
+  background: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: start;
+  border-bottom: 2px solid black;
+}
+
+.titulo {
+  font-family: 'Anton', sans-serif;
+  font-size: 130%;
+  color: white;
+  background: black;
+  border-bottom-right-radius: 12px;
+  width: 30.5%;
+  height: 90px;
+  text-align: start;
+  padding-inline-start: 6.5%;
+  line-height: 180%;
+}
+
+.buscador {
+  background: white;
+  padding-left: 50px;
+}
+
+.formulario {
+  display: flex;
+  align-items: center;
+}
+
+.but_filtros {
+  background-color: lightgray;
+  font-size: 20px;
+  width: 110px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  animation-duration: 0.1s;
+  animation-name: bounce;
+  margin-right: 10px;
+}
+
+.but_buscar_nota {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  animation-duration: 0.1s;
+  animation-name: bounce;
+  font-size: 28px;
+  padding-left: 10px;
+}
+
+.text_box_principal {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 350px;
+  height: 20px;
+  flex: 1;
+}
+
+.but_filtros:active,
+.but_buscar_nota:active {
+  transform: scale(0.95);
+}
+
+.but_filtros:hover {
+  background-color: #ddd;
+}
+
+footer {
+  clear: both;
+  text-align: center;
+  padding: 1.5vh;
+  background-color: #f1f1f1;
+  border: 1px solid darkgray;
+}
+

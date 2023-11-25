@@ -1,0 +1,58 @@
+/* Estilos para el listado de notas */
+.listado_notas {
+  float: right;
+  margin-top: 12vh;
+  padding-right: 10px;
+  margin-bottom: 1vh;
+  border: 1px solid darkgray;
+  background: #f5f5f5;
+  width: 62.4%;
+  min-height: 75vh;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cabecero_listado_notas {
+  display: inline-flex;
+  #background: #f5f5f5;
+  background: black;
+  height: 50%;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+
+}
+
+.titulo_notas {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 50px;
+  padding-top: 1.5%;
+}
+
+.but_add_notas {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  animation-duration: 0.1s;
+  animation-name: bounce;
+  position: absolute;
+  right: 0;
+  padding-top: 1.5%;
+}
+
+.but_add_notas:active {
+  transform: scale(0.95);
+}
+
+.listado_notas h2 {
+  font-size: 250%;
+  padding-left: 7%;
+  padding-right: 10%;
+}
+
+

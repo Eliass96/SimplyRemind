@@ -1,0 +1,76 @@
+.nota_seleccionada {
+    float: right;
+    margin-top: 12vh;
+    padding-right: 10px;
+    margin-bottom: 1vh;
+    border: 1px solid darkgray;
+    background: #f5f5f5;
+    width: 62.4%;
+    min-height: 75vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cabecero_nota_seleccionada {
+    display: inline-flex;
+    background: #f5f5f5;
+    height: 50%;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+}
+
+.titulo_nota_seleccionada {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 50px;
+    padding-top: 1.5%;
+  }
+
+  .but_volver_al_listado,
+  .but_duplicar_nota,
+  .but_eliminar_nota,
+  .but_mas_opciones_nota,
+  .but_desplegar_listado_notas {
+    background: transparent;
+    color: #000;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 3vh;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .but_volver_al_listado {
+    position: absolute;
+    left: 0;
+  }
+
+  .botones_nota_seleccionada {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    right: 0;
+  }
+  
+  .but_volver_al_listado:hover,
+  .but_duplicar_nota:hover,
+  .but_eliminar_nota:hover,
+  .but_mas_opciones_nota:hover,
+  .but_desplegar_listado_notas:hover {
+    color: #333;
+  }
+
+  .but_volver_al_listado:active,
+  .but_duplicar_nota:active,
+  .but_eliminar_nota:active,
+  .but_mas_opciones_nota:active,
+  .but_desplegar_listado_notas:active {
+    transform: scale(0.95);
+  }
+  
+  

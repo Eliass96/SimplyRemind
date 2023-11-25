@@ -79,6 +79,10 @@ header {
   background-color: #ddd;
 }
 
+.but_buscar_nota:hover {
+  color: #333;
+}
+
 footer {
   clear: both;
   text-align: center;

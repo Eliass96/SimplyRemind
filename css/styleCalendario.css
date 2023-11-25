@@ -36,6 +36,10 @@
   transform: scale(0.95);
 }
 
+.but_calendario:hover {
+  color: #333;
+}
+
 .calendario img {
   padding-left: 15%;
   width: 7%;

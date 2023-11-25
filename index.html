@@ -3,8 +3,11 @@
 <head>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/styleListadoNotas.css">
+  <link rel="stylesheet" href="css/styleNotaSeleccionada.css">
   <link rel="stylesheet" href="css/styleCalendario.css">
+  <link rel="stylesheet" href="css/styleEvento.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-.........." crossorigin="anonymous" />
+  <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton&display=swap">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +31,7 @@
   </search>
 </header>
 <main>
+  <!--
   <section class="listado_notas">
     <section class="cabecero_listado_notas">
       <h2 class="titulo_notas">TUS NOTAS</h2>
@@ -38,7 +42,7 @@
       </form>
     </section>
     <section>
-
+-->
     </section>
   </section>
   <section class="calendario">
@@ -55,19 +59,22 @@
   </section>
   -->
   <!-------------------------------------------------------------->
-  <!--
-  <section>
-    <form>
-      <button>Volver al listado</button>
-    </form>
-    <h2>TÍTULO DE LA NOTA</h2>
-    <form>
-      <button>Duplicar Nota</button>
-      <button>Eliminar Nota</button>
-      <button>Más opciones (Desplegable)</button>
-      <button>Desplegar Listado de Notas (Desplegable)</button>
-    </form>
+  
+  <section class="nota_seleccionada">
+    <section class="cabecero_nota_seleccionada">
+      <form>
+        <button class="but_volver_al_listado"><i class="fa fa-arrow-left"></i></button>
+      </form>
+      <h2 class="titulo_nota_seleccionada">TÍTULO DE LA NOTA</h2>
+      <form class="botones_nota_seleccionada">
+        <button class="but_duplicar_nota"><i class="fa fa-clone"></i></button>
+        <button class="but_eliminar_nota"><i class="fa fa-trash"></i></button>
+        <button class="but_mas_opciones_nota"><i class="fa fa-ellipsis-h"></i></button>
+        <button class="but_desplegar_listado_notas"><i class="fa fa-list"></i></button>
+      </form>
+    </section>
   </section>
+  <!--
   <section>
     <h2>*Fecha del calendario*</h2>
     <p>Aquí iría el calendario</p>

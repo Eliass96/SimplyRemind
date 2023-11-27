@@ -13,6 +13,7 @@ header {
   align-items: center;
   justify-content: start;
   border-bottom: 2px solid black;
+  z-index: 10;
 }
 
 .titulo {
@@ -65,8 +66,8 @@ header {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  width: 350px;
-  height: 20px;
+  width: 50vh;
+  height: 5.5vh;
   flex: 1;
 }
 
@@ -84,10 +85,9 @@ header {
 }
 
 footer {
-  clear: both;
-  text-align: center;
-  padding: 1.5vh;
-  background-color: #f1f1f1;
-  border: 1px solid darkgray;
+  position: absolute;
+  bottom: 0;
+  float: left;
+  text-align: justify;
 }
 

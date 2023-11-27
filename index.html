@@ -20,9 +20,9 @@
   </div>
   <search class="buscador">
     <form class="formulario">
-      <button class="but_filtros">Filtros</button>
+      <button class="but_filtros" type="button">Filtros</button>
       <label>
-        <input class="text_box_principal" type="text" placeholder="Buscar Notas...">
+        <input class="text_box_principal" type="search" placeholder="Buscar Notas...">
       </label>
       <button type="submit" class="but_buscar_nota">
         <i class="fas fa-search"></i>
@@ -31,7 +31,6 @@
   </search>
 </header>
 <main>
-  <!--
   <section class="listado_notas">
     <section class="cabecero_listado_notas">
       <h2 class="titulo_notas">TUS NOTAS</h2>
@@ -40,9 +39,6 @@
           <img src="img/mas%20(2).png" alt="Botón de añadir notas.">
         </button>
       </form>
-    </section>
-    <section>
--->
     </section>
   </section>
   <section class="calendario">
@@ -53,36 +49,48 @@
     </section>
     <!--Aquí iría el calendario-->
   </section>
-  <!--
-  <section>
-    <h3>Contenido del evento seleccionado...</h3>
+  <section class="eventos_dia_seleccionado">
+    <section class="evento">
+      <h3>Evento 1</h3>
+      <p>Contenido del evento...</p>
+    </section>
+    <section class="evento">
+      <h3>Evento 2</h3>
+      <p>Contenido del evento...</p>
+    </section>
+    <section class="evento">
+      <h3>Evento 3</h3>
+      <p>Contenido del evento...</p>
+    </section>
+    <section class="evento">
+      <h3>Evento 4</h3>
+      <p>Contenido del evento...</p>
+    </section>
+    <section class="evento">
+      <h3>Evento 5</h3>
+      <p>Contenido del evento...</p>
+    </section>
+    <section class="evento">
+      <h3>Evento 6</h3>
+      <p>Contenido del evento...</p>
+    </section>
+    
   </section>
-  -->
   <!-------------------------------------------------------------->
-  
   <section class="nota_seleccionada">
     <section class="cabecero_nota_seleccionada">
       <form>
-        <button class="but_volver_al_listado"><i class="fa fa-arrow-left"></i></button>
+        <button class="but_volver_al_listado" type="button"><i class="fa fa-arrow-left"></i></button>
       </form>
       <h2 class="titulo_nota_seleccionada">TÍTULO DE LA NOTA</h2>
       <form class="botones_nota_seleccionada">
-        <button class="but_duplicar_nota"><i class="fa fa-clone"></i></button>
-        <button class="but_eliminar_nota"><i class="fa fa-trash"></i></button>
-        <button class="but_mas_opciones_nota"><i class="fa fa-ellipsis-h"></i></button>
-        <button class="but_desplegar_listado_notas"><i class="fa fa-list"></i></button>
+        <button class="but_duplicar_nota" type="button"><i class="fa fa-clone"></i></button>
+        <button class="but_eliminar_nota" type="button"><i class="fa fa-trash"></i></button>
+        <button class="but_mas_opciones_nota" type="button"><i class="fa fa-ellipsis-h"></i></button>
+        <button class="but_desplegar_listado_notas" type="button"><i class="fa fa-list"></i></button>
       </form>
     </section>
   </section>
-  <!--
-  <section>
-    <h2>*Fecha del calendario*</h2>
-    <p>Aquí iría el calendario</p>
-  </section>
-  <section>
-    <h3>Contenido del evento seleccionado...</h3>
-  </section>
-  -->
 </main>
 </body>
 <footer>

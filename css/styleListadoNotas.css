@@ -1,4 +1,3 @@
-/* Estilos para el listado de notas */
 .listado_notas {
   float: right;
   margin-top: 12.5vh;
@@ -9,21 +8,17 @@
   width: 62.4%;
   min-height: 80vh;
   border-radius: 12px;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
 }
 
 .cabecero_listado_notas {
   display: inline-flex;
-  background: #f5f5f5;
-  height: 50%;
   width: 100%;
   align-content: center;
   justify-content: center;
   position: relative;
-
 }
 
 .titulo_notas {
@@ -56,4 +51,12 @@
   padding-right: 10%;
 }
 
-
+.notas {
+  width: 100%;
+  height: 100%;
+  display: in;
+  align-content: start;
+  justify-content: left;
+  position: relative;
+  vertical-align: middle;
+}

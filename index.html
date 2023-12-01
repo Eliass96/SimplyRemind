@@ -1,99 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/styleListadoNotas.css">
   <link rel="stylesheet" href="css/styleNotaSeleccionada.css">
   <link rel="stylesheet" href="css/styleCalendario.css">
   <link rel="stylesheet" href="css/styleEvento.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-.........." crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-.........." crossorigin="anonymous" />
   <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton&display=swap">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-<header>
-  <div class="titulo">
-    <h1>SimplyRemind</h1>
-  </div>
-  <search class="buscador">
-    <form class="formulario">
-      <button class="but_filtros" type="button">Filtros</button>
-      <label>
-        <input class="text_box_principal" type="search" placeholder="Buscar Notas...">
-      </label>
-      <button type="submit" class="but_buscar_nota">
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
-  </search>
-</header>
-<main>
-  <section class="listado_notas">
-    <article class="cabecero_listado_notas">
-      <h2 class="titulo_notas">TUS NOTAS</h2>
-      <form>
-        <button class="but_add_notas" type="submit">
-          <img src="img/mas(2).png" alt="Botón de añadir notas.">
+  <header>
+    <div class="titulo">
+      <h1>SimplyRemind</h1>
+    </div>
+    <search class="buscador">
+      <form class="formulario">
+        <button class="but_filtros" type="button">Filtros</button>
+        <label>
+          <input class="text_box_principal" type="search" placeholder="Buscar Notas...">
+        </label>
+        <button type="submit" class="but_buscar_nota">
+          <i class="fas fa-search"></i>
         </button>
       </form>
-    </article>
-  </section>
-  <section class="calendario">
-    <section class="cabecero_calendario">
-      <img src="img/calendario.png" alt="Icono calendario">
-      <h2>*Fecha del calendario*</h2>
-      <button class="but_calendario">&#9776;</button>
+    </search>
+  </header>
+  <main>
+    <section class="listado_notas">
+      <article class="cabecero_listado_notas">
+        <h2 class="titulo_notas">TUS NOTAS</h2>
+        <form>
+          <button class="but_add_notas" type="submit">
+            <img src="img/mas(2).png" alt="Botón de añadir notas.">
+          </button>
+        </form>
+      </article>
+      <article class="notas">
+        <ol>
+          <li>Nota 1</li>
+          <li>Nota 2</li>
+          <li>Nota 3</li>
+        </ol>
+      </article>
     </section>
-    <!--Aquí iría el calendario-->
-  </section>
-  <section class="eventos_dia_seleccionado">
-    <article class="evento">
-      <h3>Evento 1</h3>
-      <p>Contenido del evento...</p>
-    </article>
-    <article class="evento">
-      <h3>Evento 2</h3>
-      <p>Contenido del evento...</p>
-    </article>
-    <article class="evento">
-      <h3>Evento 3</h3>
-      <p>Contenido del evento...</p>
-    </article>
-    <article class="evento">
-      <h3>Evento 4</h3>
-      <p>Contenido del evento...</p>
-    </article>
-    <article class="evento">
-      <h3>Evento 5</h3>
-      <p>Contenido del evento...</p>
-    </article>
-    <article class="evento">
-      <h3>Evento 6</h3>
-      <p>Contenido del evento...</p>
-    </article>
-    
-  </section>
-  <!-------------------------------------------------------------->
-  <section class="nota_seleccionada">
-    <article class="cabecero_nota_seleccionada">
-      <form>
-        <button class="but_volver_al_listado" type="button"><i class="fa fa-arrow-left"></i></button>
-      </form>
-      <h2 class="titulo_nota_seleccionada">TÍTULO DE LA NOTA</h2>
-      <form class="botones_nota_seleccionada">
-        <button class="but_duplicar_nota" type="button"><i class="fa fa-clone"></i></button>
-        <button class="but_eliminar_nota" type="button"><i class="fa fa-trash"></i></button>
-        <button class="but_mas_opciones_nota" type="button"><i class="fa fa-ellipsis-h"></i></button>
-        <button class="but_desplegar_listado_notas" type="button"><i class="fa fa-list"></i></button>
-      </form>
-    </article>
-  </section>
-</main>
+    <section class="calendario">
+      <section class="cabecero_calendario">
+        <img src="img/calendario.png" alt="Icono calendario">
+        <h2>*Fecha del calendario*</h2>
+        <button class="but_calendario">&#9776;</button>
+      </section>
+      <!--Aquí iría el calendario-->
+      <!--https://libreriasjs.com/libreria-javascript-crear-calendarios-eventos-fullcalendar/-->
+    </section>
+    <section class="eventos_dia_seleccionado">
+      <article class="evento">
+        <h3>Evento 1</h3>
+        <p>Contenido del evento...</p>
+      </article>
+      <article class="evento">
+        <h3>Evento 2</h3>
+        <p>Contenido del evento...</p>
+      </article>
+      <article class="evento">
+        <h3>Evento 3</h3>
+        <p>Contenido del evento...</p>
+      </article>
+      <article class="evento">
+        <h3>Evento 4</h3>
+        <p>Contenido del evento...</p>
+      </article>
+      <article class="evento">
+        <h3>Evento 5</h3>
+        <p>Contenido del evento...</p>
+      </article>
+      <article class="evento">
+        <h3>Evento 6</h3>
+        <p>Contenido del evento...</p>
+      </article>
+    </section>
+    <!-------------------------------------------------------------->
+    <section class="nota_seleccionada">
+      <article class="cabecero_nota_seleccionada">
+        <form>
+          <button class="but_volver_al_listado" type="button"><i class="fa fa-arrow-left"></i></button>
+        </form>
+        <h2 class="titulo_nota_seleccionada">TÍTULO DE LA NOTA</h2>
+        <form class="botones_nota_seleccionada">
+          <button class="but_duplicar_nota" type="button"><i class="fa fa-clone"></i></button>
+          <button class="but_eliminar_nota" type="button"><i class="fa fa-trash"></i></button>
+          <button class="but_mas_opciones_nota" type="button"><i class="fa fa-ellipsis-h"></i></button>
+          <button class="but_desplegar_listado_notas" type="button"><i class="fa fa-list"></i></button>
+        </form>
+      </article>
+    </section>
+  </main>
 </body>
 <footer>
   <p>&copy; Copyright 2023 - Todos los derechos reservados - Elías Botía García</p>
 </footer>
+
 </html>

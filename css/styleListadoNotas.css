@@ -51,12 +51,48 @@
   padding-right: 10%;
 }
 
-.notas {
+.todas_las_notas {
   width: 100%;
   height: 100%;
-  display: in;
+  display: inline-flex;
+  float: left;
   align-content: start;
   justify-content: left;
   position: relative;
   vertical-align: middle;
+}
+
+/* Estilos para los elementos <a> dentro de los elementos <li> */
+
+.todas_las_notas a {
+  display: inline-block; /* Hace que el elemento <a> ocupe todo el espacio del elemento <li> */
+  text-decoration: none; /* Elimina el subrayado del texto */
+  color: black; /* Cambia el color del texto a negro */
+  padding: 10px; /* Añade un relleno alrededor del texto */
+  vertical-align: middle; /* Alinea el texto verticalmente con el centro del círculo */
+}
+
+.todas_las_notas a:hover {
+  background-color: #e4e6e8;
+}
+
+/* Para usar un círculo como marcador */
+.todas_las_notas li {
+  list-style-type: none; /* Elimina el marcador por defecto */
+  text-align: left; /* Alinea el contenido a la izquierda */
+}
+
+input[type=color] {
+  width: 25px;
+  height: 25px;
+  border-radius: 15px;
+  border: transparent;
+  background-color: transparent;
+  margin-right: 5px;
+}
+
+/* Para colocar el listado de notas arriba del contenedor */
+.todas_las_notas {
+  position: absolute; /* Posiciona el elemento de forma absoluta */
+  top: 25%; /* Desplaza el elemento hacia el borde superior del elemento padre */
 }

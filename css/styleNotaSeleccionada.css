@@ -1,77 +1,75 @@
 .nota_seleccionada {
-    float: right;
-    margin-top: 12.5vh;
-    padding-right: 1vh;
-    margin-bottom: 1vh;
-    border: 1px solid darkgray;
-    background: #f8f8f8;
-    width: 62.4%;
-    min-height: 80vh;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 12px;
+  float: right;
+  margin-top: 12.5vh;
+  padding-right: 1vh;
+  margin-bottom: 1vh;
+  border: 1px solid darkgray;
+  background: #f8f8f8;
+  width: 62.4%;
+  min-height: 80vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
 }
 
 .cabecero_nota_seleccionada {
-    display: inline-flex;
-    height: 50%;
-    width: 100%;
-    align-content: center;
-    justify-content: center;
-    position: relative;
+  display: inline-flex;
+  height: 50%;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  position: relative;
 }
 
 .titulo_nota_seleccionada {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 50px;
-    padding-top: 0.75%;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 50px;
+  padding-top: 0.75%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
-  .but_volver_al_listado,
-  .but_duplicar_nota,
-  .but_eliminar_nota,
-  .but_mas_opciones_nota,
-  .but_desplegar_listado_notas {
-    background: transparent;
-    color: #000;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 3vh;
-    transition: color 0.3s ease-in-out;
-  }
+.but_volver_al_listado,
+.but_duplicar_nota,
+.but_eliminar_nota,
+.but_mas_opciones_nota,
+.but_desplegar_listado_notas {
+  background: transparent;
+  color: #000;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 3vh;
+  transition: color 0.3s ease-in-out;
+}
 
-  .but_volver_al_listado {
-    position: absolute;
-    left: 0;
-  }
+.but_volver_al_listado {
+  position: absolute;
+  left: 0;
+}
 
-  .botones_nota_seleccionada {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: absolute;
-    right: 0;
-  }
-  
-  .but_volver_al_listado:hover,
-  .but_duplicar_nota:hover,
-  .but_eliminar_nota:hover,
-  .but_mas_opciones_nota:hover,
-  .but_desplegar_listado_notas:hover {
-    color: #333;
-  }
+.botones_nota_seleccionada {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+}
 
-  .but_volver_al_listado:active,
-  .but_duplicar_nota:active,
-  .but_eliminar_nota:active,
-  .but_mas_opciones_nota:active,
-  .but_desplegar_listado_notas:active {
-    transform: scale(0.95);
-  }
-  
-  
+.but_volver_al_listado:hover,
+.but_duplicar_nota:hover,
+.but_eliminar_nota:hover,
+.but_mas_opciones_nota:hover,
+.but_desplegar_listado_notas:hover {
+  color: #333;
+}
+
+.but_volver_al_listado:active,
+.but_duplicar_nota:active,
+.but_eliminar_nota:active,
+.but_mas_opciones_nota:active,
+.but_desplegar_listado_notas:active {
+  transform: scale(0.95);
+}

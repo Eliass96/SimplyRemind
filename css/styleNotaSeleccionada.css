@@ -1,3 +1,10 @@
+html,
+body {
+  min-height: 100%;
+  transition: all 0, 5s ease;
+  box-sizing: border-box;
+}
+
 .nota_seleccionada {
   float: right;
   margin-top: 12.5vh;

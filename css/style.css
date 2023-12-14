@@ -1,6 +1,8 @@
 html,
 body {
   min-height: 100%;
+  transition: all 0.5s ease;
+  box-sizing: border-box;
 }
 
 header {
@@ -67,9 +69,20 @@ header {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  width: 50vh;
+  width: 35ch;
   height: 5.5vh;
   flex: 1;
+}
+
+.text_box_principal:focus {
+  width: 60ch;
+  transition: all 0.5s ease;
+}
+
+.text_box_principal:not(:placeholder-shown) {
+  /* ARREGLAR */
+  width: 35ch;
+  transition: all 0.5s ease;
 }
 
 .but_filtros:active,

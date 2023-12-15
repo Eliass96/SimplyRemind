@@ -12,13 +12,22 @@ body {
   margin-bottom: 1vh;
   border: 1px solid darkgray;
   background: #f8f8f8;
-  width: 62.4%;
+  max-width: 62.4%;
+  max-height: 80vh;
+  min-width: 62.4%;
   min-height: 80vh;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   border-radius: 12px;
+  overflow-y: auto;
 }
+
+/*ARREGLAR*/
+/*.nota_seleccionada::-webkit-scrollbar-track {
+  width: 3px;
+  color: #000;
+}*/
 
 .cabecero_nota_seleccionada {
   display: inline-flex;
@@ -79,4 +88,15 @@ body {
 .but_mas_opciones_nota:active,
 .but_desplegar_listado_notas:active {
   transform: scale(0.95);
+}
+
+.titulo_nota_seleccionada[contenteditable=true] {
+  background: transparent;
+  border: none;
+}
+
+.contenido_nota_seleccionada {
+  position: relative;
+  top: 30px;
+  padding: 20px;
 }

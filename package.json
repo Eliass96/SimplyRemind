@@ -1,0 +1,22 @@
+{
+  "name": "simplyremind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@dile/dile-modal": "^3.0.4",
+    "@fullcalendar/core": "^6.1.10",
+    "@fullcalendar/daygrid": "^6.1.10",
+    "@fullcalendar/interaction": "^6.1.10",
+    "@fullcalendar/list": "^6.1.10",
+    "@fullcalendar/moment-timezone": "^6.1.10",
+    "@fullcalendar/multimonth": "^6.1.10",
+    "@fullcalendar/timegrid": "^6.1.10"
+  }
+}

@@ -23,12 +23,6 @@ body {
   overflow-y: auto;
 }
 
-/*ARREGLAR*/
-/*.nota_seleccionada::-webkit-scrollbar-track {
-  width: 3px;
-  color: #000;
-}*/
-
 .cabecero_nota_seleccionada {
   display: inline-flex;
   height: 50%;
@@ -59,6 +53,9 @@ body {
   cursor: pointer;
   font-size: 3vh;
   transition: color 0.3s ease-in-out;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
 }
 
 .but_volver_al_listado {
@@ -87,7 +84,7 @@ body {
 .but_eliminar_nota:active,
 .but_mas_opciones_nota:active,
 .but_desplegar_listado_notas:active {
-  transform: scale(0.95);
+  transform: scale(0.75);
 }
 
 .titulo_nota_seleccionada[contenteditable=true] {

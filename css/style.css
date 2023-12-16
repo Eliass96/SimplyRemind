@@ -63,6 +63,8 @@ header {
   animation-name: bounce;
   font-size: 28px;
   padding-left: 10px;
+  width: 48px;
+  height: 48px;
 }
 
 .text_box_principal {
@@ -72,22 +74,19 @@ header {
   width: 35ch;
   height: 5.5vh;
   flex: 1;
+  transition: all 0.5s ease;
 }
 
 .text_box_principal:focus {
   width: 60ch;
-  transition: all 0.5s ease;
 }
 
-.text_box_principal:not(:placeholder-shown) {
-  /* ARREGLAR */
-  width: 35ch;
-  transition: all 0.5s ease;
-}
-
-.but_filtros:active,
-.but_buscar_nota:active {
+.but_filtros:active {
   transform: scale(0.95);
+}
+
+.but_buscar_nota:active {
+  transform: scale(0.75);
 }
 
 .but_filtros:hover {

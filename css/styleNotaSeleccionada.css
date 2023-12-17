@@ -1,10 +1,3 @@
-html,
-body {
-  min-height: 100%;
-  transition: all 0, 5s ease;
-  box-sizing: border-box;
-}
-
 .nota_seleccionada {
   float: right;
   margin-top: 12.5vh;
@@ -20,7 +13,36 @@ body {
   align-items: center;
   justify-content: space-between;
   border-radius: 12px;
-  overflow-y: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.nota_seleccionada_inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  padding-right: 1vh;
+  margin-right: -1vh;  /* Compensar el relleno adicional */
+}
+
+.nota_seleccionada_inner::-webkit-scrollbar {
+  width: 11px;
+}
+
+.nota_seleccionada_inner::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.nota_seleccionada_inner::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 12px;
+}
+
+.nota_seleccionada_inner::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 .cabecero_nota_seleccionada {
@@ -29,12 +51,11 @@ body {
   width: 100%;
   align-content: center;
   justify-content: center;
-  position: relative;
 }
 
 .titulo_nota_seleccionada {
   position: absolute;
-  top: 50%;
+  top: 10px;
   transform: translateY(-50%);
   margin-left: 50px;
   padding-top: 0.75%;
@@ -46,12 +67,13 @@ body {
 .but_eliminar_nota,
 .but_mas_opciones_nota,
 .but_desplegar_listado_notas {
+  position: relative;
+  top: 10px;
   background: transparent;
   color: #000;
   border: none;
   padding: 10px;
   cursor: pointer;
-  font-size: 3vh;
   transition: color 0.3s ease-in-out;
   z-index: 1;
   width: 40px;
@@ -61,14 +83,13 @@ body {
 .but_volver_al_listado {
   position: absolute;
   left: 0;
+  margin-left: 10px;
 }
 
 .botones_nota_seleccionada {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   position: absolute;
   right: 0;
+  margin-right: 10px;
 }
 
 .but_volver_al_listado:hover,
@@ -93,7 +114,8 @@ body {
 }
 
 .contenido_nota_seleccionada {
-  position: relative;
+  position: absolute;
   top: 30px;
+  left: 20px;
   padding: 20px;
 }

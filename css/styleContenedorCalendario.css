@@ -1,10 +1,3 @@
-html,
-body {
-  min-height: 100%;
-  transition: all 0, 5s ease;
-  box-sizing: border-box;
-}
-
 /* Estilos para el calendario */
 .calendario {
   float: left;
@@ -26,23 +19,38 @@ body {
   border-bottom: 1px solid darkgray;
   width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  vertical-align: middle;
 }
 
-.but_atras_calendario
+.but_atras_calendario,
 .but_adelante_calendario {
-  background-color: transparent;
+  background: transparent;
+  color: #000;
   border: none;
   cursor: pointer;
-  animation-duration: 0.1s;
-  animation-name: bounce;
-  width: 30px;
-  height: 30px;
-  padding-right: 3%;
-  margin-left: auto;
+  transition: color 0.3s ease-in-out;
+  width: 35px;
+}
+
+.botonera_calendario {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.but_atras_calendario:hover,
+.but_adelante_calendario:hover {
+  color: #333;
+}
+
+.but_atras_calendario:active,
+.but_adelante_calendario:active {
+  transform: scale(0.75);
 }
 
 .but_calendario {
@@ -57,7 +65,7 @@ body {
 }
 
 .but_calendario:active {
-  transform: scale(0.95);
+  transform: scale(0.75);
 }
 
 .but_calendario:hover {

@@ -24,14 +24,13 @@
   left: 0;
   right: 0;
   overflow-y: scroll;
-  padding-right: 1vh;
-  margin-right: -1vh;
+  padding-right: 1vh; 
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
 }
 
 .listado_notas_inner::-webkit-scrollbar {
-  width: 11px;
+  width: 5px;
 }
 
 .listado_notas_inner::-webkit-scrollbar-track {

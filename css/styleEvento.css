@@ -1,9 +1,9 @@
 .eventos_dia_seleccionado {
   background: white;
   overflow-y: auto;
-  overflow-X: auto;
+  overflow-x: auto;
   float: left;
-  margin-top: 2vh;
+  margin-top: 20vh;
   margin-bottom: 1vh;
   min-width: 36%;
   min-height: 32vh;
@@ -26,6 +26,33 @@
   padding: 5px;
   padding-left: 15px;
   margin-bottom: 1vh;
+}
+
+.add_evento {
+  border: 1px solid darkgray;
+  background-color: lightgray;
+  border: none;
+  margin-top: 0.45em;
+  min-width: 36%;
+  min-height: 3em;
+  max-width: 36%;
+  max-height: 3em;
+  margin-left: 0px;
+  border-radius: 10px;
+  padding-left: 15px;
+  margin-bottom: 1vh;
+  cursor: pointer;
+  animation-duration: 0.1s;
+  animation-name: bounce;
+  font-size: large;
+}
+
+.add_evento:active {
+  transform: scale(0.95);
+}
+
+.add_evento:hover {
+  background-color: #ddd;
 }
 
 .contenedor-eventos_dia_seleccionado::-webkit-scrollbar {

@@ -25,11 +25,10 @@
   right: 0;
   overflow-y: scroll;
   padding-right: 1vh;
-  margin-right: -1vh;  /* Compensar el relleno adicional */
 }
 
 .nota_seleccionada_inner::-webkit-scrollbar {
-  width: 11px;
+  width: 5px;
 }
 
 .nota_seleccionada_inner::-webkit-scrollbar-track {

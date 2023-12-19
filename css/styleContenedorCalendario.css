@@ -4,8 +4,10 @@
   margin-top: 12.5vh;
   margin-bottom: 1vh;
   border: 1px solid darkgray;
-  width: 36%;
-  min-height: 40vh;
+  min-width: 36%;
+  min-height: 45vh;
+  max-width: 36%;
+  max-height: 45vh;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -81,4 +83,9 @@
   font-size: 140%;
   padding-left: 7%;
   padding-right: 10%;
+}
+
+.calendar {
+  width: 100%;
+  height: 100%;
 }

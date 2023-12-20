@@ -32,15 +32,10 @@
   border: 1px solid darkgray;
   background-color: lightgray;
   border: none;
-  margin-top: 0.45em;
-  min-width: 36%;
-  min-height: 3em;
-  max-width: 36%;
-  max-height: 3em;
+  width: 35.4vw;
+  height: 3em;
   margin-left: 0px;
   border-radius: 10px;
-  padding-left: 15px;
-  margin-bottom: 1vh;
   cursor: pointer;
   animation-duration: 0.1s;
   animation-name: bounce;

@@ -2,30 +2,24 @@
 <html lang="en">
 
 <head>
+  <!--<link href="css/lib/bootstrap.min.css" rel="stylesheet">-->
+  <link href="css/lib/main.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton&display=swap">
+  <script src="js/lib/main.min.js"></script>
+  <script src="js/lib/moment.js"></script>
+  <script src="js/lib/sweetalert2.all.min.js"></script>
+  <script src="js/lib/es.js"></script>
+  <script src="js/lib/bootstrap.bundle.min.js"></script>
+  <!------------------------------------------------------------------------------------------------------>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/styleListadoNotas.css">
   <link rel="stylesheet" href="css/styleNotaSeleccionada.css">
   <link rel="stylesheet" href="css/styleContenedorCalendario.css">
   <link rel="stylesheet" href="css/styleEvento.css">
-  <!------------------------------------------------------------------------------>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha512-.........." crossorigin="anonymous" />
-  <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton&display=swap">
-  <!--Calendario-->
-  <!--CSS-->
-  <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
-  <link href="css/main.min.css" rel="stylesheet">
-  <!--JavaScript-->
-  <script src="js/main.min.js"></script>
-  <script src="js/moment.js"></script>
-  <script src="js/sweetalert2.all.min.js"></script>
-  <script src="js/es.js"></script>
+  <link rel="stylesheet" href="css/styleCalendario.css">
   <script src="js/appCalendario.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="css/styleCalendario.css">
   <title>SymplyRemind</title>
 </head>
 
@@ -260,20 +254,77 @@
         </article>
       </section>
     </section>
-    <section class="calendario">
-      <section class="cabecero_calendario">
-        <img id="logo_calendario" class="logo_calendario" src="img/calendario.png" alt="Icono calendario">
-        <div class="botonera_calendario">
-          <button id="but_atras_calendario" class="but_atras_calendario" type="button"><img
-              src="icon/circle-arrow-left.svg" alt="Navegar atrás en el calendario"></button>
-          <h2>Fecha del calendario</h2>
-          <button id="but_adelante_calendario" class="but_adelante_calendario" type="button"><img
-              src="icon/circle-arrow-right.svg" alt="Navegar atrás en el calendario"></button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdrop" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="titulo"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="formulario">
+            <div class="modal-body">
+              <div class="form-floating mb-3">
+                <input type="date" class="form-control" id="start">
+                <label for="start" class="form-label">Fecha</label>
+              </div>
+              <div class="modal-footer">
+              </div>
+          </form>
         </div>
-        <button id="but_calendario" class="but_calendario" type="button">&#9776;</button>
-      </section>
-      <section class="calendar" id="calendar"></section>
-    </section>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </main>
 </body>
 <footer>

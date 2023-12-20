@@ -1,4 +1,4 @@
-//var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+//var myModal = new bootstrap.Modal(document.getElementById('myModal')); --> NullPointer
 
 document.addEventListener("DOMContentLoaded", function () {
   var calendarEl = document.getElementById("calendar");

@@ -46,7 +46,6 @@
 
 .titulo_nota_seleccionada {
   position: absolute;
-  top: 10px;
   transform: translateY(-50%);
   margin-left: 50px;
   padding-top: 0.75%;
@@ -59,7 +58,6 @@
 .but_mas_opciones_nota,
 .but_desplegar_listado_notas {
   position: relative;
-  top: 10px;
   background: transparent;
   color: #000;
   border: none;

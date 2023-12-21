@@ -1,4 +1,4 @@
-//var myModal = new bootstrap.Modal(document.getElementById('myModal')); --> NullPointer
+var myModal = new bootstrap.Modal(document.getElementById('myModal'));
 
 document.addEventListener("DOMContentLoaded", function () {
   var calendarEl = document.getElementById("calendar");
@@ -36,9 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
       center: "title",
       right: "botonNext botonMasOpciones",
     },
+    firstDay: 1,
     dateClick: function(info) {
       //console.log(info);
       document.getElementById('start').value = info.dateStr;
+      document.getElementById('titulo').textContent = 'Registro de Evento';
       myModal.show();
     }
   });

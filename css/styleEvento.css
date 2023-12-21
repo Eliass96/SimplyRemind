@@ -1,18 +1,14 @@
 .eventos_dia_seleccionado {
-  background: white;
-  overflow-y: auto;
-  overflow-x: auto;
-  float: left;
-  margin-top: 20vh;
+  float: right;
+  margin-top: 88px;
+  padding-right: 1vh;
   margin-bottom: 1vh;
-  min-width: 36%;
-  min-height: 32vh;
-  max-width: 36%;
-  max-height: 32vh;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
+  max-width: 62.4%;
+  max-height: 80vh;
+  min-width: 62.4%;
+  min-height: 80vh;
+  display: none;
+  overflow-y: auto;
 }
 
 .evento {
@@ -28,7 +24,8 @@
   margin-bottom: 1vh;
 }
 
-.add_evento {
+.but_mostrar_notas {
+  display: none;
   border: 1px solid darkgray;
   background-color: lightgray;
   border: none;
@@ -39,14 +36,37 @@
   cursor: pointer;
   animation-duration: 0.1s;
   animation-name: bounce;
-  font-size: large;
+  font-size: large;  
+  float: left;
+  position: absolute;
+  top: 84vh;
 }
 
-.add_evento:active {
+.but_mostrar_eventos {
+  display: block;
+  border: 1px solid darkgray;
+  background-color: lightgray;
+  border: none;
+  width: 35.4vw;
+  height: 3em;
+  margin-left: 0px;
+  border-radius: 10px;
+  cursor: pointer;
+  animation-duration: 0.1s;
+  animation-name: bounce;
+  font-size: large;  
+  float: left;
+  position: absolute;
+  top: 84vh;
+}
+
+.but_mostrar_eventos:active,
+.but_mostrar_notas:active {
   transform: scale(0.95);
 }
 
-.add_evento:hover {
+.but_mostrar_eventos:hover,
+.but_mostrar_notas:hover {
   background-color: #ddd;
 }
 

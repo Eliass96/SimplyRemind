@@ -10,39 +10,29 @@
   min-width: 62.4%;
   min-height: 80vh;
   border-radius: 12px;
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: stretch;
-  overflow: hidden;
   position: relative;
-}
-
-.listado_notas_inner {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow-y: scroll;
-  padding-right: 1vh; 
+  overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
 }
 
-.listado_notas_inner::-webkit-scrollbar {
+.listado_notas::-webkit-scrollbar {
   width: 5px;
 }
 
-.listado_notas_inner::-webkit-scrollbar-track {
+.listado_notas::-webkit-scrollbar-track {
   background: #f1f1f1; 
 }
  
-.listado_notas_inner::-webkit-scrollbar-thumb {
+.listado_notas::-webkit-scrollbar-thumb {
   background: #888; 
   border-radius: 12px;
 }
 
-.listado_notas_inner::-webkit-scrollbar-thumb:hover {
+.listado_notas::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
 

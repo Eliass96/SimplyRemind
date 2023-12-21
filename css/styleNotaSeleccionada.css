@@ -9,38 +9,30 @@
   max-height: 80vh;
   min-width: 62.4%;
   min-height: 80vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f8f8f8;
 }
 
-.nota_seleccionada_inner {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow-y: scroll;
-  padding-right: 1vh;
-}
-
-.nota_seleccionada_inner::-webkit-scrollbar {
+.nota_seleccionada::-webkit-scrollbar {
   width: 5px;
 }
 
-.nota_seleccionada_inner::-webkit-scrollbar-track {
+.nota_seleccionada::-webkit-scrollbar-track {
   background: #f1f1f1; 
 }
  
-.nota_seleccionada_inner::-webkit-scrollbar-thumb {
+.nota_seleccionada::-webkit-scrollbar-thumb {
   background: #888; 
   border-radius: 12px;
 }
 
-.nota_seleccionada_inner::-webkit-scrollbar-thumb:hover {
+.nota_seleccionada::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
 

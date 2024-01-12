@@ -121,7 +121,13 @@
         <form class="botones_nota_seleccionada">
           <button class="but_duplicar_nota" type="button"><img src="icon/clone.svg" alt="Duplicar Nota"></button>
           <button class="but_eliminar_nota" type="button"><img src="icon/trash.svg" alt="Eliminar Nota"></button>
-          <button class="but_mas_opciones_nota" type="button"><img src="icon/ellipsis.svg" alt="Más opciones"></button>
+          <div class="dropdown_mas_opciones_nota">
+            <button id="but_mas_opciones_nota" class="but_mas_opciones_nota" type="button"><img src="icon/ellipsis.svg" alt="Más opciones"></button>
+            <div id="dropdown-content" class="dropdown-content">
+              <button class="but_dropdown_mas_opciones_notas" type="button">Compartir</button>
+              <button class="but_dropdown_mas_opciones_notas" type="button">Etiquetar</button>
+            </div>
+          </div>
           <button class="but_desplegar_listado_notas" type="button"><img src="icon/list.svg"
               alt="Desplegar listado de notas"></button>
         </form>

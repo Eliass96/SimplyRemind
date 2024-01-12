@@ -40,6 +40,7 @@
   float: left;
   position: absolute;
   top: 84vh;
+  transition: background-color 0.3s ease;
 }
 
 .but_mostrar_eventos {
@@ -58,6 +59,7 @@
   float: left;
   position: absolute;
   top: 84vh;
+  transition: background-color 0.3s ease;
 }
 
 .but_mostrar_eventos:active,

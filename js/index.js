@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var botonOcultarLogin = document.getElementById("but_cerrar_login");
   var botonMostrarRegistro = document.getElementById("but_registrarse");
   var botonOcultarRegistro = document.getElementById("but_cerrar_registro");
+  var botonMasOpcionesNota = document.getElementById("but_mas_opciones_nota");
 
   botonAddNota.addEventListener("click", addNota);
   botonVolverAlListado.addEventListener("click", function () {
@@ -29,6 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
   botonOcultarLogin.addEventListener("click", ocultarLogin);
   botonMostrarRegistro.addEventListener("click", mostrarRegistro);
   botonOcultarRegistro.addEventListener("click", ocultarRegistro);
+  botonMasOpcionesNota.addEventListener("click", masOpcionesNota);
+
+  document.addEventListener('click', function() {
+    var desplegable = document.getElementById('dropdown-content');
+    desplegable.style.display = 'none';
+  });
 });
 
 function addNota() {
@@ -153,4 +160,15 @@ function ocultarRegistro() {
   overlay.style.display = "none";
   formLogin.reset();
   formRegistro.reset();
+}
+
+function masOpcionesNota(event) {
+  event.stopPropagation(); // Detiene la propagación del evento
+  let desplegable = document.getElementById("dropdown-content");
+
+  if (desplegable.style.display == 'none' || desplegable.style.display == '') {
+    desplegable.style.display = 'block';
+  } else {
+    desplegable.style.display = 'none';
+  }
 }

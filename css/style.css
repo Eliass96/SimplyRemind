@@ -76,6 +76,7 @@ header {
   border: none;
   cursor: pointer;
   margin-right: 10px;
+  transition: background-color 0.3s ease;
 }
 
 .but_buscar_nota {
@@ -102,6 +103,7 @@ header {
   font-style: normal;
   cursor: pointer;
   font-size: large;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .text_box_principal {

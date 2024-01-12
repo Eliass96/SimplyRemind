@@ -11,6 +11,7 @@
   <!--<link rel="stylesheet" href="css/styleContenedorCalendario.css">-->
   <link rel="stylesheet" href="css/styleEvento.css">
   <link rel="stylesheet" href="css/styleCalendario.css">
+  <link rel="stylesheet" href="css/styleLoginRegistro.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SymplyRemind</title>
@@ -23,7 +24,6 @@
     </div>
     <search class="buscador">
       <form class="formulario">
-        <button class="but_ordenar_por" type="button">Ordenar por:</button>
         <button class="but_filtros" type="button">Filtros</button>
         <label>
           <input class="text_box_principal" type="search" placeholder="Buscar Notas...">
@@ -33,6 +33,7 @@
         </button>
       </form>
     </search>
+    <button id="but_login" class="but_login" type="button">Iniciar sesión</button>
   </header>
   <main>
     <section id="listado_notas" class="listado_notas">
@@ -49,26 +50,32 @@
           <li>
             <input type="color" value="#ff0000">
             <a href="#">Nota 1</a>
-            <button class="but_eliminar_nota_lista" type="button"><img src="icon/trash.svg"
-                alt="Eliminar Nota"></button>
-            <button class="but_duplicar_nota_lista" type="button"><img src="icon/clone.svg"
-                alt="Duplicar Nota"></button>
+            <button class="but_eliminar_nota_lista" type="button">
+              <img src="icon/trash.svg" alt="Eliminar Nota">
+            </button>
+            <button class="but_duplicar_nota_lista" type="button">
+              <img src="icon/clone.svg" alt="Duplicar Nota">
+            </button>
           </li>
           <li>
             <input type="color" value="#00ff00">
             <a href="#">Nota 1</a>
-            <button class="but_eliminar_nota_lista" type="button"><img src="icon/trash.svg"
-                alt="Eliminar Nota"></button>
-            <button class="but_duplicar_nota_lista" type="button"><img src="icon/clone.svg"
-                alt="Duplicar Nota"></button>
+            <button class="but_eliminar_nota_lista" type="button">
+              <img src="icon/trash.svg" alt="Eliminar Nota">
+            </button>
+            <button class="but_duplicar_nota_lista" type="button">
+              <img src="icon/clone.svg" alt="Duplicar Nota">
+            </button>
           </li>
           <li>
             <input type="color" value="#0000ff">
             <a href="#">Nota 1</a>
-            <button class="but_eliminar_nota_lista" type="button"><img src="icon/trash.svg"
-                alt="Eliminar Nota"></button>
-            <button class="but_duplicar_nota_lista" type="button"><img src="icon/clone.svg"
-                alt="Duplicar Nota"></button>
+            <button class="but_eliminar_nota_lista" type="button">
+              <img src="icon/trash.svg" alt="Eliminar Nota">
+            </button>
+            <button class="but_duplicar_nota_lista" type="button">
+              <img src="icon/clone.svg" alt="Duplicar Nota">
+            </button>
           </li>
         </ol>
       </article>
@@ -110,7 +117,7 @@
           <button id="but_volver_al_listado" class="but_volver_al_listado" type="button"><img src="icon/arrow-left.svg"
               alt="Buscar Nota"></i></button>
         </form>
-        <h2 class="titulo_nota_seleccionada" contenteditable="true">TÍTULO DE LA NOTA</h2>
+        <h2 class="titulo_nota_seleccionada" contenteditable="">TÍTULO DE LA NOTA</h2>
         <form class="botones_nota_seleccionada">
           <button class="but_duplicar_nota" type="button"><img src="icon/clone.svg" alt="Duplicar Nota"></button>
           <button class="but_eliminar_nota" type="button"><img src="icon/trash.svg" alt="Eliminar Nota"></button>
@@ -127,29 +134,86 @@
           nota...</p>
       </article>
     </section>
-    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdrop" aria-hidden="true">
-      <!--<div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header bg-info">
-            <h5 class="modal-title" id="titulo"></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form id="formulario">
-            <div class="modal-body">
-              <div class="form-floating mb-3">
-                <input type="date" class="form-control" id="start">
-                <label for="start" class="form-label">Fecha</label>
-              </div>
-              <div class="modal-footer">
-              </div>
-          </form>
-        </div>
-      </div>-->
-    </div>
   </main>
+  <div id="form_login" class="form_login">
+    <div class="cabecero_login">
+      <h1>Inicio de sesión</h1>
+      <button id="but_cerrar_login" class="but_cerrar_login" type="button"><img src="icon/xmark.svg"
+          alt="Cerrar formulario de inicio de sesión."></button>
+    </div>
+    <form id="datos_login" method="post">
+      <div class="username">
+        <input type="text" required>
+        <label>Nombre de usuario</label>
+      </div>
+      <div class="password">
+        <input type="password" required>
+        <label>Contraseña</label>
+      </div>
+      <button class="recordar" type="button">¿Olvidó su contraseña?</button>
+      <button class="but_confirmar_login" type="submit">Confirmar</button>
+      <div class="div_registrarse">
+        <p>¿Aun no estás registrado?</p>
+        <button id="but_registrarse" class="but_registrarse" type="button">Registrarme</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="form_registro" class="form_registro">
+    <div class="cabecero_registro">
+      <h1>Registro</h1>
+      <button id="but_cerrar_registro" class="but_cerrar_registro" type="button"><img src="icon/xmark.svg"
+          alt="Cerrar formulario de registro."></button>
+    </div>
+    <form id="datos_registro" method="post">
+      <div class="email">
+        <input type="text" required>
+        <label>Email</label>
+      </div>
+      <div class="nombre_completo">
+        <input type="text" required>
+        <label>Nombre completo</label>
+      </div>
+      <div class="username">
+        <input type="text" required>
+        <label>Nombre de usuario</label>
+      </div>
+      <div class="password">
+        <input type="password" required>
+        <label>Contraseña</label>
+      </div>
+      <button class="but_confirmar_registro" type="submit">Confirmar</button>
+      <div class="div_loguearse">
+        <p>¿Ya estás registrado?</p>
+        <button id="but_loguearse" class="but_loguearse" type="button">Iniciar sesión</button>
+      </div>
+    </form>
+  </div>
+  <div id="overlay" class="overlay"></div>
+
+  <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdrop" aria-hidden="true">
+    <!--<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-info">
+        <h5 class="modal-title" id="titulo"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="formulario">
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="start">
+            <label for="start" class="form-label">Fecha</label>
+          </div>
+          <div class="modal-footer">
+          </div>
+      </form>
+    </div>
+  </div>-->
+  </div>
+  <!------------------------------------------------------------------------------------------------------->
   <script src="js/lib/main.min.js"></script>
   <script src="js/lib/moment.js"></script>
   <script src="js/lib/sweetalert2.all.min.js"></script>

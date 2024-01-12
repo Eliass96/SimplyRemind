@@ -1,4 +1,4 @@
-var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+var myModal = new bootstrap.Modal(document.getElementById("myModal"));
 
 document.addEventListener("DOMContentLoaded", function () {
   var calendarEl = document.getElementById("calendar");
@@ -9,13 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
     customButtons: {
       miLogo: {
         icon: "../img/calendario.png",
-        click: function () {
-        },
+        click: function () {},
       },
       botonMasOpciones: {
         icon: "../icon/bars.svg",
         click: function () {
-          botonMasOpciones.click();
+          var dropdownMenu = document.getElementById("dropdownMenu");
+          dropdownMenu.style.display =
+            dropdownMenu.style.display === "none" ? "block" : "none";
         },
       },
       botonPrev: {
@@ -37,12 +38,11 @@ document.addEventListener("DOMContentLoaded", function () {
       right: "botonNext botonMasOpciones",
     },
     firstDay: 1,
-    dateClick: function(info) {
-      //console.log(info);
-      document.getElementById('start').value = info.dateStr;
-      document.getElementById('titulo').textContent = 'Registro de Evento';
+    dateClick: function (info) {
+      document.getElementById("start").value = info.dateStr;
+      document.getElementById("titulo").textContent = "Registro de Evento";
       myModal.show();
-    }
+    },
   });
   calendar.render();
 });

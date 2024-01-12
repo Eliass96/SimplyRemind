@@ -1,0 +1,193 @@
+/*html {
+  background: linear-gradient(150deg, #6c3483, #58d68d);
+}*/
+
+.form_registro,
+.form_login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+}
+
+.cabecero_login {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid silver;
+  height: 80px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.but_cerrar_registro,
+.but_cerrar_login {
+  width: 30px;
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  align-items: center;
+  cursor: pointer;
+  height: 30px;
+}
+
+.but_cerrar_registro:active,
+.but_cerrar_login:active {
+  transform: scale(0.75);
+}
+
+.form_registro h1,
+.form_login h1 {
+  text-align: center;
+  font-family: "Anton", sans-serif;
+  padding: 0 0 20px 0;
+}
+
+.form_registro form,
+.form_login form {
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+form .nombre_completo,
+form .email,
+form .username,
+form .password {
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.nombre_completo input,
+.email input,
+.username input,
+.password input {
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.nombre_completo label,
+.email label,
+.username label,
+.password label {
+  position: absolute;
+  top: 0;
+  top: -25px;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(50%);
+  font-size: 16px;
+  pointer-events: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  transition: 0.5s;
+}
+
+/*.nombre_completo span::before,
+.email span::before,
+.username span::before 
+.password span::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #6C3483;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}*/
+
+.recordar {
+  margin: -5px 0 20px 5px;
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  cursor: pointer;
+  color: blue;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.recordar:hover {
+  text-decoration: underline;
+}
+
+.but_confirmar_registro,
+.but_confirmar_login {
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.but_confirmar_registro:hover,
+.but_confirmar_login:hover {
+  background-color: black;
+  color: white;
+}
+
+.but_confirmar_registro:active,
+.but_confirmar_login:active {
+  transform: scale(0.9);
+}
+
+.div_loguearse,
+.div_registrarse {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: medium;
+  font-weight: bold;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.but_loguearse,
+.but_registrarse {
+  background: transparent;
+  border: none;
+  color: blue;
+  margin-left: 10px;
+  font-size: medium;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.but_loguearse:hover,
+.but_registrarse:hover {
+  text-decoration: underline;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}

@@ -7,6 +7,10 @@ body {
   scrollbar-color: #888 #f8f8f8;
 }
 
+header {
+  display: flex;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   padding-top: 5px;
@@ -14,7 +18,7 @@ body {
 
 ::-webkit-scrollbar-track {
   background: #f8f8f8;
-  background-clip: content-box; 
+  background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -25,11 +29,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 header {
-  display: inline-flex;
   height: 86px;
   position: fixed;
   background: white;
@@ -37,7 +40,6 @@ header {
   left: 0;
   right: 0;
   align-items: center;
-  justify-content: start;
   border-bottom: 2px solid black;
   z-index: 10;
 }
@@ -73,21 +75,6 @@ header {
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  animation-duration: 0.1s;
-  animation-name: bounce;
-  margin-right: 10px;
-}
-
-.but_ordenar_por {
-  background-color: lightgray;
-  font-size: medium;
-  width: 7rem;
-  height: 2.5rem;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  animation-duration: 0.1s;
-  animation-name: bounce;
   margin-right: 10px;
 }
 
@@ -95,12 +82,26 @@ header {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  animation-duration: 0.1s;
-  animation-name: bounce;
   font-size: 28px;
   padding-left: 10px;
   width: 48px;
   height: 48px;
+}
+
+.but_login {
+  position: absolute;
+  right: 25px;
+  background-color: white;
+  font-size: large;
+  height: 3rem;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-family: 'Anton', sans-serif;
+  color: black;
+  font-weight: bold;
+  font-style: normal;
+  cursor: pointer;
+  font-size: large;
 }
 
 .text_box_principal {
@@ -113,20 +114,27 @@ header {
   transition: all 0.5s ease;
 }
 
-.text_box_principal:focus {
-  width: 60ch;
+.but_login:hover {
+  background-color: black;
+  color: white;
 }
 
-.but_ordenar_por:active,
+.but_login:active {
+  transform: scale(0.90);
+}
+
+.text_box_principal:focus {
+  width: 50ch;
+}
+
 .but_filtros:active {
-  transform: scale(0.95);
+  transform: scale(0.90);
 }
 
 .but_buscar_nota:active {
-  transform: scale(0.75);
+  transform: scale(0.90);
 }
 
-.but_ordenar_por:hover,
 .but_filtros:hover {
   background-color: #ddd;
 }

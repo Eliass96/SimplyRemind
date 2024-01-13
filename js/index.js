@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var botonOcultarRegistro = document.getElementById("but_cerrar_registro");
   var botonMasOpcionesNota = document.getElementById("but_mas_opciones_nota");
 
+  var botonMostrarFiltros = document.getElementById("but_filtros");
+
   botonAddNota.addEventListener("click", addNota);
   botonVolverAlListado.addEventListener("click", function () {
     volverAlListado();
@@ -32,10 +34,17 @@ document.addEventListener("DOMContentLoaded", function () {
   botonOcultarRegistro.addEventListener("click", ocultarRegistro);
   botonMasOpcionesNota.addEventListener("click", masOpcionesNota);
 
-  document.addEventListener('click', function() {
-    var desplegable = document.getElementById('dropdown-content');
-    desplegable.style.display = 'none';
+  document.addEventListener("click", function () {
+    let desplegableNota = document.getElementById("dropdown-content");
+    let desplegableFiltros = document.getElementById(
+      "dropdown_content_filtros"
+    );
+
+    desplegableNota.style.display = "none";
+    desplegableFiltros.style.display = "none";
   });
+
+  botonMostrarFiltros.addEventListener("click", mostrarOcultarFiltros);
 });
 
 function addNota() {
@@ -166,9 +175,20 @@ function masOpcionesNota(event) {
   event.stopPropagation(); // Detiene la propagación del evento
   let desplegable = document.getElementById("dropdown-content");
 
-  if (desplegable.style.display == 'none' || desplegable.style.display == '') {
-    desplegable.style.display = 'block';
+  if (desplegable.style.display == "none" || desplegable.style.display == "") {
+    desplegable.style.display = "block";
   } else {
-    desplegable.style.display = 'none';
+    desplegable.style.display = "none";
+  }
+}
+
+function mostrarOcultarFiltros() {
+  event.stopPropagation(); // Detiene la propagación del evento
+  let desplegableFiltros = document.getElementById("dropdown_content_filtros");
+
+  if (desplegableFiltros.style.display == "none") {
+    desplegableFiltros.style.display = "block";
+  } else {
+    desplegableFiltros.style.display = "none";
   }
 }

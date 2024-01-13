@@ -24,7 +24,14 @@
     </div>
     <search class="buscador">
       <form class="formulario">
-        <button class="but_filtros" type="button">Filtros</button>
+        <div id="dropdown_filtros" class="dropdown_filtros">
+          <button id="but_filtros" class="but_filtros" type="button">Filtros</button>
+          <div id="dropdown_content_filtros" class="dropdown_content_filtros">
+            <button class="but_dropdown_filtros" type="button">Nombre</button>
+            <button class="but_dropdown_filtros" type="button">Fecha:</button>
+            <button class="but_dropdown_filtros" type="button">Ordenar por:</button>
+          </div>
+        </div>
         <label>
           <input class="text_box_principal" type="search" placeholder="Buscar Notas...">
         </label>

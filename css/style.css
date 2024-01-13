@@ -145,6 +145,58 @@ header {
   color: #333;
 }
 
+.but_dropdown_filtros {
+  border: none;
+  background: white;
+  width: 100%;
+  left: 0;
+  cursor: pointer;
+  justify-content: start;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.dropdown_content_filtros button:first-child {
+  padding-bottom: 1vh;
+  padding-top: 2vh;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+}
+
+.dropdown_content_filtros button:not(:first-child):not(:last-child) {
+  padding-bottom: 1.5vh;
+  padding-top: 1.5vh;
+}
+
+.dropdown_content_filtros button:last-child {
+  padding-bottom: 2vh;
+  padding-top: 1vh;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.dropdown_content_filtros {
+  display: block;
+  position: absolute;
+  margin-top: 5px;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.dropdown_filtros:hover .dropdown_content_filtros {
+  display: block;
+}
+
+.but_dropdown_filtros:hover {
+  background-color: black;
+  color: white;
+}
+
+.but_dropdown_filtros:active {
+  transform: scale(0.95);
+}
+
 footer {
   position: absolute;
   bottom: 0;

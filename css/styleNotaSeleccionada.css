@@ -122,14 +122,14 @@
   transition: all 0.3s ease;
 }
 
-.botones_nota_seleccionada button:first-child {
+.dropdown-content button:first-child {
   padding-bottom: 1vh;
   padding-top: 2vh;
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
 }
 
-.botones_nota_seleccionada button:last-child {
+.dropdown-content button:last-child {
   padding-bottom: 2vh;
   padding-top: 1vh;
   border-bottom-right-radius: 12px;

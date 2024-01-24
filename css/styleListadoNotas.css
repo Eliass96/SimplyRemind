@@ -1,19 +1,13 @@
 .listado_notas {
-  float: right;
-  margin-top: 88px;
+  grid-area: main;
   padding-right: 1vh;
-  margin-bottom: 1vh;
+  margin-top: 8px;
   border: 1px solid darkgray;
   background: #f8f8f8;
-  max-width: 62.4%;
-  max-height: 80vh;
-  min-width: 62.4%;
-  min-height: 80vh;
+  max-height: 79vh;
+  display: none;
+  min-height: 79vh;
   border-radius: 12px;
-  display: block;
-  flex-direction: column;
-  align-items: stretch;
-  position: relative;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;

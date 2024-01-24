@@ -1,65 +1,44 @@
-html,
 body {
-  min-height: 100%;
-  transition: all 0.5s ease;
-  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 85px 1fr 40px;
+  grid-template-areas: 
+    "header header"
+    "calendar main"
+    "footer footer";
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
-}
-
-header {
-  display: flex;
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-  padding-top: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f8f8f8;
-  background-clip: content-box;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 12px;
-  margin: 2px;
-  background-clip: content-box;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-header {
-  height: 86px;
-  position: fixed;
   background: white;
-  top: 0;
-  left: 0;
-  right: 0;
+  margin: 0;
+}
+
+header {  
+  grid-area: header;
+  display: flex;
   align-items: center;
+  background: white;
   border-bottom: 2px solid black;
-  z-index: 10;
 }
 
 .titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Anton', sans-serif;
   font-size: 130%;
   color: white;
   background: black;
   border-bottom-right-radius: 12px;
-  width: 30.5%;
-  height: 90px;
-  text-align: start;
-  padding-inline-start: 6.5%;
-  line-height: 180%;
+  width: 54ch;
+  height: 12vh;
 }
 
 .buscador {
   background: white;
-  padding-left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
 }
 
 .formulario {
@@ -75,7 +54,7 @@ header {
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 1em;
   transition: background-color 0.3s ease;
 }
 
@@ -84,14 +63,13 @@ header {
   border: none;
   cursor: pointer;
   font-size: 28px;
-  padding-left: 10px;
+  padding-left: 0.4em;
   width: 48px;
   height: 48px;
 }
 
 .but_login {
-  position: absolute;
-  right: 25px;
+  margin-right: 1em;
   background-color: white;
   font-size: large;
   height: 3rem;
@@ -107,7 +85,7 @@ header {
 }
 
 .text_box_principal {
-  padding: 10px;
+  padding: 1em;
   border: 1px solid #ccc;
   border-radius: 20px;
   width: 35ch;
@@ -176,7 +154,7 @@ header {
 }
 
 .dropdown_content_filtros {
-  display: block;
+  display: none;
   position: absolute;
   margin-top: 5px;
   background-color: white;
@@ -198,8 +176,48 @@ header {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
-  float: left;
-  text-align: justify;
+  grid-area: footer;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  padding-top: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f8f8;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 12px;
+  margin: 2px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Añade media queries para ajustar el diseño en diferentes tamaños de pantalla */
+@media (max-width: 600px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 10vh 1fr 5vh;
+    grid-template-areas: 
+      "header"
+      "main"
+      "footer";
+  }
+
+  .titulo {
+    width: 100%;
+  }
+
+  .buscador {
+    width: 100%;
+  }
 }

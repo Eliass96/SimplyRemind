@@ -21,25 +21,27 @@
     <div class="titulo">
       <h1>SimplyRemind</h1>
     </div>
-    <search class="buscador">
-      <form class="formulario">
-        <div id="dropdown_filtros" class="dropdown_filtros">
-          <button id="but_filtros" class="but_filtros" type="button">Filtros</button>
-          <div id="dropdown_content_filtros" class="dropdown_content_filtros">
-            <button class="but_dropdown_filtros" type="button">Nombre</button>
-            <button class="but_dropdown_filtros" type="button">Fecha:</button>
-            <button class="but_dropdown_filtros" type="button">Ordenar por:</button>
+    <div class="botones_header">
+      <search class="buscador">
+        <form class="formulario">
+          <div id="dropdown_filtros" class="dropdown_filtros">
+            <button id="but_filtros" class="but_filtros" type="button">Filtros</button>
+            <div id="dropdown_content_filtros" class="dropdown_content_filtros">
+              <button class="but_dropdown_filtros" type="button">Nombre</button>
+              <button class="but_dropdown_filtros" type="button">Fecha:</button>
+              <button class="but_dropdown_filtros" type="button">Ordenar por:</button>
+            </div>
           </div>
-        </div>
-        <label>
-          <input class="text_box_principal" type="search" placeholder="Buscar Notas...">
-        </label>
-        <button type="submit" class="but_buscar_nota">
-          <img src="icon/magnifying-glass.svg" alt="Buscar Nota">
-        </button>
-      </form>
-    </search>
-    <button id="but_login" class="but_login" type="button">Iniciar sesión</button>
+          <label>
+            <input class="text_box_principal" type="search" placeholder="Buscar Notas...">
+          </label>
+          <button type="submit" class="but_buscar_nota">
+            <img src="icon/magnifying-glass.svg" alt="Buscar Nota">
+          </button>
+        </form>
+      </search>
+      <button id="but_login" class="but_login" type="button">Iniciar sesión</button>
+    </div>
   </header>
   <main>
     <section id="listado_notas" class="listado_notas">
@@ -226,16 +228,16 @@
     </div>
   </div>-->
   </div>
+  <footer>
+    <p>&copy; 2023 Elías Botía García. Todos los derechos reservados</p>
+  </footer>
   <!------------------------------------------------------------------------------------------------------->
   <script src="js/lib/main.min.js"></script>
   <script src="js/lib/moment.js"></script>
   <script src="js/lib/sweetalert2.all.min.js"></script>
   <script src="js/lib/bootstrap.bundle.min.js"></script>
   <script type="module" src="js/appCalendario.js"></script>
-  <!--<script src="js/index.js"></script>-->
+  <script src="js/index.js"></script>
 </body>
-<footer>
-  <p>&copy; 2023 Elías Botía García. Todos los derechos reservados</p>
-</footer>
 
 </html>

@@ -1,11 +1,12 @@
 .listado_notas {
-  grid-area: main;
-  padding-right: 1vh;
-  margin-top: 8px;
+  grid-area: notas;
   border: 1px solid darkgray;
   background: #f8f8f8;
+  display: block;
+  margin-top: 8px;
+  margin-right: 10px;
+  margin-bottom: 1vh;
   max-height: 79vh;
-  display: none;
   min-height: 79vh;
   border-radius: 12px;
   overflow-y: auto;

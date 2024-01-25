@@ -1,13 +1,13 @@
 .eventos_dia_seleccionado {
-  float: right;
-  margin-top: 88px;
-  padding-right: 1vh;
+  grid-area: notas;
+  margin-top: 8px;
+  margin-right: 10px;
   margin-bottom: 1vh;
-  max-width: 62.4%;
-  max-height: 80vh;
-  min-width: 62.4%;
-  min-height: 80vh;
+  max-height: 79vh;
+  min-height: 79vh;
   display: none;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f8f8f8;
   overflow-y: auto;
 }
 
@@ -26,6 +26,7 @@
 
 .but_mostrar_notas {
   display: none;
+  grid-area: calendar;
   border: 1px solid darkgray;
   background-color: lightgray;
   border: none;
@@ -46,6 +47,7 @@
 
 .but_mostrar_eventos {
   display: block;
+  grid-area: calendar;
   border: 1px solid darkgray;
   background-color: lightgray;
   border: none;

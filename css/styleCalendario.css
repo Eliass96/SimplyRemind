@@ -1,6 +1,5 @@
 .calendario {
   grid-area: calendar;
-  float: left;
   margin-top: 8px;
   margin-left: 10px;
   margin-right: 10px;
@@ -8,6 +7,8 @@
   border: 1px solid darkgray;
   min-width: 35.4vw;
   max-width: 35.4vw;
+  min-height: 67.8vh;
+  max-height: 67.8vh;
   align-items: center;
   justify-content: space-between;
   border-radius: 12px;

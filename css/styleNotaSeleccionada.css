@@ -1,8 +1,12 @@
 .nota_seleccionada {
   grid-area: notas;
+  display: grid;
+  grid-template-rows: 1fr 8fr;
+  grid-template-areas: 
+    "titulo_nota"
+    "contenido_nota";
   border: 1px solid darkgray;
   background: #f8f8f8;
-  display: none;
   margin-top: 8px;
   margin-right: 10px;
   margin-bottom: 1vh;
@@ -32,20 +36,19 @@
 }
 
 .cabecero_nota_seleccionada {
-  display: inline-flex;
-  width: 100%;
-  align-content: center;
-  justify-content: center;
+  grid-area: titulo_nota;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
 }
 
 .titulo_nota_seleccionada {
-  position: absolute;
-  transform: translateY(-50%);
-  margin-left: 50px;
-  padding-top: 0.75%;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .but_volver_al_listado,
@@ -53,7 +56,6 @@
 .but_eliminar_nota,
 .but_mas_opciones_nota,
 .but_desplegar_listado_notas {
-  position: relative;
   background: transparent;
   color: #000;
   border: none;
@@ -66,15 +68,11 @@
 }
 
 .but_volver_al_listado {
-  position: absolute;
-  left: 0;
   margin-left: 10px;
 }
 
 .botones_nota_seleccionada {
   display: flex;
-  position: absolute;
-  right: 0;
   margin-right: 10px;
 }
 
@@ -100,8 +98,7 @@
 }
 
 .contenido_nota_seleccionada {
-  position: relative;
-  top: 30px;
+  grid-area: contenido_nota;
   left: 20px;
   margin: 20px;
 }

@@ -16,23 +16,7 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
-}
-
-.nota_seleccionada::-webkit-scrollbar {
-  width: 5px;
-}
-
-.nota_seleccionada::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.nota_seleccionada::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 12px;
-}
-
-.nota_seleccionada::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  visibility: hidden;
 }
 
 .cabecero_nota_seleccionada {
@@ -46,9 +30,20 @@
 .titulo_nota_seleccionada {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+}
+
+.titulo_input_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.titulo_input_container input[type="color"] {
+  margin-right: 15px;
+  height: 1.85rem;
+  width: 1.7rem;
+  cursor: pointer;
 }
 
 .but_volver_al_listado,
@@ -62,7 +57,6 @@
   padding: 10px;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
-  z-index: 1;
   width: 40px;
   height: 40px;
 }
@@ -101,6 +95,8 @@
   grid-area: contenido_nota;
   left: 20px;
   margin: 20px;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .but_dropdown_mas_opciones_notas {
@@ -149,4 +145,21 @@
 
 .but_dropdown_mas_opciones_notas:active {
   transform: scale(0.95);
+}
+
+.nota_seleccionada::-webkit-scrollbar {
+  width: 5px;
+}
+
+.nota_seleccionada::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.nota_seleccionada::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 12px;
+}
+
+.nota_seleccionada::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

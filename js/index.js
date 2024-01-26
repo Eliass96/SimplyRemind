@@ -45,42 +45,52 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   botonMostrarFiltros.addEventListener("click", mostrarOcultarFiltros);
+
+  var maxChars = 25;
+
+  document
+    .getElementById("titulo_nota_seleccionada")
+    .addEventListener("keypress", function (e) {
+      if (e.target.textContent.length > maxChars && e.which !== 8) {
+        e.preventDefault();
+      }
+    });
 });
 
 function addNota() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
   let eventos = document.getElementById("eventos_dia_seleccionado");
-  nota.style.display = "block";
-  listado.style.display = "none";
-  eventos.style.display = "none";
+  nota.style.visibility = "visible";
+  listado.style.visibility = "hidden";
+  eventos.style.visibility = "hidden";
 }
 
 function volverAlListado() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
   let eventos = document.getElementById("eventos_dia_seleccionado");
-  nota.style.display = "none";
-  listado.style.display = "block";
-  eventos.style.display = "none";
+  nota.style.visibility = "hidden";
+  listado.style.visibility = "visible";
+  eventos.style.visibility = "hidden";
 }
 
 function mostrarEventos() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
   let eventos = document.getElementById("eventos_dia_seleccionado");
-  nota.style.display = "none";
-  listado.style.display = "none";
-  eventos.style.display = "block";
+  nota.style.visibility = "hidden";
+  listado.style.visibility = "hidden";
+  eventos.style.visibility = "visible";
 }
 
 function mostrarNotas() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
   let eventos = document.getElementById("eventos_dia_seleccionado");
-  nota.style.display = "none";
-  listado.style.display = "block";
-  eventos.style.display = "none";
+  nota.style.visibility = "hidden";
+  listado.style.visibility = "visible";
+  eventos.style.visibility = "hidden";
 }
 
 function mostrarBotonEventos() {

@@ -5,10 +5,10 @@
   margin-bottom: 1vh;
   max-height: 79vh;
   min-height: 79vh;
-  display: none;
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
   overflow-y: auto;
+  visibility: hidden;
 }
 
 .evento {

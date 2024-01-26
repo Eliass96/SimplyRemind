@@ -150,6 +150,7 @@ header {
   justify-content: start;
   font-weight: bold;
   transition: all 0.3s ease;
+  z-index: 1;
 }
 
 .dropdown_content_filtros button:first-child {
@@ -218,24 +219,4 @@ footer {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
-}
-
-/* Añade media queries para ajustar el diseño en diferentes tamaños de pantalla */
-@media (max-width: 600px) {
-  body {
-    grid-template-columns: 1fr;
-    grid-template-rows: 10vh 1fr 5vh;
-    grid-template-areas: 
-      "header"
-      "main"
-      "footer";
-  }
-
-  .titulo {
-    width: 100%;
-  }
-
-  .buscador {
-    width: 100%;
-  }
 }

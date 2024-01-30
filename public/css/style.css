@@ -1,7 +1,7 @@
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-areas: 
+  grid-template-areas:
     "header"
     "main"
     "footer";
@@ -17,15 +17,15 @@ main {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 3fr;
-  grid-template-areas: 
-  "calendar notas";
+  grid-template-areas:
+    "calendar notas";
 }
 
-header {  
+header {
   display: grid;
   grid-template-columns: 1fr 1.76fr;
-  grid-template-areas: 
-  "titulo botones";
+  grid-template-areas:
+    "titulo botones";
   grid-area: header;
   align-items: center;
   background: white;

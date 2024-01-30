@@ -9,14 +9,19 @@ document.addEventListener("DOMContentLoaded", function () {
     customButtons: {
       miLogo: {
         icon: "../img/calendario.png",
-        click: function () {},
+        click: function () { },
       },
       botonMasOpciones: {
         icon: "../icon/bars.svg",
         click: function () {
-          var dropdownMenu = document.getElementById("dropdownMenu");
-          dropdownMenu.style.display =
-            dropdownMenu.style.display === "none" ? "block" : "none";
+          event.stopPropagation(); // Detiene la propagación del evento
+          let desplegable = document.getElementById("dropdown_content_calendario");
+        
+          if (desplegable.style.display == "none" || desplegable.style.display == "") {
+            desplegable.style.display = "block";
+          } else {
+            desplegable.style.display = "none";
+          }
         },
       },
       botonPrev: {

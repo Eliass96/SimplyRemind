@@ -196,7 +196,7 @@ function mostrarOcultarFiltros() {
   event.stopPropagation(); // Detiene la propagación del evento
   let desplegableFiltros = document.getElementById("dropdown_content_filtros");
 
-  if (desplegableFiltros.style.display == "none") {
+  if (desplegableFiltros.style.display == "none" || desplegableFiltros.style.display == "") {
     desplegableFiltros.style.display = "block";
   } else {
     desplegableFiltros.style.display = "none";

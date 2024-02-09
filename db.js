@@ -8,13 +8,11 @@ exports.conectar = async function () {
 // Creación de los esquemas
 const notaSchema = new mongoose.Schema(
   {
-    // Nota: id, título, autor, texto, fechaCreacion, fechaUltimaModificacion, etiquetas
-    id: { type: Number, required: true },
-    titulo: { type: String, required: true },
-    autor: { type: String, required: true },
-    texto: { type: String, required: true },
-    fechaCreacion: { type: Date, required: true, default: new Date() },
-    fechaUltimaModificacion: {
+    // Nota: título, autor, texto, fechaCreacion, fechaUltimaModificacion, etiquetas
+    titulo: String,
+    texto: String,
+    fecha_creacion: { type: Date, required: true, default: new Date() },
+    fecha_ultima_modificacion: {
       type: Date,
       required: true,
       default: new Date(),
@@ -50,22 +48,21 @@ notaSchema.pre("save", function (next) {
 
 const eventoSchema = new mongoose.Schema(
   {
-    // Evento: id, título, autor, texto, fechaCreacion, fechaFin, horaEvento, todoElDia, etiquetas
-    id: { type: Number, required: true },
-    titulo: { type: String, required: true },
-    autor: { type: String, required: true },
-    texto: { type: String, required: true },
-    fechaCreacion: { type: Date, required: true, default: new Date() },
-    fechaFin: {
+    // Evento: título, autor, texto, fechaCreacion, fechaFin, horaEvento, todoElDia, etiquetas
+    nombre: { type: String, required: true },
+    descripcion: { type: String, required: true },
+    fecha_inicio: { type: Date, required: true, default: new Date() },
+    fecha_fin: {
       type: Date,
       required: true,
       validate: {
         validator: function (value) {
-            return value > this.fechaCreacion; //Función personalizada de validación.
+          return value > this.fechaCreacion; //Función personalizada de validación.
         },
         message: "La fecha fin tiene que ser posterior a la fecha actual.",
       },
     },
+    recordatorio: Date,
     todoElDia: { type: Boolean, required: true, default: false },
     etiquetas: [String],
   },
@@ -100,25 +97,34 @@ eventoSchema.pre("save", function (next) {
 const Nota = mongoose.model("Nota", notaSchema);
 const Evento = mongoose.model("Evento", eventoSchema);
 
-// Método tanto para nota como para evento
-asignarId = function () {
-  let id = Math.floor(Math.random() * 999999);
-  return id;
-};
+exports.Nota = Nota;
+exports.Evento = Evento;
 
 // Notas
 exports.nuevaNota = async function (datosNota) {
-  let nuevoId = asignarId();
-  while ((await Nota.countDocuments({ id: nuevoId })) > 0) {
-    nuevoId = asignarId();
+  try {
+    if (!datosNota.titulo) {
+      datosNota.titulo = "";
+    }
+
+    if (!datosNota.texto) {
+      datosNota.texto = "";
+    }
+
+    return await Nota.create(datosNota);
+  } catch (error) {
+    console.error("Error al crear una nueva nota:", error);
+    throw error;
   }
-  datosNota.id = nuevoId;
-  return await Nota.create(datosNota);
 };
 
 exports.editarNota = async function (datosNota) {
-  let filtro = { id: datosNota.id };
+  let filtro = { _id: datosNota._id };
   return await Nota.findOneAndUpdate(filtro, datosNota, { new: true });
+};
+
+exports.listarNotas = async function () {
+  return Nota.find();
 };
 
 exports.buscarNotaPorTitulo = async function (titulo) {
@@ -126,24 +132,34 @@ exports.buscarNotaPorTitulo = async function (titulo) {
   return Nota.find({ titulo: regex });
 };
 
+exports.borrarNota = async function (idNota) {
+  return Nota.deleteOne({ _id: idNota });
+};
+
 // Eventos
 exports.nuevoEvento = async function (datosEvento) {
-  let nuevoId = asignarId();
-  while ((await Evento.countDocuments({ id: nuevoId })) > 0) {
-    nuevoId = asignarId();
-  }
-  datosEvento.id = nuevoId;
   return await Evento.create(datosEvento);
 };
 
 exports.editarEvento = async function (datosEvento) {
-  let filtro = { id: datosEvento.id };
-  return await Evento.findOneAndUpdate(filtro, datosEvento, { new: true });
+  let filtro = { _id: datosEvento.id };
+  let eventoActualizado = await Evento.findOneAndUpdate(filtro, datosEvento, {
+    new: true,
+  });
+  return eventoActualizado;
+};
+
+exports.listarEventos = async function () {
+  return Evento.find();
 };
 
 exports.buscarEventoPorTitulo = async function (titulo) {
   let regex = RegExp(".*" + titulo + ".*", "i");
   return Evento.find({ titulo: regex });
+};
+
+exports.borrarEvento = async function (idEvento) {
+  return Evento.deleteOne({ _id: idEvento });
 };
 
 // Desconectar

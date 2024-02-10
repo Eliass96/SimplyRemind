@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var botonMostrarCalendario = document.getElementById("but_mostrar_calendario");
+  //var botonMostrarCalendario = document.getElementById("but_mostrar_calendario");
 
   var botonAddNota = document.getElementById("but_add_notas");
   var botonVolverAlListado = document.getElementById("but_volver_al_listado");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //var botonMostrarFiltros = document.getElementById("but_filtros");
 
-  botonMostrarCalendario.addEventListener("click", mostrarCalendario);
+  //botonMostrarCalendario.addEventListener("click", mostrarCalendario);
 
   botonAddNota.addEventListener("click", addNota);
   botonVolverAlListado.addEventListener("click", volverAlListado);
@@ -63,7 +63,7 @@ function volverAlListado() {
   listado.style.display = "block";
 }
 
-function mostrarCalendario() {
+/*function mostrarCalendario() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
   let eventos = document.getElementById("calendario_y_eventos");
@@ -79,7 +79,7 @@ function mostrarCalendario() {
     listado.style.display = "block";
     eventos.style.display = "none";
   }
-}
+}*/
 
 function mostrarLogin() {
   let formLogin = document.getElementById("datos_login");

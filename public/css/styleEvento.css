@@ -1,6 +1,6 @@
 .eventos_dia_seleccionado {
-  margin-right: 8px;
   margin-bottom: 8px;
+  margin-top: 8px;
   max-height: 40vh;
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
@@ -16,38 +16,6 @@
   padding: 5px;
   padding-left: 15px;
   margin-bottom: 1vh;
-}
-
-/*.but_mostrar_notas {
-  display: none;
-  border: 1px solid darkgray;
-  background-color: lightgray;
-  border: none;
-  height: 3em;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  animation-duration: 0.1s;
-  animation-name: bounce;
-  font-size: large;  
-  transition: background-color 0.3s ease;
-}
-
-.but_mostrar_eventos {
-  display: block;
-  border: 1px solid darkgray;
-  background-color: lightgray;
-  border: none;
-  height: 3em;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  animation-duration: 0.1s;
-  animation-name: bounce;
-  font-size: large;  
-  transition: background-color 0.3s ease;
 }
 
 .but_mostrar_eventos:active,

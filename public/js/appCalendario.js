@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
     themeSystem: "bootstrap5",
     initialView: "dayGridMonth",
     locale: "es",
+    dateClick: function(date, jsEvent, view) {
+      $('.fc-highlight').removeClass('fc-highlight'); // Elimina el resaltado anterior
+      $(jsEvent.target).addClass('fc-highlight'); // Agrega resaltado a la celda seleccionada
+    },
     customButtons: {
       miLogo: {
         icon: "../img/calendario.png",
@@ -43,11 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
       right: "botonNext botonMasOpciones",
     },
     firstDay: 1,
-    dateClick: function (info) {
-      document.getElementById("start").value = info.dateStr;
-      document.getElementById("titulo").textContent = "Registro de Evento";
-      myModal.show();
-    },
   });
   calendar.render();
 });

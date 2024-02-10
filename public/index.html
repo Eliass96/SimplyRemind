@@ -41,7 +41,7 @@
       <ul class="dropdown_content_filtros dropdown-menu">
         <li><a id="but_login" class="but_dropdown_filtros dropdown-item" href="#">Iniciar sesión</a></li>
         <li><a class="but_dropdown_filtros dropdown-item" id="but_mostrar_calendario" href="#">Calendario</a></li>
-        <li><a class="but_dropdown_filtros dropdown-item" href="#">Acerca de</a></li>
+        <li><a class="but_dropdown_filtros dropdown-item" href="/public/html/acerca_de.html">Acerca de</a></li>
       </ul>
     </div>
     <div class="botones_header col-xl-8 container-fluid d-flex align-items-center justify-content-between">
@@ -65,94 +65,97 @@
           </button>
         </form>
       </search>
+      <a class="but_acerca_de" href="/public/html/acerca_de.html">Acerca De</a>
       <button id="but_login" class="btn btn-outline-primary but_login" type="button">Iniciar sesión</button>
     </div>
   </header>
-  <main class="reglas container-fluid row d-flex flex-row-reverse h-100">
-    <!-- Listado de notas -->
-    <section id="listado_notas" class="listado_notas container-fluid col-xl-7">
-      <article class="cabecero_listado_notas">
-        <h2 class="titulo_notas">TUS NOTAS</h2>
-        <form>
-          <button id="but_add_notas" class="but_add_notas" type="button">
-            <img src="img/mas(2).png" alt="Botón de añadir notas.">
-          </button>
-        </form>
-      </article>
-      <article class="todas_las_notas">
-        <ol>
-          <li>
+  <main class="reglas container-fluid">
+    <div class="row d-flex flex-row-reverse">
+      <!-- Listado de notas -->
+      <section id="listado_notas" class="listado_notas container-fluid col-xl-7">
+        <article class="cabecero_listado_notas">
+          <h2 class="titulo_notas">TUS NOTAS</h2>
+          <form>
+            <button id="but_add_notas" class="but_add_notas" type="button">
+              <img src="img/mas(2).png" alt="Botón de añadir notas.">
+            </button>
+          </form>
+        </article>
+        <article class="todas_las_notas">
+          <ol>
+            <li>
+              <input type="color" value="#ff0000">
+              <a href="#">Nota 1</a>
+              <button class="but_eliminar_nota_lista" type="button">
+                <img src="icon/trash.svg" alt="Eliminar Nota">
+              </button>
+              <button class="but_duplicar_nota_lista" type="button">
+                <img src="icon/clone.svg" alt="Duplicar Nota">
+              </button>
+            </li>
+            <li>
+              <input type="color" value="#00ff00">
+              <a href="#">Nota 2</a>
+              <button class="but_eliminar_nota_lista" type="button">
+                <img src="icon/trash.svg" alt="Eliminar Nota">
+              </button>
+              <button class="but_duplicar_nota_lista" type="button">
+                <img src="icon/clone.svg" alt="Duplicar Nota">
+              </button>
+            </li>
+            <li>
+              <input type="color" value="#0000ff">
+              <a href="#">Nota 3</a>
+              <button class="but_eliminar_nota_lista" type="button">
+                <img src="icon/trash.svg" alt="Eliminar Nota">
+              </button>
+              <button class="but_duplicar_nota_lista" type="button">
+                <img src="icon/clone.svg" alt="Duplicar Nota">
+              </button>
+            </li>
+          </ol>
+        </article>
+      </section>
+      <!-- Nota seleccionada -->
+      <section class="nota_seleccionada container-fluid col-xl-7" id="nota_seleccionada">
+        <article class="cabecero_nota_seleccionada">
+          <form>
+            <button id="but_volver_al_listado" class="but_volver_al_listado" type="button"><img
+                src="icon/arrow-left.svg" alt="Buscar Nota"></i></button>
+          </form>
+          <div class="titulo_input_container">
             <input type="color" value="#ff0000">
-            <a href="#">Nota 1</a>
-            <button class="but_eliminar_nota_lista" type="button">
-              <img src="icon/trash.svg" alt="Eliminar Nota">
-            </button>
-            <button class="but_duplicar_nota_lista" type="button">
-              <img src="icon/clone.svg" alt="Duplicar Nota">
-            </button>
-          </li>
-          <li>
-            <input type="color" value="#00ff00">
-            <a href="#">Nota 2</a>
-            <button class="but_eliminar_nota_lista" type="button">
-              <img src="icon/trash.svg" alt="Eliminar Nota">
-            </button>
-            <button class="but_duplicar_nota_lista" type="button">
-              <img src="icon/clone.svg" alt="Duplicar Nota">
-            </button>
-          </li>
-          <li>
-            <input type="color" value="#0000ff">
-            <a href="#">Nota 3</a>
-            <button class="but_eliminar_nota_lista" type="button">
-              <img src="icon/trash.svg" alt="Eliminar Nota">
-            </button>
-            <button class="but_duplicar_nota_lista" type="button">
-              <img src="icon/clone.svg" alt="Duplicar Nota">
-            </button>
-          </li>
-        </ol>
-      </article>
-    </section>
-    <!-- Nota seleccionada -->
-    <section class="nota_seleccionada container-fluid col-xl-7" id="nota_seleccionada">
-      <article class="cabecero_nota_seleccionada">
-        <form>
-          <button id="but_volver_al_listado" class="but_volver_al_listado" type="button"><img src="icon/arrow-left.svg"
-              alt="Buscar Nota"></i></button>
-        </form>
-        <div class="titulo_input_container">
-          <input type="color" value="#ff0000">
-          <h2 class="titulo_nota_seleccionada" id="titulo_nota_seleccionada" contenteditable="">TÍTULO DE LA NOTA</h2>
-        </div>
-        <form class="botones_nota_seleccionada">
-          <button class="but_duplicar_nota" type="button"><img src="icon/clone.svg" alt="Duplicar Nota"></button>
-          <button class="but_eliminar_nota" type="button"><img src="icon/trash.svg" alt="Eliminar Nota"></button>
-          <div class="dropdown_mas_opciones_nota">
-            <button id="but_mas_opciones_nota" class="but_mas_opciones_nota" type="button"><img src="icon/ellipsis.svg"
-                alt="Más opciones"></button>
-            <div id="dropdown-content" class="dropdown-content">
-              <button class="but_dropdown_mas_opciones_notas" type="button">Compartir</button>
-              <button class="but_dropdown_mas_opciones_notas" type="button">Etiquetar</button>
-            </div>
+            <h2 class="titulo_nota_seleccionada" id="titulo_nota_seleccionada" contenteditable="">TÍTULO DE LA NOTA</h2>
           </div>
-          <button class="but_desplegar_listado_notas" type="button"><img src="icon/list.svg"
-              alt="Desplegar listado de notas"></button>
-        </form>
-      </article>
-      <article class="contenido_nota_seleccionada">
-        <p contenteditable="">Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la
-          nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido
-          de
-          la nota...Contenido
-          de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...</p>
-      </article>
-    </section>
-    <!-- Calendario -->
-    <div class="calendario_y_eventos col-xl-5 container-fluid">
-      <section class="calendario">
-        <section class="calendar" id="calendar"></section>
-        <!--<button class="but_titulo btn btn-primary d-lg-none ms-auto" type="button" data-bs-toggle="dropdown"
+          <form class="botones_nota_seleccionada">
+            <button class="but_duplicar_nota" type="button"><img src="icon/clone.svg" alt="Duplicar Nota"></button>
+            <button class="but_eliminar_nota" type="button"><img src="icon/trash.svg" alt="Eliminar Nota"></button>
+            <div class="dropdown_mas_opciones_nota">
+              <button id="but_mas_opciones_nota" class="but_mas_opciones_nota" type="button"><img
+                  src="icon/ellipsis.svg" alt="Más opciones"></button>
+              <div id="dropdown-content" class="dropdown-content">
+                <button class="but_dropdown_mas_opciones_notas" type="button">Compartir</button>
+                <button class="but_dropdown_mas_opciones_notas" type="button">Etiquetar</button>
+              </div>
+            </div>
+            <button class="but_desplegar_listado_notas" type="button"><img src="icon/list.svg"
+                alt="Desplegar listado de notas"></button>
+          </form>
+        </article>
+        <article class="contenido_nota_seleccionada">
+          <p contenteditable="">Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la
+            nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido
+            de
+            la nota...Contenido
+            de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...
+          </p>
+        </article>
+      </section>
+      <!-- Calendario -->
+      <div class="calendario_y_eventos col-xl-5 container-fluid">
+        <section class="calendario">
+          <section class="calendar" id="calendar"></section>
+          <!--<button class="but_titulo btn btn-primary d-lg-none ms-auto" type="button" data-bs-toggle="dropdown"
       aria-expanded="false">
       <img src="icon/bars.svg" alt="Menú de opciones.">
     </button>
@@ -161,43 +164,46 @@
       <li><a class="but_dropdown_filtros dropdown-item" href="#">Semana</a></li>
       <li><a class="but_dropdown_filtros dropdown-item" href="#">Año</a></li>
     </ul>-->
-      </section>
-      <!--<button id="but_mostrar_eventos" class="but_mostrar_eventos" type="button">Mostrar Todos los Eventos</button>
+        </section>
+        <!--<button id="but_mostrar_eventos" class="but_mostrar_eventos" type="button">Mostrar Todos los Eventos</button>
       <button id="but_mostrar_notas" class="but_mostrar_notas" type="button">Mostrar Listado de Notas</button>-->
-      <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado">
-        <article class="evento">
-          <h3>Evento 1</h3>
-          <p>Contenido del evento...</p>
-        </article>
-        <article class="evento">
-          <h3>Evento 2</h3>
-          <p>Contenido del evento...</p>
-        </article>
-        <article class="evento">
-          <h3>Evento 3</h3>
-          <p>Contenido del evento...</p>
-        </article>
-        <article class="evento">
-          <h3>Evento 4</h3>
-          <p>Contenido del evento...</p>
-        </article>
-        <article class="evento">
-          <h3>Evento 5</h3>
-          <p>Contenido del evento...</p>
-        </article>
-        <article class="evento">
-          <h3>Evento 6</h3>
-          <p>Contenido del evento...</p>
-        </article>
-      </section>
-    </div>
-    <!--<div id="dropdown_calendario" class="dropdown_calendario">
+        <!--<div id="dropdown_calendario" class="dropdown_calendario">
     <div id="dropdown_content_calendario" class="dropdown_content_calendario">
       <button class="but_dropdown_calendario" type="button">Hoy</button>
       <button class="but_dropdown_calendario" type="button">Semana</button>
       <button class="but_dropdown_calendario" type="button">Año</button>
     </div>
   </div>-->
+      </div>
+      <div class="row">
+        <!-- Listado de Eventos -->
+        <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado col-12">
+          <article class="evento">
+            <h3>Evento 1</h3>
+            <p>Contenido del evento...</p>
+          </article>
+          <article class="evento">
+            <h3>Evento 2</h3>
+            <p>Contenido del evento...</p>
+          </article>
+          <article class="evento">
+            <h3>Evento 3</h3>
+            <p>Contenido del evento...</p>
+          </article>
+          <article class="evento">
+            <h3>Evento 4</h3>
+            <p>Contenido del evento...</p>
+          </article>
+          <article class="evento">
+            <h3>Evento 5</h3>
+            <p>Contenido del evento...</p>
+          </article>
+          <article class="evento">
+            <h3>Evento 6</h3>
+            <p>Contenido del evento...</p>
+          </article>
+        </section>
+      </div>
   </main>
   <div id="form_login" class="form_login">
     <div class="cabecero_login">
@@ -277,10 +283,11 @@
     </div>
   </div>-->
   </div>
-  <footer class="sticky-footer d-flex justify-content-center">
+  <footer class="footer mt-auto py-3 bg-light">
     <p>&copy; 2023 Elías Botía García. Todos los derechos reservados</p>
   </footer>
   <!------------------------------------------------------------------------------------------------------->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="js/lib/main.min.js"></script>
   <script src="js/lib/moment.js"></script>
   <script src="js/lib/sweetalert2.all.min.js"></script>

@@ -1,22 +1,16 @@
 .eventos_dia_seleccionado {
-  grid-area: notas;
-  margin-top: 8px;
-  margin-right: 10px;
-  margin-bottom: 1vh;
-  max-height: 79vh;
-  min-height: 79vh;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  max-height: 40vh;
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
   overflow-y: auto;
-  visibility: hidden;
 }
 
 .evento {
   border: 1px solid darkgray;
   background: #f8f8f8;
   border: 1px solid darkgray;
-  min-width: 95%;
-  max-width: 100%;
   margin-left: 0px;
   border-radius: 12px;
   padding: 5px;
@@ -24,13 +18,11 @@
   margin-bottom: 1vh;
 }
 
-.but_mostrar_notas {
+/*.but_mostrar_notas {
   display: none;
-  grid-area: calendar;
   border: 1px solid darkgray;
   background-color: lightgray;
   border: none;
-  width: 35.4vw;
   height: 3em;
   margin-left: 10px;
   margin-right: 10px;
@@ -39,19 +31,14 @@
   animation-duration: 0.1s;
   animation-name: bounce;
   font-size: large;  
-  float: left;
-  position: absolute;
-  top: 84vh;
   transition: background-color 0.3s ease;
 }
 
 .but_mostrar_eventos {
   display: block;
-  grid-area: calendar;
   border: 1px solid darkgray;
   background-color: lightgray;
   border: none;
-  width: 35.4vw;
   height: 3em;
   margin-left: 10px;
   margin-right: 10px;
@@ -60,9 +47,6 @@
   animation-duration: 0.1s;
   animation-name: bounce;
   font-size: large;  
-  float: left;
-  position: absolute;
-  top: 84vh;
   transition: background-color 0.3s ease;
 }
 
@@ -74,14 +58,16 @@
 .but_mostrar_eventos:hover,
 .but_mostrar_notas:hover {
   background-color: #ddd;
-}
+}*/
 
 .contenedor-eventos_dia_seleccionado::-webkit-scrollbar {
   width: 12px;
+  border-radius: 6px;
 }
 
 .eventos_dia_seleccionado::-webkit-scrollbar-track {
   background-color: #f1f1f1;
+  border-radius: 6px;
 }
 
 .eventos_dia_seleccionado::-webkit-scrollbar-thumb {
@@ -91,4 +77,5 @@
 
 .eventos_dia_seleccionado::-webkit-scrollbar-thumb:hover {
   background-color: #555;
+  border-radius: 6px;
 }

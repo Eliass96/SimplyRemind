@@ -32,19 +32,19 @@
 
 <body>
   <header class="reglas container-fluid row">
-    <div class="titulo container text-center col-lg-4 container-fluid d-flex align-items-center justify-content-center">
+    <div class="titulo container text-center col-xl-4 container-fluid d-flex align-items-center justify-content-center">
       <h1 class="titulo_texto mx-auto">SimplyRemind</h1>
-      <button class="but_titulo btn btn-primary d-lg-none ms-auto" type="button" data-bs-toggle="dropdown"
+      <button class="but_titulo btn btn-primary d-xl-none ms-auto" type="button" data-bs-toggle="dropdown"
         aria-expanded="false">
         <img src="icon/menu.svg" alt="Menú de opciones.">
       </button>
       <ul class="dropdown_content_filtros dropdown-menu">
         <li><a id="but_login" class="but_dropdown_filtros dropdown-item" href="#">Iniciar sesión</a></li>
-        <li><a class="but_dropdown_filtros dropdown-item" href="#">Calendario</a></li>
+        <li><a class="but_dropdown_filtros dropdown-item" id="but_mostrar_calendario" href="#">Calendario</a></li>
         <li><a class="but_dropdown_filtros dropdown-item" href="#">Acerca de</a></li>
       </ul>
     </div>
-    <div class="botones_header col-lg-8 container-fluid d-flex align-items-center justify-content-between">
+    <div class="botones_header col-xl-8 container-fluid d-flex align-items-center justify-content-between">
       <search class="buscador mx-auto">
         <form class="container-fluid d-flex align-items-center justify-content-center">
           <div class="dropdown">
@@ -58,7 +58,7 @@
             </ul>
           </div>
           <label>
-            <input class="buscador form-control text_box_principal" type="search" placeholder="Buscar Notas...">
+            <input class="buscador form-control text_box_principal" type="search" placeholder="Introduce el nombre...">
           </label>
           <button type="submit" class="but_buscar_nota btn btn-primary">
             <img src="icon/magnifying-glass.svg" alt="Buscar Nota">
@@ -68,23 +68,9 @@
       <button id="but_login" class="btn btn-outline-primary but_login" type="button">Iniciar sesión</button>
     </div>
   </header>
-  <main class=" reglas container-fluid row d-flex align-items-start justify-content-start">
-    <!-- Calendario -->
-    <section class="calendario col-lg-4">
-      <section class="calendar" id="calendar"></section>
-      <!--<button class="but_titulo btn btn-primary d-lg-none ms-auto" type="button" data-bs-toggle="dropdown"
-      aria-expanded="false">
-      <img src="icon/bars.svg" alt="Menú de opciones.">
-    </button>
-    <ul class="dropdown_content_filtros dropdown-menu">
-      <li><a id="but_login" class="but_dropdown_filtros dropdown-item" href="#">Hoy</a></li>
-      <li><a class="but_dropdown_filtros dropdown-item" href="#">Semana</a></li>
-      <li><a class="but_dropdown_filtros dropdown-item" href="#">Año</a></li>
-    </ul>-->
-    </section>
-
+  <main class="reglas container-fluid row d-flex flex-row-reverse h-100">
     <!-- Listado de notas -->
-    <section id="listado_notas" class="listado_notas container-fluid col-lg-7">
+    <section id="listado_notas" class="listado_notas container-fluid col-xl-7">
       <article class="cabecero_listado_notas">
         <h2 class="titulo_notas">TUS NOTAS</h2>
         <form>
@@ -128,42 +114,8 @@
         </ol>
       </article>
     </section>
-    <!--<div id="dropdown_calendario" class="dropdown_calendario">
-    <div id="dropdown_content_calendario" class="dropdown_content_calendario">
-      <button class="but_dropdown_calendario" type="button">Hoy</button>
-      <button class="but_dropdown_calendario" type="button">Semana</button>
-      <button class="but_dropdown_calendario" type="button">Año</button>
-    </div>
-  </div>
-  <button id="but_mostrar_eventos" class="but_mostrar_eventos" type="button">Mostrar Todos los Eventos</button>
-  <button id="but_mostrar_notas" class="but_mostrar_notas" type="button">Mostrar Listado de Notas</button>-->
-    <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado">
-      <article class="evento">
-        <h3>Evento 1</h3>
-        <p>Contenido del evento...</p>
-      </article>
-      <article class="evento">
-        <h3>Evento 2</h3>
-        <p>Contenido del evento...</p>
-      </article>
-      <article class="evento">
-        <h3>Evento 3</h3>
-        <p>Contenido del evento...</p>
-      </article>
-      <article class="evento">
-        <h3>Evento 4</h3>
-        <p>Contenido del evento...</p>
-      </article>
-      <article class="evento">
-        <h3>Evento 5</h3>
-        <p>Contenido del evento...</p>
-      </article>
-      <article class="evento">
-        <h3>Evento 6</h3>
-        <p>Contenido del evento...</p>
-      </article>
-    </section>
-    <section class="nota_seleccionada" id="nota_seleccionada">
+    <!-- Nota seleccionada -->
+    <section class="nota_seleccionada container-fluid col-xl-7" id="nota_seleccionada">
       <article class="cabecero_nota_seleccionada">
         <form>
           <button id="but_volver_al_listado" class="but_volver_al_listado" type="button"><img src="icon/arrow-left.svg"
@@ -196,6 +148,56 @@
           de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...</p>
       </article>
     </section>
+    <!-- Calendario -->
+    <div class="calendario_y_eventos col-xl-5 container-fluid">
+      <section class="calendario">
+        <section class="calendar" id="calendar"></section>
+        <!--<button class="but_titulo btn btn-primary d-lg-none ms-auto" type="button" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      <img src="icon/bars.svg" alt="Menú de opciones.">
+    </button>
+    <ul class="dropdown_content_filtros dropdown-menu">
+      <li><a id="but_login" class="but_dropdown_filtros dropdown-item" href="#">Hoy</a></li>
+      <li><a class="but_dropdown_filtros dropdown-item" href="#">Semana</a></li>
+      <li><a class="but_dropdown_filtros dropdown-item" href="#">Año</a></li>
+    </ul>-->
+      </section>
+      <!--<button id="but_mostrar_eventos" class="but_mostrar_eventos" type="button">Mostrar Todos los Eventos</button>
+      <button id="but_mostrar_notas" class="but_mostrar_notas" type="button">Mostrar Listado de Notas</button>-->
+      <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado">
+        <article class="evento">
+          <h3>Evento 1</h3>
+          <p>Contenido del evento...</p>
+        </article>
+        <article class="evento">
+          <h3>Evento 2</h3>
+          <p>Contenido del evento...</p>
+        </article>
+        <article class="evento">
+          <h3>Evento 3</h3>
+          <p>Contenido del evento...</p>
+        </article>
+        <article class="evento">
+          <h3>Evento 4</h3>
+          <p>Contenido del evento...</p>
+        </article>
+        <article class="evento">
+          <h3>Evento 5</h3>
+          <p>Contenido del evento...</p>
+        </article>
+        <article class="evento">
+          <h3>Evento 6</h3>
+          <p>Contenido del evento...</p>
+        </article>
+      </section>
+    </div>
+    <!--<div id="dropdown_calendario" class="dropdown_calendario">
+    <div id="dropdown_content_calendario" class="dropdown_content_calendario">
+      <button class="but_dropdown_calendario" type="button">Hoy</button>
+      <button class="but_dropdown_calendario" type="button">Semana</button>
+      <button class="but_dropdown_calendario" type="button">Año</button>
+    </div>
+  </div>-->
   </main>
   <div id="form_login" class="form_login">
     <div class="cabecero_login">
@@ -275,7 +277,7 @@
     </div>
   </div>-->
   </div>
-  <footer class="fixed-bottom d-flex justify-content-center">
+  <footer class="sticky-footer d-flex justify-content-center">
     <p>&copy; 2023 Elías Botía García. Todos los derechos reservados</p>
   </footer>
   <!------------------------------------------------------------------------------------------------------->

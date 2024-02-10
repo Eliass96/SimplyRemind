@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var botonMostrarCalendario = document.getElementById("but_mostrar_calendario");
+
   var botonAddNota = document.getElementById("but_add_notas");
   var botonVolverAlListado = document.getElementById("but_volver_al_listado");
-  var botonMostrarEventos = document.getElementById("but_mostrar_eventos");
-  var botonMostrarNotas = document.getElementById("but_mostrar_notas");
 
   var botonIniciarSesion = document.getElementById("but_login");
   var botonMostrarLogin = document.getElementById("but_loguearse");
@@ -13,19 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //var botonMostrarFiltros = document.getElementById("but_filtros");
 
+  botonMostrarCalendario.addEventListener("click", mostrarCalendario);
+
   botonAddNota.addEventListener("click", addNota);
-  botonVolverAlListado.addEventListener("click", function () {
-    volverAlListado();
-    mostrarBotonEventos();
-  });
-  /*botonMostrarEventos.addEventListener("click", function () {
-    mostrarEventos();
-    mostrarBotonNotas();
-  });
-  botonMostrarNotas.addEventListener("click", function () {
-    mostrarNotas();
-    mostrarBotonEventos();
-  });*/
+  botonVolverAlListado.addEventListener("click", volverAlListado);
 
   botonIniciarSesion.addEventListener("click", mostrarLogin);
   botonMostrarLogin.addEventListener("click", mostrarLogin);
@@ -61,50 +52,33 @@ function addNota() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
   let eventos = document.getElementById("eventos_dia_seleccionado");
-  nota.style.visibility = "visible";
-  listado.style.visibility = "hidden";
-  eventos.style.visibility = "hidden";
+  nota.style.display = "block";
+  listado.style.display = "none";
 }
 
 function volverAlListado() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
-  let eventos = document.getElementById("eventos_dia_seleccionado");
-  nota.style.visibility = "hidden";
-  listado.style.visibility = "visible";
-  eventos.style.visibility = "hidden";
+  nota.style.display = "none";
+  listado.style.display = "block";
 }
 
-function mostrarEventos() {
+function mostrarCalendario() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
-  let eventos = document.getElementById("eventos_dia_seleccionado");
-  nota.style.visibility = "hidden";
-  listado.style.visibility = "hidden";
-  eventos.style.visibility = "visible";
-}
+  let eventos = document.getElementById("calendario_y_eventos");
 
-function mostrarNotas() {
-  let nota = document.getElementById("nota_seleccionada");
-  let listado = document.getElementById("listado_notas");
-  let eventos = document.getElementById("eventos_dia_seleccionado");
-  nota.style.visibility = "hidden";
-  listado.style.visibility = "visible";
-  eventos.style.visibility = "hidden";
-}
+  if (nota || listado) {
+    nota.style.display = "none";
+    listado.style.display = "none";
+    eventos.style.display = "block";
+  }
 
-function mostrarBotonEventos() {
-  let mostrar_notas = document.getElementById("but_mostrar_notas");
-  let mostrar_eventos = document.getElementById("but_mostrar_eventos");
-  mostrar_notas.style.display = "none";
-  mostrar_eventos.style.display = "block";
-}
-
-function mostrarBotonNotas() {
-  let mostrar_notas = document.getElementById("but_mostrar_notas");
-  let mostrar_eventos = document.getElementById("but_mostrar_eventos");
-  mostrar_notas.style.display = "block";
-  mostrar_eventos.style.display = "none";
+  if (eventos) {
+    nota.style.display = "none";
+    listado.style.display = "block";
+    eventos.style.display = "none";
+  }
 }
 
 function mostrarLogin() {
@@ -192,7 +166,7 @@ function masOpcionesNota(event) {
   }
 }
 
-/*function mostrarOcultarFiltros() {
+function mostrarOcultarFiltros() {
   event.stopPropagation(); // Detiene la propagación del evento
   let desplegableFiltros = document.getElementById("dropdown_content_filtros");
 
@@ -201,4 +175,4 @@ function masOpcionesNota(event) {
   } else {
     desplegableFiltros.style.display = "none";
   }
-}*/
+}

@@ -15,11 +15,14 @@ header {
 
 main {
   margin: 0 !important;
-  padding: 0 !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  height: 100vh !important;
 }
 
 div {
   margin: 0 !important;
+  padding: 0 !important;
 }
 
 section {
@@ -112,7 +115,7 @@ article {
   padding: 1em;
   border: 1px solid #ccc;
   border-radius: 20px;
-  width: 25ch;
+  width: 30ch;
   height: 5.75vh;
   flex: 1;
   transition: all 0.5s ease;
@@ -161,7 +164,7 @@ article {
 }
 
 .text_box_principal:focus {
-  width: 30ch;
+  width: 35ch;
 }
 
 .but_filtros:active {
@@ -214,7 +217,7 @@ article {
   display: none;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
   .titulo {
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -226,5 +229,17 @@ article {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .calendario_y_eventos {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .calendario_y_eventos {
+    display: block;
+  }
+  .listado_notas {
+    display: block;
   }
 }

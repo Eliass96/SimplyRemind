@@ -1,26 +1,18 @@
 .nota_seleccionada {
-  grid-area: notas;
-  display: grid;
-  grid-template-rows: 1fr 8fr;
-  grid-template-areas: 
-    "titulo_nota"
-    "contenido_nota";
   border: 1px solid darkgray;
   background: #f8f8f8;
   margin-top: 8px;
-  margin-right: 10px;
-  margin-bottom: 1vh;
-  max-height: 79vh;
-  min-height: 79vh;
+  margin-bottom: 8px;
   border-radius: 12px;
+  min-height: 72.5vh;
+  max-height: 112.5vh;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
-  visibility: hidden;
+  display: none;
 }
 
 .cabecero_nota_seleccionada {
-  grid-area: titulo_nota;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -92,7 +84,6 @@
 }
 
 .contenido_nota_seleccionada {
-  grid-area: contenido_nota;
   left: 20px;
   margin: 20px;
   max-width: 100%;

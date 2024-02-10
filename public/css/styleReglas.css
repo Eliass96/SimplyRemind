@@ -1,0 +1,137 @@
+body {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f8f8f8;
+    background: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-width: 99vw;
+    max-width: 100vw;
+  }
+  
+  header {
+    background: white;
+    border-bottom: 2px solid black;
+  }
+  
+  main {
+    margin-top: 0 !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  
+  div {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  section {
+    padding: 0 !important;
+  }
+  
+  article {
+    height: auto !important;
+  }
+  
+  footer {
+    background-color: white;
+  }
+  
+  .reglas {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .boton {
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    padding-top: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f8f8f8;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 12px;
+    margin: 2px;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .listado_notas::-webkit-scrollbar {
+    width: 5px;
+    padding-top: 5px;
+  }
+  
+  .listado_notas::-webkit-scrollbar-track {
+    background: #f8f8f8;
+    background-clip: content-box;
+  }
+  
+  .listado_notas::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 12px;
+    margin: 2px;
+    background-clip: content-box;
+  }
+  
+  .listado_notas::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .nota_seleccionada::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .nota_seleccionada::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .nota_seleccionada::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 12px;
+  }
+  
+  .nota_seleccionada::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .contenedor-eventos_dia_seleccionado::-webkit-scrollbar {
+    width: 12px;
+    border-radius: 6px;
+  }
+  
+  .eventos_dia_seleccionado::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 6px;
+  }
+  
+  .eventos_dia_seleccionado::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+  }
+  
+  .eventos_dia_seleccionado::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+    border-radius: 6px;
+  }

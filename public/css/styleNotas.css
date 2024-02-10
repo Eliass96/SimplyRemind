@@ -1,4 +1,5 @@
-.listado_notas {
+.listado_notas,
+.nota_seleccionada {
   border: 1px solid darkgray;
   background: #f8f8f8;
   margin-top: 8px;
@@ -9,6 +10,10 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
+}
+
+.nota_seleccionada {
+  display: none;
 }
 
 .cabecero_listado_notas {
@@ -32,10 +37,7 @@
   animation-duration: 0.1s;
   animation-name: bounce;
   z-index: 1;
-}
-
-.but_add_notas:active {
-  transform: scale(0.95);
+  margin-top: 5px;
 }
 
 .listado_notas h2 {
@@ -58,10 +60,6 @@
   color: black;
 }
 
-.todas_las_notas li:hover {
-  background-color: #e4e6e8;
-}
-
 .todas_las_notas ol {
   margin: 0;
   padding: 0;
@@ -76,15 +74,14 @@
   border-radius: 12px;
   width: calc(100% - 20px);
   margin: 0 10px;
+  padding-left: 10px;
 }
 
-
-input[type=color] {
+.todas_las_notas li input[type=color] {
   width: calc(0.40vw + 1rem);
   height: calc(0.35vw + 1rem);
   border: transparent;
   background-color: transparent;
-  margin-right: 5px;
 }
 
 .but_duplicar_nota_lista,
@@ -102,6 +99,80 @@ input[type=color] {
   margin-top: 2.85px;
 }
 
+/* Nota Seleccionada */
+.titulo_nota_seleccionada {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: calc(0.65vw + 1rem);
+  word-wrap: break-word;
+}
+
+.titulo_input_container input[type="color"] {
+  margin-right: 15px;
+  width: calc(0.65vw + 1rem);
+  height: calc(0.55vw + 1rem);
+  cursor: pointer;
+}
+
+.but_duplicar_nota,
+.but_eliminar_nota,
+.but_desplegar_listado_notas {
+  background: transparent;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  width: 30px;
+}
+
+.but_volver_al_listado,
+.but_mas_opciones_nota {
+  background: transparent;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  width: 40px;
+}
+
+.titulo_nota_seleccionada[contenteditable="true"] {
+  background: transparent;
+  border: none;
+}
+
+.contenido_nota_seleccionada {
+  left: 20px;
+  margin: 20px;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Animaciones */
+
+.but_volver_al_listado:hover,
+.but_duplicar_nota:hover,
+.but_eliminar_nota:hover,
+.but_mas_opciones_nota:hover,
+.but_desplegar_listado_notas:hover {
+  color: #333;
+}
+
+.but_volver_al_listado:active,
+.but_duplicar_nota:active,
+.but_eliminar_nota:active,
+.but_mas_opciones_nota:active,
+.but_desplegar_listado_notas:active {
+  transform: scale(0.75);
+}
+
+.but_add_notas:active {
+  transform: scale(0.95);
+}
+
+.todas_las_notas li:hover {
+  background-color: #e4e6e8;
+}
+
 .but_duplicar_nota_lista:hover,
 .but_eliminar_nota_lista:hover {
   color: #333;
@@ -110,25 +181,4 @@ input[type=color] {
 .but_duplicar_nota_lista:active,
 .but_eliminar_nota_lista:active {
   transform: scale(0.75);
-}
-
-.listado_notas::-webkit-scrollbar {
-  width: 5px;
-  padding-top: 5px;
-}
-
-.listado_notas::-webkit-scrollbar-track {
-  background: #f8f8f8;
-  background-clip: content-box;
-}
-
-.listado_notas::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 12px;
-  margin: 2px;
-  background-clip: content-box;
-}
-
-.listado_notas::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }

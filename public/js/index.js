@@ -9,11 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var botonOcultarLogin = document.getElementById("but_cerrar_login");
   var botonMostrarRegistro = document.getElementById("but_registrarse");
   var botonOcultarRegistro = document.getElementById("but_cerrar_registro");
-  var botonMasOpcionesNota = document.getElementById("but_mas_opciones_nota");
-
-  //var botonMostrarFiltros = document.getElementById("but_filtros");
-
-  //botonMostrarCalendario.addEventListener("click", mostrarCalendario);
 
   botonAddNota.addEventListener("click", addNota);
   botonVolverAlListado.addEventListener("click", volverAlListado);
@@ -23,19 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
   botonOcultarLogin.addEventListener("click", ocultarLogin);
   botonMostrarRegistro.addEventListener("click", mostrarRegistro);
   botonOcultarRegistro.addEventListener("click", ocultarRegistro);
-  botonMasOpcionesNota.addEventListener("click", masOpcionesNota);
-
-  /*document.addEventListener("click", function () {
-    let desplegableNota = document.getElementById("dropdown-content");
-    let desplegableFiltros = document.getElementById(
-      "dropdown_content_filtros"
-    );
-
-    desplegableNota.style.display = "none";
-    desplegableFiltros.style.display = "none";
-  });*/
-
-  //botonMostrarFiltros.addEventListener("click", mostrarOcultarFiltros);
 
   var maxChars = 25;
 
@@ -51,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
 function addNota() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
-  let eventos = document.getElementById("eventos_dia_seleccionado");
   nota.style.display = "block";
   listado.style.display = "none";
 }
@@ -62,24 +43,6 @@ function volverAlListado() {
   nota.style.display = "none";
   listado.style.display = "block";
 }
-
-/*function mostrarCalendario() {
-  let nota = document.getElementById("nota_seleccionada");
-  let listado = document.getElementById("listado_notas");
-  let eventos = document.getElementById("calendario_y_eventos");
-
-  if (nota || listado) {
-    nota.style.display = "none";
-    listado.style.display = "none";
-    eventos.style.display = "block";
-  }
-
-  if (eventos) {
-    nota.style.display = "none";
-    listado.style.display = "block";
-    eventos.style.display = "none";
-  }
-}*/
 
 function mostrarLogin() {
   let formLogin = document.getElementById("datos_login");
@@ -153,26 +116,4 @@ function ocultarRegistro() {
   overlay.style.display = "none";
   formLogin.reset();
   formRegistro.reset();
-}
-
-function masOpcionesNota(event) {
-  event.stopPropagation(); // Detiene la propagación del evento
-  let desplegable = document.getElementById("dropdown-content");
-
-  if (desplegable.style.display == "none" || desplegable.style.display == "") {
-    desplegable.style.display = "block";
-  } else {
-    desplegable.style.display = "none";
-  }
-}
-
-function mostrarOcultarFiltros() {
-  event.stopPropagation(); // Detiene la propagación del evento
-  let desplegableFiltros = document.getElementById("dropdown_content_filtros");
-
-  if (desplegableFiltros.style.display == "none" || desplegableFiltros.style.display == "") {
-    desplegableFiltros.style.display = "block";
-  } else {
-    desplegableFiltros.style.display = "none";
-  }
 }

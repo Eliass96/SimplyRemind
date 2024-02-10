@@ -4,7 +4,7 @@
   margin-bottom: 8px;
   border: 1px solid darkgray;
   overflow-y: auto;
-  height: 72.5vh;
+  height: 74vh;
   border-radius: 12px;
 }
 
@@ -29,37 +29,70 @@
   padding-bottom: 1rem;
 }
 
-.fc-botonMasOpciones-button {
-  background-image: url("../icon/bars.svg");
+.fc-addEvento-button {
+  background-image: url("../icon/calendar-plus.svg");
   background-size: cover;
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: transparent;
 }
 
 .fc-botonPrev-button {
   background-image: url("../icon/circle-arrow-left.svg");
   background-size: cover;
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: transparent;
 }
 
 .fc-botonNext-button {
   background-image: url("../icon/circle-arrow-right.svg");
   background-size: cover;
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: transparent;
 }
 
 .fc-miLogo-button {
   background-image: url("../img/calendario.png");
   background-size: cover;
+  cursor: default !important;
   border: none;
   height: 30px;
   width: 30px;
   margin-left: 2ch;
   margin-right: 2ch;
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: transparent;
 }
 
-.fc-botonMasOpciones-button,
+.fc-addEvento-button,
 .fc-botonPrev-button,
 .fc-botonNext-button {
   border: none;
-  height: 25px;
-  width: 25px;
+  height: 30px;
+  width: 30px;
   cursor: pointer;
   margin-left: 2ch;
   margin-right: 2ch;
@@ -67,7 +100,7 @@
 
 .fc-botonPrev-button:active,
 .fc-botonNext-button:active,
-.fc-botonMasOpciones-button:active {
+.fc-addEvento-button:active {
   transform: scale(0.75);
 }
 

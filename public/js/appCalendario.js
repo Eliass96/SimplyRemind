@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
       themeSystem: "bootstrap5",
       initialView: "dayGridMonth",
       locale: "es",
+      selectable: true,
       customButtons: {
           miLogo: {
               text: "Mi Logo", // Agrega el atributo 'text'
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   // Lógica al hacer clic en el botón miLogo
               },
           },
-          but_calendario: {
+          addEvento: {
               text: "", // Agrega el atributo 'text'
               icon: "/public/icon/bars.svg",
               click: function () {
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       headerToolbar: {
           left: "miLogo botonPrev",
           center: "title",
-          right: "botonNext but_calendario",
+          right: "botonNext addEvento",
       },
       firstDay: 1,
   });

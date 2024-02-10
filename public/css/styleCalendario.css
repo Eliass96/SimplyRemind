@@ -1,16 +1,10 @@
 .calendario {
-  grid-area: calendar;
   margin-top: 8px;
   margin-left: 10px;
-  margin-right: 10px;
   margin-bottom: 1vh;
   border: 1px solid darkgray;
-  min-width: 35.4vw;
-  max-width: 35.4vw;
-  min-height: 67.8vh;
-  max-height: 67.8vh;
-  align-items: center;
-  justify-content: space-between;
+  overflow-y: auto;
+  height: 72.5vh;
   border-radius: 12px;
 }
 
@@ -26,51 +20,71 @@
   z-index: 1;
 }
 
-.dropdown_content_calendario button:first-child {
-  padding-bottom: 1vh;
-  padding-top: 2vh;
+.fc-header-toolbar {
+  background: #f8f8f8;
+  border-bottom: 1px solid darkgray;
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.dropdown_content_calendario button:not(:first-child):not(:last-child) {
-  padding-bottom: 1.5vh;
-  padding-top: 1.5vh;
+.fc-toolbar-title {
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-.dropdown_content_calendario button:last-child {
-  padding-bottom: 2vh;
-  padding-top: 1vh;
-  border-bottom-right-radius: 12px;
-  border-bottom-left-radius: 12px;
+.fc-botonMasOpciones-button {
+  background-image: url("../icon/bars.svg");
+  background-size: cover;
 }
 
-.dropdown_content_calendario {
-  display: none;
-  position: absolute;
-  top: 20vh;
-  left: 27vw;
-  width: 140px;
-  background-color: white;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 12px;
+.fc-botonPrev-button {
+  background-image: url("../icon/circle-arrow-left.svg");
+  background-size: cover;
 }
 
-.dropdown_calendario:hover .dropdown_content_calendario {
-  display: block;
+.fc-botonNext-button {
+  background-image: url("../icon/circle-arrow-right.svg");
+  background-size: cover;
 }
 
-.but_dropdown_calendario:hover {
-  background-color: black;
-  color: white;
+.fc-miLogo-button {
+  background-image: url("../img/calendario.png");
+  background-size: cover;
+  border: none;
+  height: 30px;
+  width: 30px;
+  margin-left: 2ch;
+  margin-right: 2ch;
 }
 
-.but_dropdown_calendario:active {
-  transform: scale(0.95);
+.fc-botonMasOpciones-button,
+.fc-botonPrev-button,
+.fc-botonNext-button {
+  border: none;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  margin-left: 2ch;
+  margin-right: 2ch;
+}
+
+.fc-botonPrev-button:active,
+.fc-botonNext-button:active,
+.fc-botonMasOpciones-button:active {
+  transform: scale(0.75);
 }
 
 #calendar {
+  width: 100%;
+  height: 100%;
+}
+
+/*#calendar {
   width: 100%;
   height: 100%;
 }
@@ -210,4 +224,4 @@
   font-weight: bold;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   border-bottom: 1px solid darkgray;
-}
+}*/

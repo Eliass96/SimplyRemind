@@ -11,21 +11,21 @@ document.addEventListener("DOMContentLoaded", function () {
   var botonOcultarRegistro = document.getElementById("but_cerrar_registro");
   var botonMasOpcionesNota = document.getElementById("but_mas_opciones_nota");
 
-  var botonMostrarFiltros = document.getElementById("but_filtros");
+  //var botonMostrarFiltros = document.getElementById("but_filtros");
 
   botonAddNota.addEventListener("click", addNota);
   botonVolverAlListado.addEventListener("click", function () {
     volverAlListado();
     mostrarBotonEventos();
   });
-  botonMostrarEventos.addEventListener("click", function () {
+  /*botonMostrarEventos.addEventListener("click", function () {
     mostrarEventos();
     mostrarBotonNotas();
   });
   botonMostrarNotas.addEventListener("click", function () {
     mostrarNotas();
     mostrarBotonEventos();
-  });
+  });*/
 
   botonIniciarSesion.addEventListener("click", mostrarLogin);
   botonMostrarLogin.addEventListener("click", mostrarLogin);
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   botonOcultarRegistro.addEventListener("click", ocultarRegistro);
   botonMasOpcionesNota.addEventListener("click", masOpcionesNota);
 
-  document.addEventListener("click", function () {
+  /*document.addEventListener("click", function () {
     let desplegableNota = document.getElementById("dropdown-content");
     let desplegableFiltros = document.getElementById(
       "dropdown_content_filtros"
@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     desplegableNota.style.display = "none";
     desplegableFiltros.style.display = "none";
-  });
+  });*/
 
-  botonMostrarFiltros.addEventListener("click", mostrarOcultarFiltros);
+  //botonMostrarFiltros.addEventListener("click", mostrarOcultarFiltros);
 
   var maxChars = 25;
 
@@ -192,7 +192,7 @@ function masOpcionesNota(event) {
   }
 }
 
-function mostrarOcultarFiltros() {
+/*function mostrarOcultarFiltros() {
   event.stopPropagation(); // Detiene la propagación del evento
   let desplegableFiltros = document.getElementById("dropdown_content_filtros");
 
@@ -201,4 +201,4 @@ function mostrarOcultarFiltros() {
   } else {
     desplegableFiltros.style.display = "none";
   }
-}
+}*/

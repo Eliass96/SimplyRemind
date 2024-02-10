@@ -1,104 +1,110 @@
 body {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
   background: white;
   margin: 0;
+  padding: 0;
   min-height: 100vh;
-}
-
-main {
-  grid-area: main;
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 3fr;
-  grid-template-areas:
-    "calendar notas";
+  min-width: 100vw;
 }
 
 header {
-  display: grid;
-  grid-template-columns: 1fr 1.76fr;
-  grid-template-areas:
-    "titulo botones";
-  grid-area: header;
-  align-items: center;
   background: white;
   border-bottom: 2px solid black;
 }
 
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+div {
+  margin: 0 !important;
+}
+
+section {
+  padding: 0 !important;
+}
+
+article {
+  height: auto !important;
+}
+
+.reglas {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
 .titulo {
-  grid-area: titulo;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Anton', sans-serif;
-  font-size: 130%;
-  color: white;
   background: black;
   border-bottom-right-radius: 12px;
-  height: 85px;
+  padding-top: 1.5vh;
+  padding-bottom: 1.5vh;
+  font-size: calc(1.3vw + 1rem);
+}
+
+.titulo_texto {
+  font-family: "Anton", sans-serif;
+  color: white;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.but_titulo {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding-left: 0.4em;
+  width: 60px;
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: transparent;
 }
 
 .botones_header {
-  grid-area: botones;
-  display: flex;
-  justify-content: space-between;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .buscador {
   background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 30px;
-}
-
-.formulario {
-  display: flex;
-  align-items: center;
+  margin-left: 10px;
 }
 
 .but_filtros {
   background-color: lightgray;
-  font-size: large;
-  width: 5.5rem;
-  height: 2.5rem;
+  font-size: calc(0.1vw + 1rem);
+  width: auto;
+  height: auto;
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  margin-right: 1em;
   transition: background-color 0.3s ease;
-}
-
-.but_buscar_nota {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 28px;
-  padding-left: 0.4em;
-  width: 48px;
-  height: 48px;
+  --bs-btn-color: black;
 }
 
 .but_login {
   margin-right: 1em;
   background-color: white;
-  font-size: large;
+  font-size: calc(0.25vw + 1rem);
   height: 3rem;
+  width: auto;
   border-radius: 10px;
   border: 1px solid black;
-  font-family: 'Anton', sans-serif;
+  font-family: "Anton", sans-serif;
   color: black;
   font-weight: bold;
   font-style: normal;
   cursor: pointer;
-  font-size: large;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -106,10 +112,39 @@ header {
   padding: 1em;
   border: 1px solid #ccc;
   border-radius: 20px;
-  width: 35ch;
-  height: 5.5vh;
+  width: 25ch;
+  height: 5.75vh;
   flex: 1;
   transition: all 0.5s ease;
+}
+
+.but_buscar_nota {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding-left: 0.4em;
+  width: 54px;
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: transparent;
+}
+
+.but_dropdown_filtros {
+  border: none;
+  background: white;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.dropdown_content_filtros {
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .but_login:hover {
@@ -118,19 +153,23 @@ header {
 }
 
 .but_login:active {
-  transform: scale(0.90);
+  transform: scale(0.9);
+}
+
+.but_titulo:active {
+  transform: scale(0.9);
 }
 
 .text_box_principal:focus {
-  width: 50ch;
+  width: 30ch;
 }
 
 .but_filtros:active {
-  transform: scale(0.90);
+  transform: scale(0.9);
 }
 
 .but_buscar_nota:active {
-  transform: scale(0.90);
+  transform: scale(0.9);
 }
 
 .but_filtros:hover {
@@ -141,51 +180,6 @@ header {
   color: #333;
 }
 
-.but_dropdown_filtros {
-  border: none;
-  background: white;
-  width: 100%;
-  left: 0;
-  cursor: pointer;
-  justify-content: start;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  z-index: 1;
-}
-
-.dropdown_content_filtros button:first-child {
-  padding-bottom: 1vh;
-  padding-top: 2vh;
-  border-top-right-radius: 12px;
-  border-top-left-radius: 12px;
-}
-
-.dropdown_content_filtros button:not(:first-child):not(:last-child) {
-  padding-bottom: 1.5vh;
-  padding-top: 1.5vh;
-}
-
-.dropdown_content_filtros button:last-child {
-  padding-bottom: 2vh;
-  padding-top: 1vh;
-  border-bottom-right-radius: 12px;
-  border-bottom-left-radius: 12px;
-}
-
-.dropdown_content_filtros {
-  display: none;
-  position: absolute;
-  margin-top: 5px;
-  background-color: white;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 12px;
-}
-
-.dropdown_filtros:hover .dropdown_content_filtros {
-  display: block;
-}
-
 .but_dropdown_filtros:hover {
   background-color: black;
   color: white;
@@ -193,12 +187,6 @@ header {
 
 .but_dropdown_filtros:active {
   transform: scale(0.95);
-}
-
-footer {
-  grid-area: footer;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -220,4 +208,23 @@ footer {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .titulo {
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
+  .but_login {
+    display: none;
+  }
+  .buscador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

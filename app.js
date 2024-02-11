@@ -24,9 +24,9 @@ app.get("/notas", async function (req, resp) {
   try {
     const textoBusqueda = req.query.texto;
     if (textoBusqueda) {
-      resp.send(await db.buscarNotaPorTitulo(textoBusqueda));
+      resp.status(HTTP_OK).send(await db.buscarNotaPorTitulo(textoBusqueda));
     } else {
-      resp.send(await db.listarNotas());
+      resp.status(HTTP_OK).send(await db.listarNotas());
     }
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
@@ -84,9 +84,9 @@ app.get("/eventos", async function (req, resp) {
   try {
     const textoBusqueda = req.query.texto;
     if (textoBusqueda) {
-      resp.send(await db.buscarEventoPorTitulo(textoBusqueda));
+      resp.status(HTTP_OK).send(await db.buscarEventoPorTitulo(textoBusqueda));
     } else {
-      resp.send(await db.listarEventos());
+      resp.status(HTTP_OK).send(await db.listarEventos());
     }
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");

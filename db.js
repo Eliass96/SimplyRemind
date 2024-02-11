@@ -17,6 +17,7 @@ const notaSchema = new mongoose.Schema(
       required: true,
       default: new Date(),
     },
+    color: { type: String, required: true, default: "#ff0000" },
     etiquetas: [String],
   },
   {
@@ -42,26 +43,26 @@ const notaSchema = new mongoose.Schema(
 
 // Middleware pre-save para actualizar la fecha de última modificación de la nota
 notaSchema.pre("save", function (next) {
-  this.fechaUltimaModificacion = Date.now();
+  this.fechaUltimaModificacion = new Date();
   next();
 });
 
 const eventoSchema = new mongoose.Schema(
   {
-    // Evento: título, autor, texto, fechaCreacion, fechaFin, horaEvento, todoElDia, etiquetas
+    // Evento: título, autor, texto, diaEvento, horaEvento, todoElDia
     nombre: { type: String, required: true },
-    descripcion: { type: String, required: true },
-    fecha_inicio: { type: Date, required: true, default: new Date() },
-    fecha_fin: {
+    descripcion: String,
+    diaEvento: {
       type: Date,
       required: true,
       validate: {
         validator: function (value) {
-          return value > this.fechaCreacion; //Función personalizada de validación.
+          return value > new Date(); //Función personalizada de validación.
         },
         message: "La fecha fin tiene que ser posterior a la fecha actual.",
       },
     },
+    horaEvento: Date,
     recordatorio: Date,
     todoElDia: { type: Boolean, required: true, default: false },
     etiquetas: [String],
@@ -71,32 +72,25 @@ const eventoSchema = new mongoose.Schema(
     toObject: { virtuals: true },
     toJSON: { virtuals: true },
     virtuals: {
-      diasHastaFin: {
+      diasHastaEvento: {
         get() {
-          let tiempo = this.fechaFin - new Date();
+          let tiempo = this.diaEvento - new Date();
           return Math.floor(tiempo / (1000 * 60 * 60 * 24));
         },
       },
-    },
-    // Métodos de instancia
-    methods: {
-      etiquetar(etiqueta) {
-        this.etiquetas.push(etiqueta);
-      },
-    },
+    }
   }
 );
 
-// Middleware pre-save para actualizar la fecha de última modificación del evento
+/* Middleware pre-save para actualizar la fecha de última modificación del evento
 eventoSchema.pre("save", function (next) {
   this.fechaUltimaModificacion = Date.now();
   next();
-});
+});*/
 
 // Creación de los modelos.
 const Nota = mongoose.model("Nota", notaSchema);
 const Evento = mongoose.model("Evento", eventoSchema);
-
 exports.Nota = Nota;
 exports.Evento = Evento;
 
@@ -113,7 +107,7 @@ exports.nuevaNota = async function (datosNota) {
 
     return await Nota.create(datosNota);
   } catch (error) {
-    console.error("Error al crear una nueva nota:", error);
+    console.error("Error al crear una nueva nota: ", error);
     throw error;
   }
 };

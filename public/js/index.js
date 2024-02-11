@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  //var botonMostrarCalendario = document.getElementById("but_mostrar_calendario");
-
   var botonAddNota = document.getElementById("but_add_notas");
   var botonVolverAlListado = document.getElementById("but_volver_al_listado");
 
   var botonIniciarSesion = document.getElementById("but_login");
+  var botonIniciarSesion2 = document.getElementById("but_login_titulo");
   var botonMostrarLogin = document.getElementById("but_loguearse");
   var botonOcultarLogin = document.getElementById("but_cerrar_login");
   var botonMostrarRegistro = document.getElementById("but_registrarse");
@@ -14,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   botonVolverAlListado.addEventListener("click", volverAlListado);
 
   botonIniciarSesion.addEventListener("click", mostrarLogin);
+  botonIniciarSesion2.addEventListener("click", mostrarLogin);
   botonMostrarLogin.addEventListener("click", mostrarLogin);
   botonOcultarLogin.addEventListener("click", ocultarLogin);
   botonMostrarRegistro.addEventListener("click", mostrarRegistro);
@@ -28,6 +28,44 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
       }
     });
+
+  const eventos = document.querySelectorAll(".evento");
+
+  eventos.forEach((evento) => {
+    const contenidoEvento = evento.querySelector(".contenido_evento");
+    const botonExpandir = evento.querySelector("#but_expandir_evento"); // Cambia el selector al ID del botón de expandir
+    const botonCerrar = evento.querySelector(".but_cerrar_evento");
+
+    botonExpandir.addEventListener("click", () => {
+      evento.classList.add("expanded"); // Agrega la clase expandido al hacer clic en el botón de expandir
+    });
+
+    botonCerrar.addEventListener("click", (e) => {
+      e.stopPropagation(); // Evita que el evento de clic se propague al contenedor
+      evento.classList.remove("expanded"); // Quita la clase expandido al hacer clic en el botón de cerrar
+    });
+  });
+
+// Abre el diálogo al hacer clic en el botón con id "but_etiquetar_nota"
+document.getElementById("but_etiquetar_nota").addEventListener("click", function () {
+  const etiquetarNotaModal = document.getElementById("etiquetar_nota");
+  etiquetarNotaModal.classList.add("show");
+  etiquetarNotaModal.style.display = "block";
+  document.body.classList.add("modal-open");
+});
+
+// Cierra el diálogo al hacer clic en el botón con id "aceptar_etiqueta"
+document.getElementById("aceptar_etiqueta").addEventListener("click", function () {
+  const inputValue = document.getElementById("inputText").value;
+  console.log("Texto ingresado:", inputValue);
+  inputValue.textContent = "";
+
+  const etiquetarNotaModal = document.getElementById("etiquetar_nota");
+  etiquetarNotaModal.classList.remove("show");
+  etiquetarNotaModal.style.display = "none";
+  document.body.classList.remove("modal-open");
+});
+
 });
 
 function addNota() {

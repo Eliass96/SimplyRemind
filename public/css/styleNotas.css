@@ -100,6 +100,19 @@
 }
 
 /* Nota Seleccionada */
+.cabecero_nota_seleccionada {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px;
+}
+
+.titulo_input_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .titulo_nota_seleccionada {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -114,30 +127,58 @@
   cursor: pointer;
 }
 
-.but_duplicar_nota,
-.but_eliminar_nota,
-.but_desplegar_listado_notas {
-  background: transparent;
-  color: #000;
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-  width: 30px;
+.botones_nota_seleccionada {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .but_volver_al_listado,
+.but_duplicar_nota,
+.but_eliminar_nota,
+.but_etiquetas_nota,
 .but_mas_opciones_nota {
   background: transparent;
   color: #000;
   border: none;
   cursor: pointer;
-  transition: color 0.3s ease-in-out;
-  width: 40px;
+  width: 30px;
 }
 
 .titulo_nota_seleccionada[contenteditable="true"] {
   background: transparent;
   border: none;
+}
+
+.etiqueta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  padding: 0.5rem;
+}
+
+.etiqueta p {
+  cursor: default;
+  margin-block: 0;
+}
+
+.botones_etiqueta {
+  display: flex;
+}
+
+.dropdown_etiquetas_nota ul {
+  padding: 0;
+}
+
+.but_editar_etiqueta,
+.but_eliminar_etiqueta {
+  background: transparent;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  width: 26px;
 }
 
 .contenido_nota_seleccionada {
@@ -153,7 +194,7 @@
 .but_duplicar_nota:hover,
 .but_eliminar_nota:hover,
 .but_mas_opciones_nota:hover,
-.but_desplegar_listado_notas:hover {
+.but_etiquetas_nota:hover {
   color: #333;
 }
 
@@ -161,7 +202,9 @@
 .but_duplicar_nota:active,
 .but_eliminar_nota:active,
 .but_mas_opciones_nota:active,
-.but_desplegar_listado_notas:active {
+.but_etiquetas_nota:active,
+.but_editar_etiqueta:active,
+.but_eliminar_etiqueta:active {
   transform: scale(0.75);
 }
 

@@ -46,16 +46,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-// Abre el diálogo al hacer clic en el botón con id "but_etiquetar_nota"
-document.getElementById("but_etiquetar_nota").addEventListener("click", function () {
-  const etiquetarNotaModal = document.getElementById("etiquetar_nota");
-  etiquetarNotaModal.classList.add("show");
-  etiquetarNotaModal.style.display = "block";
-  document.body.classList.add("modal-open");
-});
+  // Abre el diálogo al hacer clic en el botón con id "but_etiquetar_nota"
+  document
+    .getElementById("but_etiquetar_nota")
+    .addEventListener("click", function () {
+      const etiquetarNotaModal = document.getElementById("etiquetar_nota");
+      etiquetarNotaModal.classList.add("show");
+      etiquetarNotaModal.style.display = "block";
+      document.body.classList.add("modal-open");
+    });
 
-// Cierra el diálogo al hacer clic en el botón con id "aceptar_etiqueta"
-document.getElementById("aceptar_etiqueta").addEventListener("click", function () {
+  // Cierra el diálogo al hacer clic en el botón con id "aceptar_etiqueta"
+  /*document.getElementById("aceptar_etiqueta").addEventListener("click", function () {
   const inputValue = document.getElementById("inputText").value;
   console.log("Texto ingresado:", inputValue);
   inputValue.textContent = "";
@@ -64,8 +66,7 @@ document.getElementById("aceptar_etiqueta").addEventListener("click", function (
   etiquetarNotaModal.classList.remove("show");
   etiquetarNotaModal.style.display = "none";
   document.body.classList.remove("modal-open");
-});
-
+});*/
 });
 
 function addNota() {

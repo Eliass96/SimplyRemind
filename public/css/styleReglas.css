@@ -20,10 +20,14 @@ body {
     padding-right: 8px !important;
   }
   
- .calendario div {
+ .divCalendario {
     margin: 0 !important;
     padding: 0 !important;
   }
+
+  .fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0 !important;
+}
   
   section {
     padding: 0 !important;
@@ -45,6 +49,11 @@ body {
     padding-right: 0;
     padding-left: 0;
   }
+
+  ol {
+    margin-block-start: 0 !important;
+    margin-block-end: 0.5ch !important;
+}
 
   .boton {
     --bs-btn-bg: transparent;

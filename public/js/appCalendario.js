@@ -11,17 +11,21 @@ document.addEventListener("DOMContentLoaded", function () {
     selectable: true,
     customButtons: {
       miLogo: {
-        text: "Mi Logo", // Agrega el atributo 'text'
         icon: "../img/calendario.png",
         click: function () {
-          // Lógica al hacer clic en el botón miLogo
+          calendar.today();
         },
       },
       addEvento: {
-        text: "", // Agrega el atributo 'text'
         icon: "/public/icon/bars.svg",
-        click: function () {
-          // Lógica al hacer clic en el botón but_calendario
+        click: function (info) {
+          frm.reset();
+          eliminar.classList.add("d-none");
+          document.getElementById("start").value = info.dateStr;
+          document.getElementById("id").value = "";
+          document.getElementById("btnAccion").textContent = "Registrar";
+          document.getElementById("titulo").textContent = "Registrar Evento";
+          myModal.show();
         },
       },
       botonPrev: {
@@ -43,15 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
       right: "botonNext addEvento",
     },
     editable: true,
-    dateClick: function (info) {
-      frm.reset();
-      eliminar.classList.add("d-none");
-      document.getElementById("start").value = info.dateStr;
-      document.getElementById("id").value = "";
-      document.getElementById("btnAccion").textContent = "Registrar";
-      document.getElementById("titulo").textContent = "Registrar Evento";
-      myModal.show();
-    },
     eventClick: function (info) {
       document.getElementById("id").value = info.event.id;
       document.getElementById("title").value = info.event.title;

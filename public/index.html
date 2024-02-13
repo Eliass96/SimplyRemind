@@ -43,9 +43,10 @@
             </ul>
           </div>
           <label>
-            <input class="text_box_principal form-control" type="search" placeholder="Busca una nota...">
+            <input class="text_box_principal form-control" id="text_box_principal" type="search"
+              placeholder="Busca una nota...">
           </label>
-          <button type="submit" class="but_buscar_nota boton btn btn-primary">
+          <button type="submit" class="but_buscar_nota boton btn btn-primary" id="but_buscar_nota">
             <img src="icon/magnifying-glass.svg" alt="Buscar Nota">
           </button>
         </form>
@@ -65,7 +66,23 @@
           </button>
         </form>
       </article>
-        <output></output>
+      <output></output>
+      <!--
+                //<article class="todas_las_notas">
+            <ol>
+                <li>
+                    <input type="color" value="#ff0000">
+                    <a href="#">Nota 1</a>
+                    <button class="but_eliminar_nota_lista" type="button">
+                        <img src="icon/trash.svg" alt="Eliminar Nota">
+                    </button>
+                    <button class="but_duplicar_nota_lista" type="button">
+                        <img src="icon/clone.svg" alt="Duplicar Nota">
+                    </button>
+                </li>
+            </ol>
+        //</article>
+      -->
     </section>
     <!-- Nota seleccionada -->
     <section class="nota_seleccionada col-xl-7" id="nota_seleccionada">
@@ -74,7 +91,7 @@
           <img src="icon/arrow-left.svg" alt="Buscar Nota">
         </button>
         <div class="titulo_input_container">
-          <input type="color" value="#ff0000">
+          <!--<input type="color" value="#ff0000">-->
           <h2 class="titulo_nota_seleccionada" id="titulo_nota_seleccionada" contenteditable="">TÍTULO DE LA NOTA</h2>
         </div>
         <div class="botones_nota_seleccionada">
@@ -125,9 +142,11 @@
       </article>
     </section>
     <!-- Calendario -->
-    <section class="calendario col-xl-5 container-fluid">
-      <section class="calendar" id="calendar"></section>
-    </section>
+    <div class="divCalendario col-xl-5 container-fluid">
+      <section class="calendario">
+        <section class="calendar" id="calendar"></section>
+      </section>
+    </div>
     <!-- Listado de Eventos -->
     <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado col-12">
       <article class="evento">
@@ -326,6 +345,8 @@
     crossorigin="anonymous"></script>
   <script type="module" src="js/appCalendario.js"></script>
   <script src="js/index.js"></script>
+  <script src="js/appPug.js"></script>
+  <script src="notas.js"></script>
 
 </body>
 

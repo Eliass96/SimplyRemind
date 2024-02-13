@@ -8,7 +8,7 @@ exports.conectar = async function () {
 // Creación de los esquemas
 const notaSchema = new mongoose.Schema(
   {
-    titulo: { type: String, required: true, default: "" },
+    titulo: { type: String, required: true, default: "Nueva Nota" },
     texto: { type: String, required: true, default: "" },
     fecha_creacion: { type: Date, required: true, default: new Date() },
     fecha_ultima_modificacion: {
@@ -16,7 +16,7 @@ const notaSchema = new mongoose.Schema(
       required: true,
       default: new Date(),
     },
-    color: { type: String, required: true, default: "#ff0000" },
+    //color: { type: String, required: true, default: "#ff0000" },
     etiquetas: [String],
   },
   {
@@ -121,8 +121,7 @@ exports.listarNotas = async function () {
 };
 
 exports.buscarNotaPorTitulo = async function (titulo) {
-  let regex = RegExp(".*" + titulo + ".*", "i");
-  return Nota.find({ titulo: regex });
+  return Nota.find({ titulo: new RegExp(titulo, 'i') });
 };
 
 exports.borrarNota = async function (idNota) {

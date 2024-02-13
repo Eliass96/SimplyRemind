@@ -69,10 +69,10 @@
 }
 
 .fc-miLogo-button {
-  background-image: url("../img/calendario.png");
+  background-image: url("../icon/calendar-day.svg");
   background-size: cover;
-  cursor: default !important;
   border: none;
+  cursor: pointer !important;
   height: 30px;
   width: 30px;
   margin-left: 2ch;

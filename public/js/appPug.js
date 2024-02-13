@@ -1,21 +1,21 @@
 let output;
-let searchInput;
+let buscador;
 
 document.addEventListener("DOMContentLoaded", function () {
     output = document.querySelector("output");
     buscador = document.getElementById("text_box_principal");
     const botonBuscar = document.getElementById("but_buscar_nota");
     botonBuscar.addEventListener("click", buscar);
-    cargarRutinas();
+    cargarNotas();
 });
 
 function buscar() {
     const filtro = buscador.value;
-    cargarRutinas(filtro);
+    cargarNotas(filtro);
 }
 
 
-async function cargarRutinas(filtro = undefined) {
+async function cargarNotas(filtro) {
     let resp;
     let url;
     if (filtro) {
@@ -29,10 +29,10 @@ async function cargarRutinas(filtro = undefined) {
             throw new Error("Error al cargar");
         }
         const datosNotas = await resp.json();
-        const html = crearRutinas({ rutinas: datosNotas });
+        const html = crearNotas({ notas: datosNotas });
         output.innerHTML = html;
     } catch (error) {
         console.error(error);
-        alert(console.error(error));
+        alert(error);
     }
 }

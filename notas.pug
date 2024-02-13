@@ -1,36 +1,11 @@
 each nota in notas
     output.alta.d-flex.align-items-stretch.justify-content-center.flex-direction-row
         article.todas_las_notas
-    ol
-        li
-            input(type='color' value='#ff0000')
-            a(href='#') Nota 1
+    ol.todas_las_notas(ol)
+        li.todas_las_notas(li)
+            //input(type='color' value='' #{nota.color})
+            a(href='#') #{nota.titulo}
             button.but_eliminar_nota_lista(type='button')
                 img(src='icon/trash.svg' alt='Eliminar Nota')
             button.but_duplicar_nota_lista(type='button')
                 img(src='icon/clone.svg' alt='Duplicar Nota')
-
-
-
-
-
-
-
-
-
-
-
-        //<article class="todas_las_notas">
-            <ol>
-                <li>
-                    <input type="color" value="#ff0000">
-                    <a href="#">Nota 1</a>
-                    <button class="but_eliminar_nota_lista" type="button">
-                        <img src="icon/trash.svg" alt="Eliminar Nota">
-                    </button>
-                    <button class="but_duplicar_nota_lista" type="button">
-                        <img src="icon/clone.svg" alt="Duplicar Nota">
-                    </button>
-                </li>
-            </ol>
-        //</article>

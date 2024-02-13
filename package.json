@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "run": "node app.js",
-    "comp-notas": "pug -c -D -n notas -o public notas.pug"
+    "comp-notas": "pug -c -D -n crearNotas -o public notas.pug"
   },
   "keywords": [],
   "author": "",

@@ -22,7 +22,15 @@ const Evento = db.Evento;
 // Listar notas
 app.get("/notas", async function (req, resp) {
   try {
-    const textoBusqueda = req.query.texto;
+    resp.status(HTTP_OK).send(await db.listarNotas());
+  } catch (err) {
+    resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
+  }
+});
+
+app.get("/notas:id", async function (req, resp) {
+  try {
+    const textoBusqueda = req.params.id;
     if (textoBusqueda) {
       resp.status(HTTP_OK).send(await db.buscarNotaPorTitulo(textoBusqueda));
     } else {
@@ -32,19 +40,20 @@ app.get("/notas", async function (req, resp) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
   }
 });
+
 // Crear nota
 app.post("/notas", async function (req, resp) {
-    try {
-      const nuevaNota = await db.nuevaNota(req.body);
-  
-      resp
-        .location(`/notas/${nuevaNota._id}`)
-        .status(HTTP_CREATED)
-        .send("Nota creada.");
-    } catch (err) {
-      resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
-    }
-  });  
+  try {
+    const nuevaNota = await db.nuevaNota(req.body);
+
+    resp
+      .location(`/notas/${nuevaNota._id}`)
+      .status(HTTP_CREATED)
+      .send("Nota creada.");
+  } catch (err) {
+    resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
+  }
+});
 // Editar nota
 app.put("/notas/:id", async function (req, resp) {
   try {
@@ -110,9 +119,9 @@ app.put("/eventos/:id", async function (req, resp) {
   try {
     const evento = await Evento.findById(req.params.id);
     if (evento) {
-        const eventoActualizado = await db.editarEvento(req.params.id, req.body);
-        resp.status(HTTP_OK).send(eventoActualizado);
-      
+      const eventoActualizado = await db.editarEvento(req.params.id, req.body);
+      resp.status(HTTP_OK).send(eventoActualizado);
+
     } else {
       resp
         .status(HTTP_NOT_FOUND)
@@ -141,8 +150,8 @@ app.delete("/eventos/:id", async function (req, resp) {
 });
 
 db.conectar().then(() => {
-    console.log("Conectado con la base de datos.");
-    app.listen(PORT, () =>
-      console.log(`Servicio escuchando en el puerto ${PORT}`)
-    );
-  });
+  console.log("Conectado con la base de datos.");
+  app.listen(PORT, () =>
+    console.log(`Servicio escuchando en el puerto ${PORT}`)
+  );
+});

@@ -46,7 +46,7 @@
             <input class="text_box_principal form-control" id="text_box_principal" type="search"
               placeholder="Busca una nota...">
           </label>
-          <button type="submit" class="but_buscar_nota boton btn btn-primary" id="but_buscar_nota">
+          <button type="button" class="but_buscar_nota boton btn btn-primary" id="but_buscar_nota">
             <img src="icon/magnifying-glass.svg" alt="Buscar Nota">
           </button>
         </form>
@@ -66,7 +66,7 @@
           </button>
         </form>
       </article>
-      <output></output>
+      <output id="output_notas"></output>
       <!--
                 //<article class="todas_las_notas">
             <ol>
@@ -101,45 +101,43 @@
           <button class="but_eliminar_nota" type="button">
             <img src="icon/trash.svg" alt="Eliminar Nota">
           </button>
-          <div class="dropdown_mas_opciones_nota">
-            <button id="but_mas_opciones_nota" class="but_mas_opciones_nota" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <img src="/public/icon/ellipsis.svg" alt="Más opciones">
-            </button>
-            <ul class="dropdown_content_filtros dropdown-menu">
-              <li><a id="but_compartir_nota" class="but_dropdown_filtros dropdown-item" href="#">Compartir</a></li>
-              <li><a id="but_etiquetar_nota" class="but_dropdown_filtros dropdown-item" href="#">Etiquetar</a></li>
-            </ul>
-          </div>
           <div class="dropdown_etiquetas_nota">
             <button id="but_etiquetas_nota" class="but_etiquetas_nota" type="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               <img src="icon/tags.svg" alt="Etiquetas de la nota">
             </button>
-            <ul class="dropdown_content_filtros dropdown-menu">
-              <li class="etiqueta">
-                <p>Etiqueta 1</p>
-                <div class="botones_etiqueta">
-                  <button class="but_editar_etiqueta" type="button">
-                    <img src="icon/pen-to-square.svg" alt="Editar Etiqueta">
-                  </button>
-                  <button class="but_eliminar_etiqueta" type="button">
-                    <img src="icon/trash.svg" alt="Eliminar Etiqueta">
-                  </button>
-                </div>
-              </li>
-            </ul>
+            <div class="dropdown_content_filtros dropdown-menu">
+              <div class="etiqueta">
+                <p>Añadir etiqueta</p>
+                <button class="but_nueva_etiqueta" type="button">
+                  <img src="icon/plus.svg" alt="Añadir Etiqueta">
+                </button>
+              </div>
+              <ul>
+                <li class="etiqueta">
+                  <p>Etiqueta 1</p>
+                  <div class="botones_etiqueta">
+                    <button class="but_editar_etiqueta" type="button">
+                      <img src="icon/pen-to-square.svg" alt="Editar Etiqueta">
+                    </button>
+                    <button class="but_eliminar_etiqueta" type="button">
+                      <img src="icon/trash.svg" alt="Eliminar Etiqueta">
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </article>
-
-      <article class="contenido_nota_seleccionada">
+      <output id="output_eventos"></output>
+      <!--<article class="contenido_nota_seleccionada">
         <p contenteditable="">Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la
           nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido
           de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la
           nota...Contenido de la nota...
         </p>
-      </article>
+      </article>-->
     </section>
     <!-- Calendario -->
     <div class="divCalendario col-xl-5 container-fluid">
@@ -149,66 +147,6 @@
     </div>
     <!-- Listado de Eventos -->
     <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado col-12">
-      <article class="evento">
-        <div class="cabecero_evento">
-          <h3>Evento 1</h3>
-          <button class="but_cerrar_evento" id="but_cerrar_evento" type="button">
-            <img src="icon/down-left-and-up-right-to-center.svg" alt="Cerrar Evento">
-          </button>
-          <button class="but_expandir_evento" id="but_expandir_evento" type="button">
-            <img src="icon/up-right-and-down-left-from-center.svg" alt="Cerrar Evento">
-          </button>
-        </div>
-        <div class="contenido_evento">
-          <p>Contenido del evento... Contenido del evento... Contenido del evento... Contenido del evento... Contenido
-            del evento...
-            Contenido del evento... Contenido del evento... Contenido del evento... Contenido del evento... Contenido
-            del evento...
-            Contenido del evento... Contenido del evento... Contenido del evento... Contenido del evento... Contenido
-            del evento...
-            Contenido del evento... Contenido del evento... Contenido del evento... Contenido del evento... Contenido
-            del evento...
-            Contenido del evento... Contenido del evento... Contenido del evento... Contenido del evento... Contenido
-            del evento...
-            Contenido del evento... Contenido del evento... Contenido del evento... Contenido del evento... Contenido
-            del evento...
-            Contenido del evento... Contenido del evento... Contenido del evento... Contenido del evento... Contenido
-            del evento...
-            Contenido del evento... Contenido del evento... Contenido del evento... Contenido del evento... Contenido
-            del evento...
-          </p>
-          <div class="botones_evento">
-            <button class="but_editar_evento" type="button">
-              <img src="icon/pen-to-square.svg" alt="Editar Evento">
-            </button>
-            <button class="but_eliminar_evento" type="button">
-              <img src="icon/trash.svg" alt="Eliminar Evento">
-            </button>
-          </div>
-        </div>
-      </article>
-      <article class="evento">
-        <div class="cabecero_evento">
-          <h3>Evento 2</h3>
-          <button class="but_cerrar_evento" id="but_cerrar_evento" type="button">
-            <img src="icon/down-left-and-up-right-to-center.svg" alt="Cerrar Evento">
-          </button>
-          <button class="but_expandir_evento" id="but_expandir_evento" type="button">
-            <img src="icon/up-right-and-down-left-from-center.svg" alt="Cerrar Evento">
-          </button>
-        </div>
-        <div class="contenido_evento">
-          <p></p>
-          <div class="botones_evento">
-            <button class="but_editar_evento" type="button">
-              <img src="icon/pen-to-square.svg" alt="Editar Evento">
-            </button>
-            <button class="but_eliminar_evento" type="button">
-              <img src="icon/trash.svg" alt="Eliminar Evento">
-            </button>
-          </div>
-        </div>
-      </article>
       <article class="evento">
         <div class="cabecero_evento">
           <h3>Evento 3</h3>

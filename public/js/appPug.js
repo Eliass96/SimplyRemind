@@ -10,19 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function buscar() {
-    const filtro = buscador.value;
-    cargarNotas(filtro);
+    cargarNotas(buscador.value);
 }
 
 
 async function cargarNotas(filtro) {
     let resp;
     let url;
+    console.log(filtro);
     if (filtro) {
-        url = `/notas/${filtro}`;
+        url = `/notas?titulo=${filtro}`;
     } else {
         url = "/notas";
     }
+    console.log(url);
     try {
         resp = await fetch(url);
         if (!resp.ok) {
@@ -31,8 +32,9 @@ async function cargarNotas(filtro) {
         const datosNotas = await resp.json();
         const html = crearNotas({ notas: datosNotas });
         output.innerHTML = html;
+        console.log(url);
     } catch (error) {
         console.error(error);
-        alert(error);
+        alert(error + url);
     }
 }

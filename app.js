@@ -22,13 +22,18 @@ const Evento = db.Evento;
 // Listar notas
 app.get("/notas", async function (req, resp) {
   try {
-    resp.status(HTTP_OK).send(await db.listarNotas());
+    const textoBusqueda = req.query.titulo;
+    if (textoBusqueda) {
+      resp.status(HTTP_OK).send(await db.buscarNotaPorTitulo(textoBusqueda));
+    } else {
+      resp.status(HTTP_OK).send(await db.listarNotas());
+    }
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
   }
 });
 
-app.get("/notas:id", async function (req, resp) {
+app.get("/notas/:id", async function (req, resp) {
   try {
     const textoBusqueda = req.params.id;
     if (textoBusqueda) {

@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Abre el diálogo al hacer clic en el botón con id "but_etiquetar_nota"
-  document
-    .getElementById("but_etiquetar_nota")
+  /*document
+    .getElementById("but_nueva_etiqueta")
     .addEventListener("click", function () {
       const etiquetarNotaModal = document.getElementById("etiquetar_nota");
       etiquetarNotaModal.classList.add("show");
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   // Cierra el diálogo al hacer clic en el botón con id "aceptar_etiqueta"
-  /*document.getElementById("aceptar_etiqueta").addEventListener("click", function () {
+  document.getElementById("aceptar_etiqueta").addEventListener("click", function () {
   const inputValue = document.getElementById("inputText").value;
   console.log("Texto ingresado:", inputValue);
   inputValue.textContent = "";

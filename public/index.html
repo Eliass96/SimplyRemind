@@ -43,7 +43,7 @@
             </ul>
           </div>
           <label>
-            <input class="buscador form-control text_box_principal" type="search" placeholder="Busca una nota...">
+            <input class="text_box_principal form-control" type="search" placeholder="Busca una nota...">
           </label>
           <button type="submit" class="but_buscar_nota boton btn btn-primary">
             <img src="icon/magnifying-glass.svg" alt="Buscar Nota">
@@ -65,40 +65,7 @@
           </button>
         </form>
       </article>
-      <article class="todas_las_notas">
-        <ol>
-          <li>
-            <input type="color" value="#ff0000">
-            <a href="#">Nota 1</a>
-            <button class="but_eliminar_nota_lista" type="button">
-              <img src="icon/trash.svg" alt="Eliminar Nota">
-            </button>
-            <button class="but_duplicar_nota_lista" type="button">
-              <img src="icon/clone.svg" alt="Duplicar Nota">
-            </button>
-          </li>
-          <li>
-            <input type="color" value="#00ff00">
-            <a href="#">Nota 2</a>
-            <button class="but_eliminar_nota_lista" type="button">
-              <img src="icon/trash.svg" alt="Eliminar Nota">
-            </button>
-            <button class="but_duplicar_nota_lista" type="button">
-              <img src="icon/clone.svg" alt="Duplicar Nota">
-            </button>
-          </li>
-          <li>
-            <input type="color" value="#0000ff">
-            <a href="#">Nota 3</a>
-            <button class="but_eliminar_nota_lista" type="button">
-              <img src="icon/trash.svg" alt="Eliminar Nota">
-            </button>
-            <button class="but_duplicar_nota_lista" type="button">
-              <img src="icon/clone.svg" alt="Duplicar Nota">
-            </button>
-          </li>
-        </ol>
-      </article>
+        <output></output>
     </section>
     <!-- Nota seleccionada -->
     <section class="nota_seleccionada col-xl-7" id="nota_seleccionada">
@@ -158,23 +125,9 @@
       </article>
     </section>
     <!-- Calendario -->
-    <div class="col-xl-5 container-fluid">
-      <section class="calendario">
-        <section class="calendar" id="calendar">
-          </button>
-          <ul class="dropdown_content_filtros dropdown-menu">
-            <li><a id="but_login" class="but_dropdown_filtros dropdown-item" href="#">Añadir evento</a></li>
-            <li><a id="but_login" class="but_dropdown_filtros dropdown-item" href="#">Hoy</a></li>
-            <li><a class="but_dropdown_filtros dropdown-item" href="#">Semana</a></li>
-            <li><a class="but_dropdown_filtros dropdown-item" href="#">Año</a></li>
-          </ul>
-        </section>
-        <button class="but_calendario boton btn btn-primary" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          <img src="icon/bars.svg" alt="Menú de opciones.">
-        </button>
-      </section>
-    </div>
+    <section class="calendario col-xl-5 container-fluid">
+      <section class="calendar" id="calendar"></section>
+    </section>
     <!-- Listado de Eventos -->
     <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado col-12">
       <article class="evento">
@@ -267,7 +220,7 @@
   </footer>
 
   <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-info">
           <h5 class="modal-title" id="titulo">Registro de Eventos</h5>
@@ -305,7 +258,6 @@
             <button type="submit" class="btn btn-primary" id="btnAccion">Guardar</button>
           </div>
         </form>
-
       </div>
     </div>
   </div>

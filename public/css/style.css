@@ -26,11 +26,6 @@
   padding-bottom: 6px;
 }
 
-.buscador {
-  background: white;
-  margin-left: 10px;
-}
-
 .but_filtros {
   background-color: lightgray;
   font-size: calc(0.1vw + 1rem);
@@ -74,6 +69,8 @@
   height: 5.75vh;
   flex: 1;
   transition: all 0.5s ease;
+  background: white;
+  margin-left: 10px;
 }
 
 .but_buscar_nota {

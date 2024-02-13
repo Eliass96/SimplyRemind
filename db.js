@@ -8,9 +8,8 @@ exports.conectar = async function () {
 // Creación de los esquemas
 const notaSchema = new mongoose.Schema(
   {
-    // Nota: título, autor, texto, fechaCreacion, fechaUltimaModificacion, etiquetas
-    titulo: String,
-    texto: String,
+    titulo: { type: String, required: true, default: "" },
+    texto: { type: String, required: true, default: "" },
     fecha_creacion: { type: Date, required: true, default: new Date() },
     fecha_ultima_modificacion: {
       type: Date,
@@ -49,7 +48,6 @@ notaSchema.pre("save", function (next) {
 
 const eventoSchema = new mongoose.Schema(
   {
-    // Evento: título, autor, texto, diaEvento, horaEvento, todoElDia
     nombre: { type: String, required: true },
     descripcion: String,
     diaEvento: {
@@ -65,6 +63,7 @@ const eventoSchema = new mongoose.Schema(
     horaEvento: Date,
     recordatorio: Date,
     todoElDia: { type: Boolean, required: true, default: false },
+    color: { type: String, required: true, default: "#ff0000" },
     etiquetas: [String],
   },
   {

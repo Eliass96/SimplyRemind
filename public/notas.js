@@ -1,0 +1,18 @@
+function notas(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (notas) {// iterate notas
+;(function(){
+  var $$obj = notas;
+  if ('number' == typeof $$obj.length) {
+      for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
+        var nota = $$obj[pug_index0];
+pug_html = pug_html + "\u003Coutput class=\"alta d-flex align-items-stretch justify-content-center flex-direction-row\"\u003E\u003Carticle class=\"todas_las_notas\"\u003E\u003C\u002Farticle\u003E\u003C\u002Foutput\u003E\u003Col\u003E\u003Cli\u003E\u003Cinput type=\"color\" value=\"#ff0000\"\u002F\u003E\u003Ca href=\"#\"\u003ENota 1\u003C\u002Fa\u003E\u003Cbutton class=\"but_eliminar_nota_lista\" type=\"button\"\u003E\u003Cimg src=\"icon\u002Ftrash.svg\" alt=\"Eliminar Nota\"\u002F\u003E\u003C\u002Fbutton\u003E\u003Cbutton class=\"but_duplicar_nota_lista\" type=\"button\"\u003E\u003Cimg src=\"icon\u002Fclone.svg\" alt=\"Duplicar Nota\"\u002F\u003E\u003C\u002Fbutton\u003E\u003C\u002Fli\u003E\u003C!--\u003Carticle class=\"todas_las_notas\"\u003E\u003Col\u003E\n    \u003Cli\u003E\n        \u003Cinput type=\"color\" value=\"#ff0000\"\u003E\n        \u003Ca href=\"#\"\u003ENota 1\u003C\u002Fa\u003E\n        \u003Cbutton class=\"but_eliminar_nota_lista\" type=\"button\"\u003E\n            \u003Cimg src=\"icon\u002Ftrash.svg\" alt=\"Eliminar Nota\"\u003E\n        \u003C\u002Fbutton\u003E\n        \u003Cbutton class=\"but_duplicar_nota_lista\" type=\"button\"\u003E\n            \u003Cimg src=\"icon\u002Fclone.svg\" alt=\"Duplicar Nota\"\u003E\n        \u003C\u002Fbutton\u003E\n    \u003C\u002Fli\u003E\n\u003C\u002Fol\u003E--\u003E\u003C!--\u003C\u002Farticle\u003E--\u003E\u003C\u002Fol\u003E";
+      }
+  } else {
+    var $$l = 0;
+    for (var pug_index0 in $$obj) {
+      $$l++;
+      var nota = $$obj[pug_index0];
+pug_html = pug_html + "\u003Coutput class=\"alta d-flex align-items-stretch justify-content-center flex-direction-row\"\u003E\u003Carticle class=\"todas_las_notas\"\u003E\u003C\u002Farticle\u003E\u003C\u002Foutput\u003E\u003Col\u003E\u003Cli\u003E\u003Cinput type=\"color\" value=\"#ff0000\"\u002F\u003E\u003Ca href=\"#\"\u003ENota 1\u003C\u002Fa\u003E\u003Cbutton class=\"but_eliminar_nota_lista\" type=\"button\"\u003E\u003Cimg src=\"icon\u002Ftrash.svg\" alt=\"Eliminar Nota\"\u002F\u003E\u003C\u002Fbutton\u003E\u003Cbutton class=\"but_duplicar_nota_lista\" type=\"button\"\u003E\u003Cimg src=\"icon\u002Fclone.svg\" alt=\"Duplicar Nota\"\u002F\u003E\u003C\u002Fbutton\u003E\u003C\u002Fli\u003E\u003C!--\u003Carticle class=\"todas_las_notas\"\u003E\u003Col\u003E\n    \u003Cli\u003E\n        \u003Cinput type=\"color\" value=\"#ff0000\"\u003E\n        \u003Ca href=\"#\"\u003ENota 1\u003C\u002Fa\u003E\n        \u003Cbutton class=\"but_eliminar_nota_lista\" type=\"button\"\u003E\n            \u003Cimg src=\"icon\u002Ftrash.svg\" alt=\"Eliminar Nota\"\u003E\n        \u003C\u002Fbutton\u003E\n        \u003Cbutton class=\"but_duplicar_nota_lista\" type=\"button\"\u003E\n            \u003Cimg src=\"icon\u002Fclone.svg\" alt=\"Duplicar Nota\"\u003E\n        \u003C\u002Fbutton\u003E\n    \u003C\u002Fli\u003E\n\u003C\u002Fol\u003E--\u003E\u003C!--\u003C\u002Farticle\u003E--\u003E\u003C\u002Fol\u003E";
+    }
+  }
+}).call(this);
+}.call(this,"notas" in locals_for_with?locals_for_with.notas:typeof notas!=="undefined"?notas:undefined));;return pug_html;}

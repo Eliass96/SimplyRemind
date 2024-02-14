@@ -67,22 +67,6 @@
         </form>
       </article>
       <output id="output_notas"></output>
-      <!--
-                //<article class="todas_las_notas">
-            <ol>
-                <li>
-                    <input type="color" value="#ff0000">
-                    <a href="#">Nota 1</a>
-                    <button class="but_eliminar_nota_lista" type="button">
-                        <img src="icon/trash.svg" alt="Eliminar Nota">
-                    </button>
-                    <button class="but_duplicar_nota_lista" type="button">
-                        <img src="icon/clone.svg" alt="Duplicar Nota">
-                    </button>
-                </li>
-            </ol>
-        //</article>
-      -->
     </section>
     <!-- Nota seleccionada -->
     <section class="nota_seleccionada col-xl-7" id="nota_seleccionada">
@@ -130,14 +114,13 @@
           </div>
         </div>
       </article>
-      <output id="output_eventos"></output>
-      <!--<article class="contenido_nota_seleccionada">
+      <article class="contenido_nota_seleccionada">
         <p contenteditable="">Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la
           nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido
           de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la
           nota...Contenido de la nota...
         </p>
-      </article>-->
+      </article>
     </section>
     <!-- Calendario -->
     <div class="divCalendario col-xl-5 container-fluid">
@@ -147,7 +130,8 @@
     </div>
     <!-- Listado de Eventos -->
     <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado col-12">
-      <article class="evento">
+      <output id="output_eventos"></output>
+      <!--<article class="evento">
         <div class="cabecero_evento">
           <h3>Evento 3</h3>
           <button class="but_cerrar_evento" id="but_cerrar_evento" type="button">
@@ -168,7 +152,7 @@
             </button>
           </div>
         </div>
-      </article>
+      </article>-->
     </section>
   </main>
 
@@ -285,6 +269,7 @@
   <script src="js/index.js"></script>
   <script src="js/appPug.js"></script>
   <script src="notas.js"></script>
+  <script src="eventos.js"></script>
 
 </body>
 

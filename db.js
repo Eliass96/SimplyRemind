@@ -10,11 +10,11 @@ const notaSchema = new mongoose.Schema(
   {
     titulo: { type: String, required: true, default: "Nueva Nota" },
     texto: { type: String, required: true, default: "" },
-    fecha_creacion: { type: Date, required: true, default: new Date() },
+    fecha_creacion: { type: Date, required: true, default: new Date().toLocaleDateString() },
     fecha_ultima_modificacion: {
       type: Date,
       required: true,
-      default: new Date(),
+      default: new Date().toLocaleDateString(),
     },
     //color: { type: String, required: true, default: "#ff0000" },
     etiquetas: [String],
@@ -49,18 +49,17 @@ notaSchema.pre("save", function (next) {
 const eventoSchema = new mongoose.Schema(
   {
     nombre: { type: String, required: true },
-    descripcion: String,
+    contenido_evento: { type: String, required: true, default: "" },
     diaEvento: {
       type: Date,
       required: true,
       validate: {
         validator: function (value) {
-          return value > new Date(); //Función personalizada de validación.
+          return value > new Date().toLocaleDateString(); //Función personalizada de validación.
         },
-        message: "La fecha fin tiene que ser posterior a la fecha actual.",
+        message: "La fecha del evento tiene que ser posterior a la fecha actual.",
       },
     },
-    horaEvento: Date,
     recordatorio: Date,
     todoElDia: { type: Boolean, required: true, default: false },
     color: { type: String, required: true, default: "#ff0000" },
@@ -141,13 +140,8 @@ exports.editarEvento = async function (datosEvento) {
   return eventoActualizado;
 };
 
-exports.listarEventos = async function () {
-  return Evento.find();
-};
-
-exports.buscarEventoPorTitulo = async function (titulo) {
-  let regex = RegExp(".*" + titulo + ".*", "i");
-  return Evento.find({ titulo: regex });
+exports.listarEventos = async function (diaSeleccionado) {
+  return Evento.find({ diaEvento: { $eq: diaSeleccionado } });
 };
 
 exports.borrarEvento = async function (idEvento) {

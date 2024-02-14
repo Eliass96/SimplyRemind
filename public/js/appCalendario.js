@@ -47,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
       right: "botonNext addEvento",
     },
     editable: true,
+    dateClick: function (info) {
+      cargarEventos(info);
+    },
     eventClick: function (info) {
       document.getElementById("id").value = info.event.id;
       document.getElementById("title").value = info.event.title;
@@ -137,3 +140,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+async function cargarEventos(filtro) {
+  let resp;
+  console.log(filtro);
+  try {
+    resp = await fetch(`/eventos?diaEvento=${filtro}`);
+    if (!resp.ok) {
+      throw new Error("Error al cargar");
+    }
+    const datosEventos = await resp.json();
+    const html = crearEventos({ eventos: datosEventos });
+    output.innerHTML = html;
+  } catch (error) {
+    console.error(error);
+    alert(error + url);
+  }
+}

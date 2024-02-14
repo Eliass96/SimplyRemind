@@ -4,6 +4,8 @@ let eliminar = document.getElementById('btnEliminar');
 let myModal = new bootstrap.Modal(document.getElementById('myModal'));
 
 document.addEventListener("DOMContentLoaded", function () {
+  eventosOutput = document.querySelector("#eventos");
+
   var calendar = new FullCalendar.Calendar(calendarEl, {
     themeSystem: "bootstrap5",
     initialView: "dayGridMonth",
@@ -152,7 +154,7 @@ async function cargarEventos(filtro) {
     const datosEventos = await resp.json();
     console.log(datosEventos);
     const html = crearEventos({ eventos: datosEventos });
-    output.innerHTML = html;
+    eventosOutput.innerHTML = html;
   } catch (error) {
     console.error(error);
     alert(error);

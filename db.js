@@ -10,12 +10,8 @@ const notaSchema = new mongoose.Schema(
   {
     titulo: { type: String, required: true, default: "Nueva Nota" },
     texto: { type: String, required: true, default: "" },
-    fecha_creacion: { type: Date, required: true, default: new Date().toLocaleDateString() },
-    fecha_ultima_modificacion: {
-      type: Date,
-      required: true,
-      default: new Date().toLocaleDateString(),
-    },
+    fecha_creacion: { type: String, required: true, default: new Date().toLocaleDateString() },
+    fecha_ultima_modificacion: { type: Date, required: true, default: new Date().toLocaleDateString() },
     //color: { type: String, required: true, default: "#ff0000" },
     etiquetas: [String],
   },
@@ -49,20 +45,24 @@ notaSchema.pre("save", function (next) {
 const eventoSchema = new mongoose.Schema(
   {
     nombre: { type: String, required: true },
-    contenido_evento: { type: String, required: true, default: "" },
+    contenidoEvento: { type: String, required: true, default: "" },
     diaEvento: {
-      type: Date,
+      type: String,
       required: true,
       validate: {
         validator: function (value) {
-          return value > new Date().toLocaleDateString(); //Función personalizada de validación.
+          let f = new Date();
+          const formatDate = (d) => {
+            return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()
+          }
+          return value > formatDate(f); //Función personalizada de validación.
         },
         message: "La fecha del evento tiene que ser posterior a la fecha actual.",
       },
     },
-    recordatorio: Date,
+    //recordatorio: Date,
     todoElDia: { type: Boolean, required: true, default: false },
-    color: { type: String, required: true, default: "#ff0000" },
+    //color: { type: String, required: true, default: "#ff0000" },
     etiquetas: [String],
   },
   {
@@ -79,12 +79,6 @@ const eventoSchema = new mongoose.Schema(
     }
   }
 );
-
-/* Middleware pre-save para actualizar la fecha de última modificación del evento
-eventoSchema.pre("save", function (next) {
-  this.fechaUltimaModificacion = Date.now();
-  next();
-});*/
 
 // Creación de los modelos.
 const Nota = mongoose.model("Nota", notaSchema);

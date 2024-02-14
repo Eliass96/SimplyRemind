@@ -33,7 +33,7 @@ app.get("/notas", async function (req, resp) {
   }
 });
 
-app.get("/notas/:id", async function (req, resp) {
+/*app.get("/notas/:id", async function (req, resp) {
   try {
     const textoBusqueda = req.params.id;
     if (textoBusqueda) {
@@ -44,7 +44,7 @@ app.get("/notas/:id", async function (req, resp) {
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
   }
-});
+});*/
 
 // Crear nota
 app.post("/notas", async function (req, resp) {
@@ -59,6 +59,7 @@ app.post("/notas", async function (req, resp) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }
 });
+
 // Editar nota
 app.put("/notas/:id", async function (req, resp) {
   try {
@@ -75,6 +76,7 @@ app.put("/notas/:id", async function (req, resp) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }
 });
+
 // Eliminar nota
 app.delete("/notas/:id", async function (req, resp) {
   try {
@@ -96,16 +98,13 @@ app.delete("/notas/:id", async function (req, resp) {
 // Listar eventos
 app.get("/eventos", async function (req, resp) {
   try {
-    const textoBusqueda = req.query.texto;
-    if (textoBusqueda) {
-      resp.status(HTTP_OK).send(await db.buscarEventoPorTitulo(textoBusqueda));
-    } else {
-      resp.status(HTTP_OK).send(await db.listarEventos());
-    }
+    const diaSeleccionado = req.query.diaEvento;
+    resp.status(HTTP_OK).send(await db.listarEventos(diaSeleccionado));
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }
 });
+
 // Crear evento
 app.post("/eventos", async function (req, resp) {
   try {
@@ -119,6 +118,7 @@ app.post("/eventos", async function (req, resp) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }
 });
+
 // Editar evento
 app.put("/eventos/:id", async function (req, resp) {
   try {
@@ -136,6 +136,7 @@ app.put("/eventos/:id", async function (req, resp) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }
 });
+
 // Eliminar evento
 app.delete("/eventos/:id", async function (req, resp) {
   try {

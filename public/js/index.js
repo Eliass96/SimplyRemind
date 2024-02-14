@@ -156,3 +156,5 @@ function ocultarRegistro() {
   formLogin.reset();
   formRegistro.reset();
 }
+
+

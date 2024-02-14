@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     editable: true,
     dateClick: function (info) {
-      cargarEventos(info);
+      cargarEventos(info.dateStr);
     },
     eventClick: function (info) {
       document.getElementById("id").value = info.event.id;
@@ -150,10 +150,11 @@ async function cargarEventos(filtro) {
       throw new Error("Error al cargar");
     }
     const datosEventos = await resp.json();
+    console.log(datosEventos);
     const html = crearEventos({ eventos: datosEventos });
     output.innerHTML = html;
   } catch (error) {
     console.error(error);
-    alert(error + url);
+    alert(error);
   }
 }

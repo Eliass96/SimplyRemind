@@ -60,6 +60,20 @@ app.post("/notas", async function (req, resp) {
   }
 });
 
+// Duplicar nota
+/*app.post("/notas", async function (req, resp) {
+  try {
+    const nuevaNota = await db.nuevaNota(req.body);
+
+    resp
+      .location(`/notas/${nuevaNota._id}`)
+      .status(HTTP_CREATED)
+      .send("Nota creada.");
+  } catch (err) {
+    resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
+  }
+});*/
+
 // Editar nota
 app.put("/notas/:id", async function (req, resp) {
   try {

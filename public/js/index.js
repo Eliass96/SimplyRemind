@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var botonAddNota = document.getElementById("but_add_notas");
+  /*var botonAddNota = document.getElementById("but_add_notas");
   var botonVolverAlListado = document.getElementById("but_volver_al_listado");
 
-  botonAddNota.addEventListener("click", addNota);
-  botonVolverAlListado.addEventListener("click", volverAlListado);
+  //botonAddNota.addEventListener("click", addNota);
+  //botonVolverAlListado.addEventListener("click", volverAlListado);
 
   var maxChars = 25;
 
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (e.target.textContent.length > maxChars && e.which !== 8) {
         e.preventDefault();
       }
-    });
+    });*/
 
   const eventos = document.querySelectorAll(".evento");
 
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });*/
 });
 
-function addNota() {
+/*function addNota() {
   let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
   nota.style.display = "block";
@@ -67,4 +67,4 @@ function volverAlListado() {
   let listado = document.getElementById("listado_notas");
   nota.style.display = "none";
   listado.style.display = "block";
-}
+}*/

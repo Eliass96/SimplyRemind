@@ -18,7 +18,8 @@
 <body>
 
   <header class="reglas container-fluid row">
-    <section class="titulo container text-center col-xl-4 container-fluid d-flex align-items-center justify-content-center">
+    <section
+      class="titulo container text-center col-xl-4 container-fluid d-flex align-items-center justify-content-center">
       <h1 class="titulo_texto mx-auto">SimplyRemind</h1>
       <button class="but_titulo boton btn btn-primary d-xl-none ms-auto" type="button" data-bs-toggle="dropdown"
         aria-expanded="false">
@@ -70,13 +71,16 @@
     </section>
 
     <!-- Nota seleccionada -->
+
     <section class="nota_seleccionada col-xl-7" id="nota_seleccionada">
-      <article class="cabecero_nota_seleccionada">
+      <output id="outputNotaSeleccionada"></output>
+    </section>
+    <!--<article class="cabecero_nota_seleccionada">
         <button id="but_volver_al_listado" class="but_volver_al_listado col-2" type="button">
           <img src="icon/arrow-left.svg" alt="Buscar Nota">
         </button>
         <div class="titulo_input_container">
-          <!--<input type="color" value="#ff0000">-->
+          <input type="color" value="#ff0000">
           <h2 class="titulo_nota_seleccionada" id="titulo_nota_seleccionada" contenteditable="">TÍTULO DE LA NOTA</h2>
         </div>
         <div class="botones_nota_seleccionada">
@@ -121,8 +125,7 @@
           de la nota...Contenido de la nota...Contenido de la nota...Contenido de la nota...Contenido de la
           nota...Contenido de la nota...
         </p>
-      </article>
-    </section>
+      </article>-->
 
     <!-- Calendario -->
     <section class="divCalendario col-xl-5 container-fluid">
@@ -198,8 +201,9 @@
     crossorigin="anonymous"></script>
   <script src="js/appCalendario.js"></script>
   <script src="js/index.js"></script>
-  <script src="js/appPug.js"></script>
+  <script src="js/appPugNotas.js"></script>
   <script src="notas.js"></script>
+  <script src="notaSeleccionada.js"></script>
   <script src="eventos.js"></script>
 
 </body>

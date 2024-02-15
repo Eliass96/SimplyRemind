@@ -6,6 +6,7 @@
   "scripts": {
     "run": "node app.js",
     "comp-notas": "pug -c -D -n crearNotas -o public notas.pug",
+    "comp-nota-seleccionada": "pug -c -D -n vistaNotaSeleccionada -o public notaSeleccionada.pug",
     "comp-eventos": "pug -c -D -n crearEventos -o public eventos.pug"
   },
   "keywords": [],

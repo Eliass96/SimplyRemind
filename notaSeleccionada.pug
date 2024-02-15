@@ -1,0 +1,29 @@
+article.cabecero_nota_seleccionada
+    button.but_volver_al_listado.col-2(type="button" id="but_volver_al_listado")
+        img(src="icon/arrow-left.svg" alt="Buscar Nota")
+    div.titulo_input_container
+        // <input type="color" value="#ff0000">
+        h2.titulo_nota_seleccionada#titulo_nota_seleccionada(contenteditable="") #{nota.titulo}
+    div.botones_nota_seleccionada
+        button.but_duplicar_nota(type="button")
+            img(src="icon/clone.svg" alt="Duplicar Nota")
+        button.but_eliminar_nota(type="button")
+            img(src="icon/trash.svg" alt="Eliminar Nota")
+        div.dropdown_etiquetas_nota
+            button.but_etiquetas_nota(type="button" data-bs-toggle="dropdown" aria-expanded="false")
+                img(src="icon/tags.svg" alt="Etiquetas de la nota")
+            div.dropdown_content_filtros.dropdown-menu
+                div.etiqueta
+                    p Añadir etiqueta
+                    button.but_nueva_etiqueta(type="button")
+                        img(src="icon/plus.svg" alt="Añadir Etiqueta")
+                ul
+                    li.etiqueta
+                        p Etiqueta 1
+                        div.botones_etiqueta
+                            button.but_editar_etiqueta(type="button")
+                                img(src="icon/pen-to-square.svg" alt="Editar Etiqueta")
+                            button.but_eliminar_etiqueta(type="button")
+                                img(src="icon/trash.svg" alt="Eliminar Etiqueta")
+article.contenido_nota_seleccionada
+    p(contenteditable="") #{nota.texto}

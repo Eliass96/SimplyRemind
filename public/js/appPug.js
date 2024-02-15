@@ -1,19 +1,19 @@
-let output;
-let buscador;
+let outputNotas;
+let buscadorNotas;
 
 document.addEventListener("DOMContentLoaded", function () {
-    output = document.querySelector("output");
-    buscador = document.getElementById("text_box_principal");
+    outputNotas = document.querySelector("output");
+    buscadorNotas = document.getElementById("text_box_principal");
     const botonBuscar = document.getElementById("but_buscar_nota");
     botonBuscar.addEventListener("click", buscar);
 
-    output.addEventListener("click", outputNotaClicado);
+    outputNotas.addEventListener("click", eliminarNota);
 
     cargarNotas();
 });
 
 function buscar() {
-    cargarNotas(buscador.value);
+    cargarNotas(buscadorNotas.value);
 }
 
 
@@ -32,21 +32,20 @@ async function cargarNotas(filtro) {
         }
         const datosNotas = await resp.json();
         const html = crearNotas({ notas: datosNotas });
-        output.innerHTML = html;
+        outputNotas.innerHTML = html;
     } catch (error) {
         alert(error + url);
     }
 }
 
-async function outputNotaClicado(evt) {
+async function eliminarNota(evt) {
     if (evt.target.classList.contains("but_eliminar_nota_lista")) {
-        const item = evt.target.closest(".todas_las_notas");
-        const id = item.getAttribute("idNota");
-        console.log(id);
+        const item = evt.target.closest("li.todas_las_notas");
+        const id = item.dataset.idNota;
         if (confirm("¿Estás seguro de que deseas eliminar esta nota?")) {
             const resp = await fetch(`/notas/${id}`, { method: "DELETE" });
             if (resp.ok) {
-                cargarNotas(buscador.value);
+                cargarNotas(buscadorNotas.value);
                 console.log("Elemento eliminado exitosamente");
             } else alert("Error!!!!");
         } else {

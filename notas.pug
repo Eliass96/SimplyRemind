@@ -1,8 +1,8 @@
 each nota in notas
-    output#output_notas.d-flex.align-items-stretch.justify-content-stretch.flex-direction-row.card-producto(data-id-nota=nota._id)
+    output#output_notas.d-flex.align-items-stretch.justify-content-stretch.flex-direction-row
         article.todas_las_notas
-    ol.todas_las_notas(ol)
-        li.todas_las_notas(li)
+    ol.todas_las_notas
+        li.todas_las_notas(idNota=nota.nombre)
             //input(type='color' value='' #{nota.color})
             a(href='#') #{nota.titulo}
             button.but_eliminar_nota_lista(type='button')

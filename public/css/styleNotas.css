@@ -2,8 +2,6 @@
 .nota_seleccionada {
   border: 1px solid darkgray;
   background: #f8f8f8;
-  margin-top: 8px;
-  margin-bottom: 8px;
   border-radius: 12px;
   min-height: 74vh;
   max-height: 74vh;
@@ -72,13 +70,6 @@
   width: calc(100% - 20px);
 }
 
-/*.todas_las_notas li input[type=color] {
-  width: calc(0.32vw + 1rem);
-  height: calc(0.28vw + 1rem);
-  border: transparent;
-  background-color: transparent;
-}*/
-
 .but_duplicar_nota_lista,
 .but_eliminar_nota_lista {
   background: transparent;
@@ -114,13 +105,6 @@
   font-size: calc(0.65vw + 1rem);
   word-wrap: break-word;
 }
-
-/*.titulo_input_container input[type="color"] {
-  margin-right: 15px;
-  width: calc(0.65vw + 1rem);
-  height: calc(0.55vw + 1rem);
-  cursor: pointer;
-}*/
 
 .botones_nota_seleccionada {
   display: flex;

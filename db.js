@@ -11,7 +11,6 @@ const notaSchema = new mongoose.Schema(
     titulo: { type: String, required: true, default: "Nueva Nota" },
     texto: { type: String, required: true, default: "" },
     fecha_creacion: { type: String, required: true, default: new Date().toLocaleDateString() },
-    fecha_ultima_modificacion: { type: Date, required: true, default: new Date().toLocaleDateString() },
     //color: { type: String, required: true, default: "#ff0000" },
     etiquetas: [String],
   },
@@ -44,12 +43,12 @@ notaSchema.pre("save", function (next) {
 
 const eventoSchema = new mongoose.Schema(
   {
-    nombre: { type: String, required: true },
+    nombre: { type: String, required: true, default: "Nuevo evento" },
     contenidoEvento: { type: String, required: true, default: "" },
     diaEvento: {
       type: String,
       required: true,
-      validate: {
+      /*validate: {
         validator: function (value) {
           let f = new Date();
           const formatDate = (d) => {
@@ -58,7 +57,7 @@ const eventoSchema = new mongoose.Schema(
           return value > formatDate(f); //Función personalizada de validación.
         },
         message: "La fecha del evento tiene que ser posterior a la fecha actual.",
-      },
+      },*/
     },
     //recordatorio: Date,
     todoElDia: { type: Boolean, required: true, default: false },
@@ -123,7 +122,12 @@ exports.borrarNota = async function (idNota) {
 
 // Eventos
 exports.nuevoEvento = async function (datosEvento) {
-  return await Evento.create(datosEvento);
+  try {
+    return await Evento.create(datosEvento);
+  } catch (error) {
+    console.error("Error al crear un nuevo evento: ", error);
+    throw error;
+  }
 };
 
 exports.editarEvento = async function (datosEvento) {

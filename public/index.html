@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/styleNotas.css">
   <link rel="stylesheet" href="css/styleCalendarioyEvento.css">
-  <link rel="stylesheet" href="css/styleLoginRegistro.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SymplyRemind</title>
@@ -19,18 +18,17 @@
 <body>
 
   <header class="reglas container-fluid row">
-    <div class="titulo container text-center col-xl-4 container-fluid d-flex align-items-center justify-content-center">
+    <section class="titulo container text-center col-xl-4 container-fluid d-flex align-items-center justify-content-center">
       <h1 class="titulo_texto mx-auto">SimplyRemind</h1>
       <button class="but_titulo boton btn btn-primary d-xl-none ms-auto" type="button" data-bs-toggle="dropdown"
         aria-expanded="false">
         <img src="icon/menu.svg" alt="Menú de opciones.">
       </button>
       <ul class="dropdown_content_filtros dropdown-menu">
-        <li><a id="but_login_titulo" class="but_dropdown_filtros dropdown-item" href="#">Iniciar sesión</a></li>
         <li><a class="but_dropdown_filtros dropdown-item" href="/public/html/acerca_de.html">Acerca de</a></li>
       </ul>
-    </div>
-    <div class="botones_header col-xl-8 container-fluid d-flex align-items-center justify-content-between">
+    </section>
+    <section class="botones_header col-xl-8 container-fluid d-flex align-items-center justify-content-between">
       <search class="buscador mx-auto">
         <form class="container-fluid d-flex align-items-center justify-content-center">
           <div class="dropdown">
@@ -53,8 +51,7 @@
         </form>
       </search>
       <a class="but_acerca_de" href="/public/html/acerca_de.html">¿Quienes somos?</a>
-      <button id="but_login" class="btn btn-outline-primary but_login" type="button">Iniciar sesión</button>
-    </div>
+    </section>
   </header>
 
   <main class="reglas container-fluid row d-flex flex-row-reverse">
@@ -187,62 +184,6 @@
       </div>
     </div>
   </div>
-
-  <dialog id="form_login" class="form_login">
-    <div class="cabecero_login">
-      <h1>Inicio de sesión</h1>
-      <button id="but_cerrar_login" class="but_cerrar_login" type="button"><img src="icon/xmark.svg"
-          alt="Cerrar formulario de inicio de sesión."></button>
-    </div>
-    <form id="datos_login" method="post">
-      <div class="username">
-        <input type="text" required>
-        <label>Nombre de usuario</label>
-      </div>
-      <div class="password">
-        <input type="password" required>
-        <label>Contraseña</label>
-      </div>
-      <button class="recordar" type="button">¿Olvidó su contraseña?</button>
-      <button class="but_confirmar_login" type="submit">Confirmar</button>
-      <div class="div_registrarse">
-        <p>¿Aun no estás registrado?</p>
-        <button id="but_registrarse" class="but_registrarse" type="button">Registrarme</button>
-      </div>
-    </form>
-  </dialog>
-
-  <dialog id="form_registro" class="form_registro">
-    <div class="cabecero_registro">
-      <h1>Registro</h1>
-      <button id="but_cerrar_registro" class="but_cerrar_registro" type="button"><img src="icon/xmark.svg"
-          alt="Cerrar formulario de registro."></button>
-    </div>
-    <form id="datos_registro" method="post">
-      <div class="email">
-        <input type="text" required>
-        <label>Email</label>
-      </div>
-      <div class="nombre_completo">
-        <input type="text" required>
-        <label>Nombre completo</label>
-      </div>
-      <div class="username">
-        <input type="text" required>
-        <label>Nombre de usuario</label>
-      </div>
-      <div class="password">
-        <input type="password" required>
-        <label>Contraseña</label>
-      </div>
-      <button class="but_confirmar_registro" type="submit">Confirmar</button>
-      <div class="div_loguearse">
-        <p>¿Ya estás registrado?</p>
-        <button id="but_loguearse" class="but_loguearse" type="button">Iniciar sesión</button>
-      </div>
-    </form>
-  </dialog>
-  <div id="overlay" class="overlay"></div>
 
   <script src="js/lib/main.min.js"></script>
   <script src="js/lib/moment.js"></script>

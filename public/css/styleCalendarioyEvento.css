@@ -1,7 +1,5 @@
 .calendario {
-  margin-top: 8px;
   margin-right: 8px;
-  margin-bottom: 8px;
   border: 1px solid darkgray;
   overflow-y: auto;
   height: 74vh;

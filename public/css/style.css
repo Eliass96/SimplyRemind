@@ -45,22 +45,6 @@
   margin-right: 20px;
 }
 
-.but_login {
-  margin-right: 1em;
-  background-color: white;
-  font-size: calc(0.25vw + 1rem);
-  height: 3rem;
-  width: auto;
-  border-radius: 10px;
-  border: 1px solid black;
-  font-family: "Anton", sans-serif;
-  color: black;
-  font-weight: bold;
-  font-style: normal;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 .text_box_principal {
   padding: 1em;
   border: 1px solid #ccc;
@@ -94,16 +78,7 @@
   z-index: 1;
 }
 
-.but_login:hover {
-  background-color: black;
-  color: white;
-}
-
 .but_acerca_de:active {
-  transform: scale(0.9);
-}
-
-.but_login:active {
   transform: scale(0.9);
 }
 
@@ -148,9 +123,6 @@
   .titulo {
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-  }
-  .but_login {
-    display: none;
   }
   .but_acerca_de {
     display: none;

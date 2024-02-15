@@ -33,7 +33,7 @@ app.get("/notas", async function (req, resp) {
   }
 });
 
-/*app.get("/notas/:id", async function (req, resp) {
+app.get("/notas/:id", async function (req, resp) {
   try {
     const textoBusqueda = req.params.id;
     if (textoBusqueda) {
@@ -44,7 +44,7 @@ app.get("/notas", async function (req, resp) {
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
   }
-});*/
+});
 
 // Crear nota
 app.post("/notas", async function (req, resp) {

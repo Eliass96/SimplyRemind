@@ -145,18 +145,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function cargarEventos(filtro) {
   let resp;
-  console.log(filtro);
   try {
     resp = await fetch(`/eventos?diaEvento=${filtro}`);
     if (!resp.ok) {
       throw new Error("Error al cargar");
     }
     const datosEventos = await resp.json();
-    console.log(datosEventos);
     const html = crearEventos({ eventos: datosEventos });
     eventosOutput.innerHTML = html;
   } catch (error) {
-    console.error(error);
     alert(error);
   }
 }

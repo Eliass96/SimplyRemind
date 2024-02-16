@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
           icon: "success",
           title: "Evento registrado",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1000
         });
       } else {
       }

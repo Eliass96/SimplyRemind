@@ -4,7 +4,7 @@ each nota in notas
     ol.todas_las_notas
         li.todas_las_notas(data-id-nota=nota._id)
             //input(type='color' value='' #{nota.color})
-            a(href='#') #{nota.titulo}
+            a.todas_las_notas(href='#') #{nota.titulo}
             button#but_eliminar_nota_lista.but_eliminar_nota_lista(type='button')
                 img(src='icon/trash.svg' alt='Eliminar Nota')
             button#but_duplicar_nota_lista.but_duplicar_nota_lista(type='button')

@@ -1,36 +1,51 @@
 let outputNotas;
 let buscadorNotas;
+let botonBorrarNota;
+let botonDuplicarNota;
 
 document.addEventListener("DOMContentLoaded", function () {
-  outputNotas = document.querySelector("output");
+  outputNotas = document.getElementById("output_notas");
+
   outputNotaSeleccionada = document.getElementById("outputNotaSeleccionada");
   buscadorNotas = document.getElementById("text_box_principal");
   let botonBuscar = document.getElementById("but_buscar_nota");
   botonBuscar.addEventListener("click", buscar);
   document.getElementById("but_add_notas").addEventListener("click", crearNota);
 
+  const etiquetas = [];
+
 
   outputNotas.addEventListener("click", eliminarNota);
   outputNotas.addEventListener("click", duplicarNota);
-  //outputNotas.addEventListener("click", abrirNota);
+  outputNotas.addEventListener("click", abrirNota);
 
-  document.getElementById('ordenar_por_fecha').addEventListener('click', function() {
+  document.getElementById('ordenar_por_fecha').addEventListener('click', function () {
     cargarNotas(buscadorNotas.value, 'fecha');
   });
-  
-  document.getElementById('ordenar_por_nombre').addEventListener('click', function() {
+  document.getElementById('ordenar_por_nombre').addEventListener('click', function () {
     cargarNotas(buscadorNotas.value, 'nombre');
   });
+
+  if (document.getElementById("but_volver_al_listado")) {
+    let botonVolver = document.getElementById("but_volver_al_listado");
+    botonVolver.addEventListener("click", function() {
+      let nota = document.getElementById("nota_seleccionada");
+      let listado = document.getElementById("listado_notas");
+      nota.style.display = "none";
+      listado.style.display = "block";
+      cargarNotas();
+    })
+  }
 
   cargarNotas();
 });
 
 function buscar() {
   cargarNotas(buscadorNotas.value);
-  /*let nota = document.getElementById("nota_seleccionada");
+  let nota = document.getElementById("nota_seleccionada");
   let listado = document.getElementById("listado_notas");
   nota.style.display = "none";
-  listado.style.display = "block";*/
+  listado.style.display = "block";
 }
 
 async function cargarNotas(filtro, ordenarPor) {
@@ -55,36 +70,46 @@ async function cargarNotas(filtro, ordenarPor) {
     const html = crearNotas({ notas: datosNotas });
     outputNotas.innerHTML = html;
   } catch (error) {
-    alert(error + url);
+    alert(error);
   }
 }
 
-/*async function cargarNotaSeleccionada(idNota) {
+async function cargarNotaSeleccionada(idNota) {
   let resp;
   let url = `/notas/${idNota}`;
   console.log(url);
   try {
     resp = await fetch(url);
-    console.log(resp);
     if (!resp.ok) {
       throw new Error("Error al cargar");
     }
     const datosNota = await resp.json();
-    console.log(datosNota);
-    const html = vistaNotaSeleccionada({ vistanota: datosNota });
-    console.log(html);
+    const html = vistaNotaSeleccionada(datosNota);
     outputNotaSeleccionada.innerHTML = html;
   } catch (error) {
     alert(error);
-    console.log(error);
   }
-}*/
+}
+
+async function abrirNota(evt) {
+  if (evt.target.classList.contains("todas_las_notas")) {
+    const item = evt.target.closest("li.todas_las_notas");
+    const id = item.dataset.idNota;
+    const resp = await fetch("/notas", { method: "GET" });
+    if (resp.ok) {
+      cargarNotaSeleccionada(id);
+      let nota = document.getElementById("nota_seleccionada");
+      let listado = document.getElementById("listado_notas");
+      nota.style.display = "block";
+      listado.style.display = "none";
+    }
+  }
+}
 
 async function eliminarNota(evt) {
   if (evt.target.classList.contains("but_eliminar_nota_lista")) {
     const item = evt.target.closest("li.todas_las_notas");
     const id = item.dataset.idNota;
-    const resp = await fetch(`/notas/${id}`, { method: "DELETE" });
 
     Swal.fire({
       title: "¿Estás seguro de que deseas eliminar esta nota?",
@@ -93,9 +118,11 @@ async function eliminarNota(evt) {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
       confirmButtonText: "Sí",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
+        const resp = await fetch(`/notas/${id}`, { method: "DELETE" });
         if (resp.ok) {
           cargarNotas(buscadorNotas.value);
           Swal.fire({
@@ -103,7 +130,7 @@ async function eliminarNota(evt) {
             icon: "success",
             title: "Nota eliminada",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 1000,
           });
         } else {
           Swal.fire({
@@ -121,13 +148,12 @@ async function duplicarNota(evt) {
   if (evt.target.classList.contains("but_duplicar_nota_lista")) {
     const item = evt.target.closest("li.todas_las_notas");
     const id = item.dataset.idNota;
-    console.log(item);
     const resp = await fetch(`/notas/${id}`, { method: "GET" });
     if (resp.ok) {
       const nota = await resp.json();
       console.log(nota);
       let nuevaNota = {
-        titulo: nota.titulo + "(copia)",
+        titulo: nota.titulo + " (copia)",
         texto: nota.texto,
         etiquetas: nota.etiquetas,
       };
@@ -145,7 +171,7 @@ async function duplicarNota(evt) {
           icon: "success",
           title: "Nota duplicada",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
         });
       } else {
         Swal.fire({
@@ -164,21 +190,7 @@ async function duplicarNota(evt) {
   }
 }
 
-/*async function abrirNota(evt) {
-  const item = evt.target.closest("li.todas_las_notas");
-  const id = item.dataset.idNota;
-  console.log(item);
-  const resp = await fetch(`/notas`, { method: "GET" });
-  if (resp.ok) {
-    cargarNotaSeleccionada(id);
-    let nota = document.getElementById("nota_seleccionada");
-    let listado = document.getElementById("listado_notas");
-    nota.style.display = "block";
-    listado.style.display = "none";
-  }
-}*/
-
-async function crearNota(evt) {
+async function crearNota() {
   let nuevaNota = {
     titulo: "Nueva nota",
     texto: "Introduce el texto de tu nota...",
@@ -198,7 +210,7 @@ async function crearNota(evt) {
       icon: "success",
       title: "Nota creada",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 1000,
     });
   } else {
     Swal.fire({

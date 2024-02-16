@@ -9,7 +9,7 @@ exports.conectar = async function () {
 const notaSchema = new mongoose.Schema(
   {
     titulo: { type: String, required: true, default: "Nueva Nota" },
-    texto: { type: String, required: true, default: "" },
+    texto: { type: String, required: true, default: "Texto de prueba para las notas..." },
     fecha_creacion: {
       type: String,
       required: true,

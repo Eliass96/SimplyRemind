@@ -87,40 +87,47 @@ document.addEventListener("DOMContentLoaded", function () {
     firstDay: 1,
   });
   calendar.render();
-  frm.addEventListener("submit", function (e) {
+  frm.addEventListener("submit", async function (e) {
     e.preventDefault();
     const title = document.getElementById("title").value;
     const start = document.getElementById("start").value;
+    const description = document.getElementById("description").value;
+    const color = document.getElementById("color").value;
     if (title == "" || start == "") {
-      Swal.fire("Aviso", "Todo los campos son obligatorios", "warning");
+      Swal.fire("Aviso", "El título y la fecha son obligatorios", "warning");
     } else {
-      const url = base_url + "Home/registrar";
-      const http = new XMLHttpRequest();
-      http.open("POST", url, true);
-      http.send(new FormData(frm));
-      http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
-          const res = JSON.parse(this.responseText);
-          Swal.fire("Avisos?", res.msg, res.tipo);
-          if (res.estado) {
-            myModal.hide();
-            calendar.refetchEvents();
-          }
-        }
-      };
+      const data = { nombre: title, diaEvento: start, contenidoEvento: description, color: color };
+      const resp = await fetch(`/eventos`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      });
+      if (resp.ok) {
+        myModal.hide();
+        calendar.refetchEvents();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Evento registrado",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      } else {
+      }
     }
-  });
+  });  
   eliminar.addEventListener("click", function () {
     myModal.hide();
     Swal.fire({
-      title: "Advertencia?",
-      text: "Esta seguro de eliminar!",
+      title: "Advertencia",
+      text: "¿Está seguro de eliminar este evento?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Sí",
     }).then((result) => {
       if (result.isConfirmed) {
         const url =

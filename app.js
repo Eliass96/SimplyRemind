@@ -35,11 +35,11 @@ app.get("/notas", async function (req, resp) {
 
 app.get("/notas/:id", async function (req, resp) {
   try {
-    const textoBusqueda = req.params.id;
-    if (textoBusqueda) {
-      resp.status(HTTP_OK).send(await db.buscarNotaPorTitulo(textoBusqueda));
+    const nota = await Nota.findById(req.params.id);
+    if (nota) {
+      resp.status(HTTP_OK).send(nota);
     } else {
-      resp.status(HTTP_OK).send(await db.listarNotas());
+      resp.status(HTTP_NOT_FOUND).send({ message: 'Nota no encontrada' });
     }
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
@@ -59,20 +59,6 @@ app.post("/notas", async function (req, resp) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }
 });
-
-// Duplicar nota
-/*app.post("/notas", async function (req, resp) {
-  try {
-    const nuevaNota = await db.nuevaNota(req.body);
-
-    resp
-      .location(`/notas/${nuevaNota._id}`)
-      .status(HTTP_CREATED)
-      .send("Nota creada.");
-  } catch (err) {
-    resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
-  }
-});*/
 
 // Editar nota
 app.put("/notas/:id", async function (req, resp) {
@@ -140,7 +126,6 @@ app.put("/eventos/:id", async function (req, resp) {
     if (evento) {
       const eventoActualizado = await db.editarEvento(req.params.id, req.body);
       resp.status(HTTP_OK).send(eventoActualizado);
-
     } else {
       resp
         .status(HTTP_NOT_FOUND)

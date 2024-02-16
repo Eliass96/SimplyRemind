@@ -10,22 +10,15 @@ const notaSchema = new mongoose.Schema(
   {
     titulo: { type: String, required: true, default: "Nueva Nota" },
     texto: { type: String, required: true, default: "" },
-    fecha_creacion: { type: String, required: true, default: new Date().toLocaleDateString() },
+    fecha_creacion: {
+      type: String,
+      required: true,
+      default: new Date().toLocaleDateString(),
+    },
     //color: { type: String, required: true, default: "#ff0000" },
     etiquetas: [String],
   },
   {
-    // Campos virtuales
-    toObject: { virtuals: true },
-    toJSON: { virtuals: true },
-    virtuals: {
-      diasDesdeUltimaModificacion: {
-        get() {
-          let tiempo = new Date() - this.fechaUltimaModificacion;
-          return Math.floor(tiempo / (1000 * 60 * 60 * 24));
-        },
-      },
-    },
     // Métodos de instancia
     methods: {
       etiquetar(etiqueta) {
@@ -44,7 +37,7 @@ notaSchema.pre("save", function (next) {
 const eventoSchema = new mongoose.Schema(
   {
     nombre: { type: String, required: true, default: "Nuevo evento" },
-    contenidoEvento: { type: String, required: true, default: "" },
+    contenidoEvento: String,
     diaEvento: {
       type: String,
       required: true,
@@ -61,7 +54,7 @@ const eventoSchema = new mongoose.Schema(
     },
     //recordatorio: Date,
     todoElDia: { type: Boolean, required: true, default: false },
-    //color: { type: String, required: true, default: "#ff0000" },
+    color: String,
     etiquetas: [String],
   },
   {
@@ -75,7 +68,7 @@ const eventoSchema = new mongoose.Schema(
           return Math.floor(tiempo / (1000 * 60 * 60 * 24));
         },
       },
-    }
+    },
   }
 );
 
@@ -89,14 +82,24 @@ exports.Evento = Evento;
 exports.nuevaNota = async function (datosNota) {
   try {
     if (!datosNota.titulo) {
-      datosNota.titulo = "";
+      datosNota.titulo = "Nueva nota";
     }
 
     if (!datosNota.texto) {
-      datosNota.texto = "";
+      datosNota.texto = "Introduce el texto de tu nota...";
     }
 
     return await Nota.create(datosNota);
+  } catch (error) {
+    console.error("Error al crear una nueva nota: ", error);
+    throw error;
+  }
+};
+
+exports.duplicarNota = async function (datosNota) {
+  try {
+    let nuevaNota = { titulo: datosNota.titulo + "(copia)", texto: datosNota.texto, etiquetas: datosNota.etiquetas };
+    return await Nota.create(nuevaNota);
   } catch (error) {
     console.error("Error al crear una nueva nota: ", error);
     throw error;
@@ -113,7 +116,7 @@ exports.listarNotas = async function () {
 };
 
 exports.buscarNotaPorTitulo = async function (titulo) {
-  return Nota.find({ titulo: new RegExp(titulo, 'i') });
+  return Nota.find({ titulo: new RegExp(titulo, "i") });
 };
 
 exports.borrarNota = async function (idNota) {

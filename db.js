@@ -107,20 +107,40 @@ exports.duplicarNota = async function (datosNota) {
 };
 
 exports.editarNota = async function (datosNota) {
-  let filtro = { _id: datosNota._id };
-  return await Nota.findOneAndUpdate(filtro, datosNota, { new: true });
+  try {
+    let filtro = { _id: datosNota._id };
+    return await Nota.findOneAndUpdate(filtro, datosNota, { new: true });
+  } catch (error) {
+    console.error("Error al editar la nota: ", error);
+    throw error;
+  }
 };
 
 exports.listarNotas = async function () {
-  return Nota.find();
+  try {
+    return Nota.find();
+  } catch (error) {
+    console.error("Error al listar las notas: ", error);
+    throw error;
+  }
 };
 
 exports.buscarNotaPorTitulo = async function (titulo) {
-  return Nota.find({ titulo: new RegExp(titulo, "i") });
+  try {
+    return Nota.find({ titulo: new RegExp(titulo, "i") });
+  } catch (error) {
+    console.error("Error al listar las notas: ", error);
+    throw error;
+  }
 };
 
 exports.borrarNota = async function (idNota) {
-  return Nota.deleteOne({ _id: idNota });
+  try {
+    return Nota.deleteOne({ _id: idNota });
+  } catch (error) {
+    console.error("Error al eliminar la notas: ", error);
+    throw error;
+  }
 };
 
 // Eventos
@@ -134,19 +154,34 @@ exports.nuevoEvento = async function (datosEvento) {
 };
 
 exports.editarEvento = async function (datosEvento) {
-  let filtro = { _id: datosEvento.id };
-  let eventoActualizado = await Evento.findOneAndUpdate(filtro, datosEvento, {
-    new: true,
-  });
-  return eventoActualizado;
+  try {
+    let filtro = { _id: datosEvento.id };
+    let eventoActualizado = await Evento.findOneAndUpdate(filtro, datosEvento, {
+      new: true,
+    });
+    return eventoActualizado;
+  } catch (error) {
+    console.error("Error al editar el evento: ", error);
+    throw error;
+  }
 };
 
 exports.listarEventos = async function (diaSeleccionado) {
-  return Evento.find({ diaEvento: { $eq: diaSeleccionado } });
+  try {
+    return Evento.find({ diaEvento: { $eq: diaSeleccionado } });
+  } catch (error) {
+    console.error("Error al listar los eventos: ", error);
+    throw error;
+  }
 };
 
 exports.borrarEvento = async function (idEvento) {
-  return Evento.deleteOne({ _id: idEvento });
+  try {
+    return Evento.deleteOne({ _id: idEvento });
+  } catch (error) {
+    console.error("Error al eliminar el evento: ", error);
+    throw error;
+  }
 };
 
 // Desconectar

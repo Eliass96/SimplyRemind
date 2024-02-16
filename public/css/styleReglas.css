@@ -20,7 +20,7 @@ main {
   margin-bottom: 8px !important;
   padding-left: 8px !important;
   padding-right: 8px !important;
-  min-height: 100% !important;
+  min-height: 84vh !important;
 }
 
 .divCalendario {
@@ -40,14 +40,13 @@ article {
   height: auto !important;
 }
 
+ul {
+  margin-block: 0 !important;
+}
+
 footer {
   background-color: white;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  bottom: 0;
   z-index: 10;
   height: auto;
 }

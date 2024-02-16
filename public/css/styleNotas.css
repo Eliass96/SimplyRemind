@@ -69,6 +69,7 @@
   cursor: pointer;
   border-radius: 12px;
   width: calc(100% - 20px);
+  text-overflow: ellipsis !important;
 }
 
 .but_duplicar_nota_lista,
@@ -111,10 +112,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.contenido_nota_seleccionada p {
-  height: 100% !important;
 }
 
 .but_editar_nota,

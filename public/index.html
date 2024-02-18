@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/lib/main.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton&display=swap">
   <link rel="stylesheet" href="css/styleReglas.css">
@@ -21,13 +20,6 @@
     <section
       class="titulo container text-center col-xl-5 container-fluid d-flex align-items-center justify-content-center">
       <h1 class="titulo_texto mx-auto">SimplyRemind</h1>
-      <button class="but_titulo boton btn btn-primary d-xl-none ms-auto" type="button" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        <img src="icon/menu.svg" alt="Menú de opciones.">
-      </button>
-      <ul class="dropdown_content_filtros dropdown-menu">
-        <li><a class="but_dropdown_filtros dropdown-item" href="/public/html/acerca_de.html">Acerca de</a></li>
-      </ul>
     </section>
     <section class="botones_header col-xl-7 container-fluid d-flex align-items-center justify-content-between">
       <search class="buscador mx-auto">
@@ -39,7 +31,7 @@
             </button>
             <ul class="dropdown_content_filtros dropdown-menu" aria-labelledby="but_filtros">
               <li><a id="ordenar_por_nombre" class="but_dropdown_filtros dropdown-item" href="#">Nombre</a></li>
-              <li><a id="ordenar_por_fecha" class="but_dropdown_filtros dropdown-item" href="#">Fecha</a></li>
+              <li><a id="ordenar_por_fecha" class="but_dropdown_filtros dropdown-item" href="#">Fecha (Más reciente)</a></li>
             </ul>
           </div>
           <label>
@@ -51,7 +43,6 @@
           </button>
         </form>
       </search>
-      <a class="but_acerca_de" href="/public/html/acerca_de.html">¿Quienes somos?</a>
     </section>
   </header>
 
@@ -84,7 +75,8 @@
 
     <!-- Listado de Eventos -->
     <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado col-12">
-      <output id="eventos"></output>
+      <output id="outputEventos"></output>
+      <!--<output id="outputEventoExpandido"></output>-->
     </section>
 
   </main>
@@ -151,6 +143,7 @@
   <script src="notas.js"></script>
   <script src="notaSeleccionada.js"></script>
   <script src="eventos.js"></script>
+  <script src="eventoExpandido.js"></script>
 
 </body>
 

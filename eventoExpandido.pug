@@ -1,14 +1,11 @@
-each evento in eventos
-    output.d-flex.align-items-stretch.justify-content-stretch.flex-direction-row.card-producto
+output#outputEventoExpandido.d-flex.align-items-stretch.justify-content-stretch.flex-direction-row.card-producto
     article.evento#evento(data-id-evento=evento._id)
         .cabecero_evento
             h3 #{evento.nombre}
             button.but_cerrar_evento#but_cerrar_evento(type='button')
                 img(src='icon/down-left-and-up-right-to-center.svg' alt='Cerrar Evento')
-            button.but_expandir_evento#but_expandir_evento(type='button')
-                img(src='icon/up-right-and-down-left-from-center.svg' alt='Cerrar Evento')
-        .contenido_evento#contenido_evento
-            p #{evento.descripcion}
+        .contenido_evento
+            p #{evento.texto}
             .botones_evento
                 button.but_editar_evento#but_editar_evento(type='button')
                     img(src='icon/pen-to-square.svg' alt='Editar Evento')

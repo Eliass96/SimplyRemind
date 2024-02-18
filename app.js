@@ -105,6 +105,19 @@ app.get("/eventos", async function (req, resp) {
   }
 });
 
+app.get("/eventos/:id", async function (req, resp) {
+  try {
+    const evento = await Evento.findById(req.params.id);
+    if (evento) {
+      resp.status(HTTP_OK).send(evento);
+    } else {
+      resp.status(HTTP_NOT_FOUND).send({ message: 'Evento no encontrado' });
+    }
+  } catch (err) {
+    resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
+  }
+});
+
 // Crear evento
 app.post("/eventos", async function (req, resp) {
   try {

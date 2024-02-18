@@ -9,7 +9,11 @@ exports.conectar = async function () {
 const notaSchema = new mongoose.Schema(
   {
     titulo: { type: String, required: true, default: "Nueva Nota" },
-    texto: { type: String, required: true, default: "Texto de prueba para las notas..." },
+    texto: {
+      type: String,
+      required: true,
+      default: "Texto de prueba para las notas...",
+    },
     fecha_creacion: {
       type: String,
       required: true,
@@ -37,7 +41,7 @@ notaSchema.pre("save", function (next) {
 const eventoSchema = new mongoose.Schema(
   {
     nombre: { type: String, required: true, default: "Nuevo evento" },
-    contenidoEvento: String,
+    descripcion: { type: String, required: true, default: "" },
     diaEvento: {
       type: String,
       required: true,
@@ -52,9 +56,7 @@ const eventoSchema = new mongoose.Schema(
         message: "La fecha del evento tiene que ser posterior a la fecha actual.",
       },*/
     },
-    //recordatorio: Date,
-    todoElDia: { type: Boolean, required: true, default: false },
-    color: String,
+    color: { type: String, required: true },
     etiquetas: [String],
   },
   {
@@ -98,7 +100,11 @@ exports.nuevaNota = async function (datosNota) {
 
 exports.duplicarNota = async function (datosNota) {
   try {
-    let nuevaNota = { titulo: datosNota.titulo + "(copia)", texto: datosNota.texto, etiquetas: datosNota.etiquetas };
+    let nuevaNota = {
+      titulo: datosNota.titulo + "(copia)",
+      texto: datosNota.texto,
+      etiquetas: datosNota.etiquetas,
+    };
     return await Nota.create(nuevaNota);
   } catch (error) {
     console.error("Error al crear una nueva nota: ", error);
@@ -174,6 +180,15 @@ exports.listarEventos = async function (diaSeleccionado) {
     throw error;
   }
 };
+
+/*exports.listarEventos = async function () {
+  try {
+    return Evento.find();
+  } catch (error) {
+    console.error("Error al listar los eventos: ", error);
+    throw error;
+  }
+};*/
 
 exports.borrarEvento = async function (idEvento) {
   try {

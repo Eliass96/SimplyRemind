@@ -1,5 +1,5 @@
 let fecha;
-//let datosEventos;
+let url_eventos;
 
 document.addEventListener("DOMContentLoaded", function () {
   let calendarEl = document.getElementById("calendar");
@@ -195,7 +195,8 @@ document.addEventListener("DOMContentLoaded", function () {
 async function cargarEventos(filtro) {
   let resp;
   try {
-    resp = await fetch(`/eventos?diaEvento=${filtro}`);
+    url_eventos = `/eventos?diaEvento=${filtro}`;
+    resp = await fetch(url_eventos);
     if (!resp.ok) {
       throw new Error("Error al cargar");
     }
@@ -211,10 +212,11 @@ async function expandirEvento(evt) {
   if (evt.target.classList.contains("but_expandir_evento")) {
     const item = evt.target.closest("article.evento");
     const id = item.dataset.idEvento;
-    console.log(id);
-    const resp = await fetch(`/eventos/${id}`, { method: "GET" });
+    url_eventos = `/eventos/${id}`;
+    console.log(url_eventos);
+    const resp = await fetch(url_eventos, { method: "GET" });
     if (resp.ok) {
-      //cargarEventoSeleccionado(id);
+      let evento = document.getElementById("evento");
       evento.classList.add("expanded");
     }
   }
@@ -225,28 +227,12 @@ async function cerrarEvento(evt) {
     const item = evt.target.closest("article.evento");
     const id = item.dataset.idEvento;
     console.log(id);
-    const resp = await fetch(`/eventos/${id}`, { method: "GET" });
+    url_eventos = `/eventos/${id}`;
+    console.log(url_eventos);
+    const resp = await fetch(url_eventos, { method: "GET" });
     if (resp.ok) {
-      //cargarEventoSeleccionado(id);
+      let evento = document.getElementById("evento");
       evento.classList.remove("expanded");
     }
   }
 }
-
-/*async function cargarEventoSeleccionado(idEvento) {
-  let resp;
-  url = `/eventos/${idEvento}`;
-  console.log(url);
-  try {
-    resp = await fetch(url);
-    if (!resp.ok) {
-      throw new Error("Error al cargar");
-    }
-    const datosEvento = await resp.json();
-    console.log(datosEvento);
-    const html = eventoExpandido(datosEvento);
-    outputEventoExpandido.innerHTML = html;
-  } catch (error) {
-    alert(error);
-  }
-}*/

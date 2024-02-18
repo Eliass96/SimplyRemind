@@ -2,7 +2,7 @@ let outputNotas;
 let buscadorNotas;
 let botonBorrarNota;
 let botonDuplicarNota;
-let url;
+let url_notas;
 
 document.addEventListener("DOMContentLoaded", function () {
   outputNotas = document.getElementById("output_notas");
@@ -43,12 +43,12 @@ function buscar() {
 async function cargarNotas(filtro, ordenarPor) {
   let resp;
   if (filtro) {
-    url = `/notas?titulo=${filtro}`;
+    url_eventos = `/notas?titulo=${filtro}`;
   } else {
-    url = "/notas";
+    url_eventos = "/notas";
   }
   try {
-    resp = await fetch(url);
+    resp = await fetch(url_eventos);
     if (!resp.ok) {
       throw new Error("Error al cargar");
     }
@@ -82,10 +82,10 @@ async function abrirNota(evt) {
 
 async function cargarNotaSeleccionada(idNota) {
   let resp;
-  url = `/notas/${idNota}`;
-  console.log(url);
+  url_eventos = `/notas/${idNota}`;
+  console.log(url_eventos);
   try {
-    resp = await fetch(url);
+    resp = await fetch(url_eventos);
     if (!resp.ok) {
       throw new Error("Error al cargar");
     }
@@ -163,7 +163,7 @@ async function eliminarNota(evt) {
       confirmButtonText: "Sí",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const resp = await fetch(url, { method: "DELETE" });
+        const resp = await fetch(url_eventos, { method: "DELETE" });
         if (resp.ok) {
           cargarNotas(buscadorNotas.value);
           let nota = document.getElementById("nota_seleccionada");
@@ -239,7 +239,7 @@ async function duplicarNota(evt) {
   if (evt.target.classList.contains("but_duplicar_nota")) {
     const item = evt.target.closest("section.nota_seleccionada");
     const id = item.dataset.idNota;
-    const resp = await fetch(url, { method: "GET" });
+    const resp = await fetch(url_eventos, { method: "GET" });
     if (resp.ok) {
       const nota = await resp.json();
       console.log(nota);
@@ -314,7 +314,7 @@ async function crearNota() {
 async function editarNota(evt) {
   if (evt.target.classList.contains("but_editar_nota")) {
     const item = evt.target.closest("#outputNotaSeleccionada");
-    const resp = await fetch(url, { method: "GET" });
+    const resp = await fetch(url_eventos, { method: "GET" });
 
     if (resp.ok) {
       const nota = await resp.json();
@@ -324,7 +324,7 @@ async function editarNota(evt) {
         texto: item.dataset.texto,
         etiquetas: item.dataset.etiquetas,
       };
-      const respEditar = await fetch(url, {
+      const respEditar = await fetch(url_eventos, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

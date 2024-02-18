@@ -140,6 +140,10 @@
   align-items: center;
 }
 
+.contenido_evento p {
+  margin-block-end: 0;
+}
+
 .botones_evento {
   display: flex;
 }

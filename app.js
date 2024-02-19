@@ -65,7 +65,9 @@ app.put("/notas/:id", async function (req, resp) {
   try {
     const nota = await Nota.findById(req.params.id);
     if (nota) {
-      const notaActualizada = await db.editarNota(req.params.id, req.body);
+      const idNota = req.params.id.toString();
+      req.body._id = idNota;
+      const notaActualizada = await db.editarNota(req.body);
       resp.status(HTTP_OK).send(notaActualizada);
     } else {
       resp
@@ -93,6 +95,7 @@ app.delete("/notas/:id", async function (req, resp) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }
 });
+
 
 // EVENTOS
 // Listar eventos
@@ -137,7 +140,8 @@ app.put("/eventos/:id", async function (req, resp) {
   try {
     const evento = await Evento.findById(req.params.id);
     if (evento) {
-      const eventoActualizado = await db.editarEvento(req.params.id, req.body);
+      console.log(req.body);
+      const eventoActualizado = await db.editarEvento(req.body);
       resp.status(HTTP_OK).send(eventoActualizado);
     } else {
       resp

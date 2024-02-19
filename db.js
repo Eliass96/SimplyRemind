@@ -9,7 +9,7 @@ exports.conectar = async function () {
 const notaSchema = new mongoose.Schema(
   {
     titulo: { type: String, required: true, default: "Nueva Nota" },
-    color: { type: String, required: true, default: "#FF0A0A"  },
+    color: { type: String, required: true, default: "#000000" },
     texto: {
       type: String,
       required: true,
@@ -21,7 +21,10 @@ const notaSchema = new mongoose.Schema(
       default: new Date().toLocaleDateString(),
     },
     //color: { type: String, required: true, default: "#ff0000" },
-    etiquetas: [String],
+    etiquetas: {
+      type: [String],
+      default: ["etiqueta1", "etiqueta2"], // Etiquetas por defecto
+    },
   },
   {
     // Métodos de instancia
@@ -33,29 +36,13 @@ const notaSchema = new mongoose.Schema(
   }
 );
 
-// Middleware pre-save para actualizar la fecha de última modificación de la nota
-notaSchema.pre("save", function (next) {
-  this.fechaUltimaModificacion = new Date();
-  next();
-});
-
 const eventoSchema = new mongoose.Schema(
   {
     nombre: { type: String, required: true, default: "Nuevo evento" },
     descripcion: { type: String, required: true, default: "" },
     diaEvento: {
       type: String,
-      required: true,
-      /*validate: {
-        validator: function (value) {
-          let f = new Date();
-          const formatDate = (d) => {
-            return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()
-          }
-          return value > formatDate(f); //Función personalizada de validación.
-        },
-        message: "La fecha del evento tiene que ser posterior a la fecha actual.",
-      },*/
+      required: true
     },
     color: { type: String, required: true },
     etiquetas: [String],
@@ -116,12 +103,17 @@ exports.duplicarNota = async function (datosNota) {
 exports.editarNota = async function (datosNota) {
   try {
     let filtro = { _id: datosNota._id };
-    return await Nota.findOneAndUpdate(filtro, datosNota, { new: true });
+    console.log("Filtro de actualización:", filtro);
+    console.log("Datos de actualización:", datosNota);
+    let notaActualizada = await Nota.findOneAndUpdate(filtro, datosNota, { new: true });
+    console.log("Nota actualizada:", notaActualizada);
+    return notaActualizada;
   } catch (error) {
     console.error("Error al editar la nota: ", error);
     throw error;
   }
 };
+
 
 exports.listarNotas = async function () {
   try {
@@ -145,7 +137,7 @@ exports.borrarNota = async function (idNota) {
   try {
     return Nota.deleteOne({ _id: idNota });
   } catch (error) {
-    console.error("Error al eliminar la notas: ", error);
+    console.error("Error al eliminar la nota: ", error);
     throw error;
   }
 };
@@ -162,7 +154,7 @@ exports.nuevoEvento = async function (datosEvento) {
 
 exports.editarEvento = async function (datosEvento) {
   try {
-    let filtro = { _id: datosEvento.id };
+    let filtro = { _id: datosEvento._id };
     let eventoActualizado = await Evento.findOneAndUpdate(filtro, datosEvento, {
       new: true,
     });

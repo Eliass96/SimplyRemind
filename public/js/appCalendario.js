@@ -115,12 +115,13 @@ document.addEventListener("DOMContentLoaded", function () {
         nombre: nombre,
         diaEvento: diaEvento,
         descripcion: descripcion,
-        color: color,
+        color: color
       };
 
       if (isEditing) {
         // Si se está editando un evento, realizar una solicitud PUT
         const id = document.getElementById("id").value; // Obtener el ID del evento
+        evento._id = id
         const resp = await fetch(`/eventos/${id}`, {
           method: "PUT",
           headers: {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
@@ -12,7 +12,9 @@
   <link rel="stylesheet" href="css/styleCalendarioyEvento.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SimplyRemind: una aplicación web para gestionar tus notas y eventos.">
   <title>SymplyRemind</title>
+  <link rel="icon" type="image/png" href="img/logo.png">
 </head>
 
 <body>
@@ -22,70 +24,66 @@
       class="titulo container text-center col-xl-5 container-fluid d-flex align-items-center justify-content-center">
       <h1 class="titulo_texto mx-auto">SimplyRemind</h1>
     </section>
-    <section class="botones_header col-xl-7 container-fluid d-flex align-items-center justify-content-between">
-      <search class="buscador mx-auto">
-        <form class="container-fluid d-flex align-items-center justify-content-center">
-          <div class="dropdown">
-            <button class="but_filtros btn btn-secondary dropdown-toggle" type="button" id="but_filtros"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Ordenar por
-            </button>
-            <ul class="dropdown_content_filtros dropdown-menu" aria-labelledby="but_filtros">
-              <li><a id="ordenar_por_nombre" class="but_dropdown_filtros dropdown-item" href="#">Nombre</a></li>
-              <li><a id="ordenar_por_fecha" class="but_dropdown_filtros dropdown-item" href="#">Fecha (Más reciente)</a></li>
-            </ul>
-          </div>
-          <label>
-            <input class="text_box_principal form-control" id="text_box_principal" type="search"
-              placeholder="Busca una nota...">
-          </label>
-          <button type="button" class="but_buscar_nota boton btn btn-primary" id="but_buscar_nota">
-            <img src="icon/magnifying-glass.svg" alt="Buscar Nota">
-          </button>
-        </form>
-      </search>
-    </section>
+    <form class="buscador col-xl-7 mx-auto container-fluid d-flex align-items-center justify-content-center">
+      <div class="dropdown">
+        <button class="but_filtros btn btn-secondary dropdown-toggle" type="button" id="but_filtros"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Ordenar por
+        </button>
+        <ul class="dropdown_content_filtros dropdown-menu" aria-labelledby="but_filtros">
+          <li><a id="ordenar_por_nombre" class="but_dropdown_filtros dropdown-item" href="#">Nombre</a></li>
+          <li><a id="ordenar_por_fecha" class="but_dropdown_filtros dropdown-item" href="#">Fecha (Más reciente)</a>
+          </li>
+        </ul>
+      </div>
+      <label for="text_box_principal">
+        <input class="text_box_principal form-control" id="text_box_principal" type="search"
+          placeholder="Busca una nota...">
+      </label>
+      <button type="button" class="but_buscar_nota boton btn btn-primary" id="but_buscar_nota">
+        <img src="icon/magnifying-glass.svg" alt="Buscar Nota">
+      </button>
+    </form>
   </header>
 
   <main class="reglas container-fluid row d-flex flex-row-reverse">
 
     <!-- Listado de notas -->
     <section class="listado_notas col-xl-7" id="listado_notas">
-      <article class="cabecero_listado_notas">
+      <section class="cabecero_listado_notas">
         <h2 class="titulo_notas">TUS NOTAS</h2>
         <form>
           <button id="but_add_notas" class="but_add_notas" type="button">
             <img src="img/mas(2).png" alt="Botón de añadir notas.">
           </button>
         </form>
-      </article>
-      <output id="output_notas"></output>
+      </section>
+      <section id="output_notas"></section>
     </section>
+
 
     <!-- Nota seleccionada -->
     <section class="nota_seleccionada col-xl-7" id="nota_seleccionada">
-      <output id="outputNotaSeleccionada"></output>
+      <section id="outputNotaSeleccionada"></section>
     </section>
 
     <!-- Calendario -->
-    <section class="divCalendario col-xl-5 container-fluid">
-      <div class="calendario">
-        <div class="calendar" id="calendar"></div>
-      </div>
+    <section class="calendario col-xl-5 container-fluid">
+      <div class="calendar" id="calendar"></div>
     </section>
 
     <!-- Listado de Eventos -->
     <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado col-12">
-      <output id="outputEventos"></output>
+      <section id="outputEventos"></section>
     </section>
 
   </main>
 
-  <footer class="sticky-footer d-flex align-items-center justify-content-center">
+  <footer class="d-flex align-items-center justify-content-center">
     <p>&copy; 2023 Elías Botía García. Todos los derechos reservados</p>
   </footer>
 
-  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+  <dialog id="myModal" class="myModal modal fade" aria-hidden="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-info">
@@ -94,34 +92,36 @@
         </div>
         <form id="formulario" autocomplete="off">
           <div class="modal-body">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-floating mb-3">
-                  <input type="hidden" id="id" name="id">
-                  <input id="title" type="text" class="form-control" name="title">
-                  <label for="title">Evento</label>
+            <fieldset>
+              <legend>Datos del Evento</legend>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-floating mb-3">
+                    <input type="hidden" id="id" name="id">
+                    <input id="title" type="text" class="form-control" name="title">
+                    <label for="title">Evento</label>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-floating mb-3">
+                    <input id="description" type="text" class="form-control" name="description">
+                    <label for="description">Descripción</label>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-floating mb-3">
+                    <input class="form-control" id="start" type="date" name="start">
+                    <label for="start">Fecha</label>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-floating mb-3">
+                    <input class="form-control" id="color" type="color" name="color">
+                    <label for="color">Color</label>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-12">
-                <div class="form-floating mb-3">
-                  <input type="hidden" id="id" name="id">
-                  <input id="description" type="text" class="form-control" name="description">
-                  <label for="title">Descripción</label>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-floating mb-3">
-                  <input class="form-control" id="start" type="date" name="start">
-                  <label for="" class="form-label">Fecha</label>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-floating mb-3">
-                  <input class="form-control" id="color" type="color" name="color">
-                  <label for="color" class="form-label">Color</label>
-                </div>
-              </div>
-            </div>
+            </fieldset>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -131,7 +131,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </dialog>
 
   <script src="js/lib/main.min.js"></script>
   <script src="js/lib/moment.js"></script>

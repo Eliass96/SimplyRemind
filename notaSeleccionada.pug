@@ -1,10 +1,10 @@
-output#outputNotaSeleccionada(data-id-nota=_id)
-    article.cabecero_nota_seleccionada
+#outputNotaSeleccionada(data-id-nota=_id)
+    .cabecero_nota_seleccionada
         button.but_volver_al_listado.col-2(type="button" id="but_volver_al_listado")
             img.but_volver_al_listado_icon(src="icon/arrow-left.svg" alt="Buscar Nota")
-        div.titulo_input_container
+        div.titulo_input_container.d-flex.align-items-center.justify-content-center
             input(type="color" value=color).color_nota_seleccionada
-            h2.text-break.titulo_nota_seleccionada#titulo_nota_seleccionada(contenteditable="") #{titulo}
+            h2.titulo_nota_seleccionada.text-break#titulo_nota_seleccionada(contenteditable="") #{titulo}
         div.botones_nota_seleccionada
             button#but_editar_nota.but_editar_nota(type="button")
                 img.but_editar_nota_icon(src="icon/floppy-disk.svg" alt="Editar Nota")
@@ -29,5 +29,5 @@ output#outputNotaSeleccionada(data-id-nota=_id)
                                         img.but_editar_etiqueta_icon(src="icon/pen-to-square.svg" alt="Editar Etiqueta")
                                     button.but_eliminar_etiqueta(type="button")
                                         img.but_eliminar_etiqueta_icon(src="icon/trash.svg" alt="Eliminar Etiqueta")
-    article.contenido_nota_seleccionada
+    .contenido_nota_seleccionada
         p.text-break(contenteditable="") #{texto}

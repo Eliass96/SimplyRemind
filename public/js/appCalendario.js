@@ -100,8 +100,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const descripcion = document.getElementById("description").value;
     const color = document.getElementById("color").value;
 
+    let fechaActual = calendar.getDate().toISOString().slice(0,10);
+
     if (nombre == "" || diaEvento == "") {
       Swal.fire("Aviso", "El título y la fecha son obligatorios", "warning");
+    } else if (diaEvento < fechaActual) {
+      Swal.fire("Aviso", "No se puede crear un evento en una fecha pasada", "warning");
     } else {
       const evento = {
         nombre: nombre,
@@ -173,7 +177,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Método para editar un evento existente
   async function editarEvento(evt) {
-    if (evt.target.classList.contains("but_editar_evento") || evt.target.classList.contains("but_editar_evento_icon")) {
+    if (
+      evt.target.classList.contains("but_editar_evento") ||
+      evt.target.classList.contains("but_editar_evento_icon")
+    ) {
       evt.stopPropagation(); // Detiene la propagación del evento para evitar que se ejecute el formulario
       isEditing = true; // Establecer la variable isEditing a true para indicar que se está editando un evento
 
@@ -233,7 +240,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function expandirEvento(evt) {
-    if (evt.target.classList.contains("but_expandir_evento") || evt.target.classList.contains("but_expandir_evento_icon")) {
+    if (
+      evt.target.classList.contains("but_expandir_evento") ||
+      evt.target.classList.contains("but_expandir_evento_icon")
+    ) {
       const item = evt.target.closest("article.evento");
       const id = item.dataset.idEvento;
       url_eventos = `/eventos/${id}`;
@@ -246,7 +256,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function cerrarEvento(evt) {
-    if (evt.target.classList.contains("but_cerrar_evento") || evt.target.classList.contains("but_cerrar_evento_icon")) {
+    if (
+      evt.target.classList.contains("but_cerrar_evento") ||
+      evt.target.classList.contains("but_cerrar_evento_icon")
+    ) {
       const item = evt.target.closest("article.evento");
       const id = item.dataset.idEvento;
       console.log(id);
@@ -260,7 +273,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function eliminarEvento(evt) {
-    if (evt.target.classList.contains("but_eliminar_evento") || evt.target.classList.contains("but_eliminar_evento_icon")) {
+    if (
+      evt.target.classList.contains("but_eliminar_evento") ||
+      evt.target.classList.contains("but_eliminar_evento_icon")
+    ) {
       const item = evt.target.closest("article.evento");
       const id = item.dataset.idEvento;
 

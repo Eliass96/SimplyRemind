@@ -100,12 +100,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const descripcion = document.getElementById("description").value;
     const color = document.getElementById("color").value;
 
-    let fechaActual = calendar.getDate().toISOString().slice(0,10);
+    let fechaActual = calendar.getDate().toISOString().slice(0, 10);
 
-    if (nombre == "" || diaEvento == "") {
-      Swal.fire("Aviso", "El título y la fecha son obligatorios", "warning");
-    } else if (diaEvento < fechaActual) {
-      Swal.fire("Aviso", "No se puede crear un evento en una fecha pasada", "warning");
+    if (diaEvento < fechaActual) {
+      Swal.fire(
+        "Aviso",
+        "No se puede crear un evento en una fecha pasada",
+        "warning"
+      );
+    } else if (nombre == "" || diaEvento == "" || descripcion == "") {
+      Swal.fire("Aviso", "Todos los campos son obligatorios", "warning");
     } else {
       const evento = {
         nombre: nombre,

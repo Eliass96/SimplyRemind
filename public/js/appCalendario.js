@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       addEvento: {
         click: function () {
+          isEditing = false;
           frm.reset();
           document.getElementById("start").value = fecha;
           document.getElementById("btnAccion").textContent = "Registrar";

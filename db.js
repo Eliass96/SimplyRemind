@@ -21,18 +21,7 @@ const notaSchema = new mongoose.Schema(
       default: new Date().toLocaleDateString(),
     },
     //color: { type: String, required: true, default: "#ff0000" },
-    etiquetas: {
-      type: [String],
-      default: ["etiqueta1", "etiqueta2"], // Etiquetas por defecto
-    },
-  },
-  {
-    // Métodos de instancia
-    methods: {
-      etiquetar(etiqueta) {
-        this.etiquetas.push(etiqueta);
-      },
-    },
+    etiquetas: [String]
   }
 );
 

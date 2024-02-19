@@ -4,13 +4,13 @@ each evento in eventos
         .cabecero_evento
             h3 #{evento.nombre}
             button.but_cerrar_evento#but_cerrar_evento(type='button')
-                img(src='icon/down-left-and-up-right-to-center.svg' alt='Cerrar Evento')
+                img.but_cerrar_evento_icon(src='icon/down-left-and-up-right-to-center.svg' alt='Cerrar Evento')
             button.but_expandir_evento#but_expandir_evento(type='button')
-                img(src='icon/up-right-and-down-left-from-center.svg' alt='Cerrar Evento')
+                img.but_expandir_evento_icon(src='icon/up-right-and-down-left-from-center.svg' alt='Cerrar Evento')
         .contenido_evento#contenido_evento
             p #{evento.descripcion}
             .botones_evento
                 button.but_editar_evento#but_editar_evento(type='button')
-                    img(src='icon/pen-to-square.svg' alt='Editar Evento')
+                    img.but_editar_evento_icon(src='icon/pen-to-square.svg' alt='Editar Evento')
                 button.but_eliminar_evento#but_eliminar_evento(type='button')
-                    img(src='icon/trash.svg' alt='Eliminar Evento')
+                    img.but_eliminar_evento_icon(src='icon/trash.svg' alt='Eliminar Evento')

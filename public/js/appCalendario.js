@@ -1,16 +1,19 @@
 let fecha;
 let url_eventos;
+let myModal;
 
 document.addEventListener("DOMContentLoaded", function () {
   let calendarEl = document.getElementById("calendar");
   let frm = document.getElementById("formulario");
-  let eliminar = document.getElementById("btnEliminar");
-  let myModal = new bootstrap.Modal(document.getElementById("myModal"));
+  myModal = new bootstrap.Modal(document.getElementById("myModal"));
 
   outputEventos = document.getElementById("outputEventos");
-  outputEventoExpandido = document.getElementById("outputEventoExpandido");
   outputEventos.addEventListener("click", expandirEvento);
   outputEventos.addEventListener("click", cerrarEvento);
+  outputEventos.addEventListener("click", eliminarEvento);
+  outputEventos.addEventListener("click", editarEvento);
+
+  let isEditing = false; // Variable para indicar si se está editando un evento
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
     themeSystem: "bootstrap5",
@@ -19,16 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
     selectable: true,
     customButtons: {
       miLogo: {
-        icon: "../img/calendario.png",
         click: function () {
           calendar.today();
         },
       },
       addEvento: {
-        icon: "/public/icon/bars.svg",
-        click: function (info) {
+        click: function () {
           frm.reset();
-          eliminar.classList.add("d-none");
           document.getElementById("start").value = fecha;
           document.getElementById("btnAccion").textContent = "Registrar";
           document.getElementById("titulo").textContent = "Registrar Evento";
@@ -36,13 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
       botonPrev: {
-        icon: "../icon/circle-arrow-left.svg",
         click: function () {
           calendar.prev();
         },
       },
       botonNext: {
-        icon: "../icon/circle-arrow-right.svg",
         click: function () {
           calendar.next();
         },
@@ -59,14 +57,13 @@ document.addEventListener("DOMContentLoaded", function () {
       fecha = info.dateStr;
       cargarEventos(fecha);
     },
-    eventClick: function (info) {
+    /*eventClick: function (info) {
       document.getElementById("id").value = info.event.id;
       document.getElementById("title").value = info.event.title;
       document.getElementById("start").value = info.event.startStr;
       document.getElementById("color").value = info.event.backgroundColor;
       document.getElementById("btnAccion").textContent = "Modificar";
       document.getElementById("titulo").textContent = "Actualizar Evento";
-      eliminar.classList.remove("d-none");
       myModal.show();
     },
     eventDrop: function (info) {
@@ -90,89 +87,116 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       };
-    },
+    },*/
     firstDay: 1,
   });
   calendar.render();
 
+  // Listener para el formulario de creación/edición de eventos
   frm.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const title = document.getElementById("title").value;
-    const start = document.getElementById("start").value;
-    const description = document.getElementById("description").value;
+    e.preventDefault(); // Evita recargar la página
+    const nombre = document.getElementById("title").value;
+    const diaEvento = document.getElementById("start").value;
+    const descripcion = document.getElementById("description").value;
     const color = document.getElementById("color").value;
-    if (title == "" || start == "") {
+
+    if (nombre == "" || diaEvento == "") {
       Swal.fire("Aviso", "El título y la fecha son obligatorios", "warning");
     } else {
-      const data = {
-        nombre: title,
-        diaEvento: start,
-        descripcion: description,
+      const evento = {
+        nombre: nombre,
+        diaEvento: diaEvento,
+        descripcion: descripcion,
         color: color,
       };
-      const resp = await fetch(`/eventos`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (resp.ok) {
-        myModal.hide();
-        calendar.refetchEvents();
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Evento registrado",
-          showConfirmButton: false,
-          timer: 1000,
+
+      if (isEditing) {
+        // Si se está editando un evento, realizar una solicitud PUT
+        const id = document.getElementById("id").value; // Obtener el ID del evento
+        const resp = await fetch(`/eventos/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(evento),
         });
+        console.log(evento);
+        if (resp.ok) {
+          myModal.hide();
+          calendar.refetchEvents();
+          cargarEventos(fecha);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Evento modificado",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Error al modificar el evento.",
+          });
+        }
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Ups...",
-          text: "Error al crear el evento.",
+        // Si no se está editando un evento, realizar una solicitud POST para crear un nuevo evento
+        const resp = await fetch(`/eventos`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(evento),
         });
+
+        if (resp.ok) {
+          myModal.hide();
+          calendar.refetchEvents();
+          cargarEventos(fecha);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Evento registrado",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Error al crear el evento.",
+          });
+        }
       }
     }
   });
 
-  eliminar.addEventListener("click", function () {
-    myModal.hide();
-    Swal.fire({
-      title: "Advertencia",
-      text: "¿Está seguro de eliminar este evento?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        const resp = await fetch(`/eventos/${id}`, { method: "DELETE" });
-        if (resp.ok) {
-          myModal.hide();
-          calendar.refetchEvents();
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Evento eliminado",
-            showConfirmButton: false,
-            timer: 1000,
-          });
-        }
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Ups...",
-          text: "Error al eliminar el evento.",
-        });
-      }
-    });
-  });
-});
+  // Método para editar un evento existente
+  async function editarEvento(evt) {
+    if (evt.target.classList.contains("but_editar_evento") || evt.target.classList.contains("but_editar_evento_icon")) {
+      evt.stopPropagation(); // Detiene la propagación del evento para evitar que se ejecute el formulario
+      isEditing = true; // Establecer la variable isEditing a true para indicar que se está editando un evento
 
-/*async function listarEventos() {
+      const item = evt.target.closest("article.evento");
+      const id = item.dataset.idEvento;
+
+      let resp = await fetch(`/eventos/${id}`, { method: "GET" });
+      if (resp.ok) {
+        let evento = await resp.json();
+        console.log(evento);
+        document.getElementById("id").value = evento._id;
+        document.getElementById("title").value = evento.nombre;
+        document.getElementById("description").value = evento.descripcion;
+        document.getElementById("start").value = fecha;
+        document.getElementById("color").value = evento.color;
+        document.getElementById("btnAccion").textContent = "Modificar";
+        document.getElementById("titulo").textContent = "Actualizar Evento";
+        myModal.show();
+      }
+    }
+  }
+
+  /*async function listarEventos() {
   let resp;
   try {
     resp = await fetch(`/eventos`);
@@ -192,47 +216,84 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 }*/
 
-async function cargarEventos(filtro) {
-  let resp;
-  try {
-    url_eventos = `/eventos?diaEvento=${filtro}`;
-    resp = await fetch(url_eventos);
-    if (!resp.ok) {
-      throw new Error("Error al cargar");
+  async function cargarEventos(filtro) {
+    let resp;
+    try {
+      url_eventos = `/eventos?diaEvento=${filtro}`;
+      resp = await fetch(url_eventos);
+      if (!resp.ok) {
+        throw new Error("Error al cargar");
+      }
+      const datosEventos = await resp.json();
+      const html = crearEventos({ eventos: datosEventos });
+      outputEventos.innerHTML = html;
+    } catch (error) {
+      alert(error);
     }
-    const datosEventos = await resp.json();
-    const html = crearEventos({ eventos: datosEventos });
-    outputEventos.innerHTML = html;
-  } catch (error) {
-    alert(error);
   }
-}
 
-async function expandirEvento(evt) {
-  if (evt.target.classList.contains("but_expandir_evento")) {
-    const item = evt.target.closest("article.evento");
-    const id = item.dataset.idEvento;
-    url_eventos = `/eventos/${id}`;
-    console.log(url_eventos);
-    const resp = await fetch(url_eventos, { method: "GET" });
-    if (resp.ok) {
-      let evento = document.getElementById("evento");
-      evento.classList.add("expanded");
+  async function expandirEvento(evt) {
+    if (evt.target.classList.contains("but_expandir_evento") || evt.target.classList.contains("but_expandir_evento_icon")) {
+      const item = evt.target.closest("article.evento");
+      const id = item.dataset.idEvento;
+      url_eventos = `/eventos/${id}`;
+      console.log(url_eventos);
+      const resp = await fetch(url_eventos, { method: "GET" });
+      if (resp.ok) {
+        item.classList.add("expanded");
+      }
     }
   }
-}
 
-async function cerrarEvento(evt) {
-  if (evt.target.classList.contains("but_cerrar_evento")) {
-    const item = evt.target.closest("article.evento");
-    const id = item.dataset.idEvento;
-    console.log(id);
-    url_eventos = `/eventos/${id}`;
-    console.log(url_eventos);
-    const resp = await fetch(url_eventos, { method: "GET" });
-    if (resp.ok) {
-      let evento = document.getElementById("evento");
-      evento.classList.remove("expanded");
+  async function cerrarEvento(evt) {
+    if (evt.target.classList.contains("but_cerrar_evento") || evt.target.classList.contains("but_cerrar_evento_icon")) {
+      const item = evt.target.closest("article.evento");
+      const id = item.dataset.idEvento;
+      console.log(id);
+      url_eventos = `/eventos/${id}`;
+      console.log(url_eventos);
+      const resp = await fetch(url_eventos, { method: "GET" });
+      if (resp.ok) {
+        item.classList.remove("expanded");
+      }
     }
   }
-}
+
+  async function eliminarEvento(evt) {
+    if (evt.target.classList.contains("but_eliminar_evento") || evt.target.classList.contains("but_eliminar_evento_icon")) {
+      const item = evt.target.closest("article.evento");
+      const id = item.dataset.idEvento;
+
+      Swal.fire({
+        title: "Advertencia",
+        text: "¿Estás seguro de que deseas eliminar este evento?",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonColor: "#d33",
+        confirmButtonColor: "#3085d6",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Sí",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const resp = await fetch(`/eventos/${id}`, { method: "DELETE" });
+          if (resp.ok) {
+            cargarEventos(fecha);
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Evento eliminado",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al eliminar el evento.",
+            });
+          }
+        }
+      });
+    }
+  }
+});

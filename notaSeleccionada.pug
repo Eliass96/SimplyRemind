@@ -1,33 +1,33 @@
-output#outputNotaSeleccionada
-    article.cabecero_nota_seleccionada(data-id-nota=_id)
+output#outputNotaSeleccionada(data-id-nota=_id)
+    article.cabecero_nota_seleccionada
         button.but_volver_al_listado.col-2(type="button" id="but_volver_al_listado")
-            img(src="icon/arrow-left.svg" alt="Buscar Nota")
+            img.but_volver_al_listado_icon(src="icon/arrow-left.svg" alt="Buscar Nota")
         div.titulo_input_container
-            // <input type="color" value="#ff0000">
+            input(type="color" value=color).color_nota_seleccionada
             h2.text-break.titulo_nota_seleccionada#titulo_nota_seleccionada(contenteditable="") #{titulo}
         div.botones_nota_seleccionada
             button#but_editar_nota.but_editar_nota(type="button")
-                img(src="icon/floppy-disk.svg" alt="Editar Nota")
+                img.but_editar_nota_icon(src="icon/floppy-disk.svg" alt="Editar Nota")
             button#but_duplicar_nota.but_duplicar_nota(type="button")
-                img(src="icon/clone.svg" alt="Duplicar Nota")
+                img.but_duplicar_nota_icon(src="icon/clone.svg" alt="Duplicar Nota")
             button#but_eliminar_nota.but_eliminar_nota(type="button")
-                img(src="icon/trash.svg" alt="Eliminar Nota")
+                img.but_eliminar_nota_icon(src="icon/trash.svg" alt="Eliminar Nota")
             div.dropdown_etiquetas_nota
                 button.but_etiquetas_nota(type="button" data-bs-toggle="dropdown" aria-expanded="false")
-                    img(src="icon/tags.svg" alt="Etiquetas de la nota")
+                    img.but_etiquetas_nota_icon(src="icon/tags.svg" alt="Etiquetas de la nota")
                 div.dropdown_content_filtros.dropdown-menu
                     div.etiqueta
                         p.text-wrap Añadir etiqueta
                         button.but_nueva_etiqueta(type="button")
-                            img(src="icon/plus.svg" alt="Añadir Etiqueta")
+                            img.but_nueva_etiqueta_icon(src="icon/plus.svg" alt="Añadir Etiqueta")
                     ul
                         each etiqueta in etiquetas
                             li.etiqueta
                                 p.text-break= etiqueta
                                 div.botones_etiqueta
                                     button.but_editar_etiqueta(type="button")
-                                        img(src="icon/pen-to-square.svg" alt="Editar Etiqueta")
+                                        img.but_editar_etiqueta_icon(src="icon/pen-to-square.svg" alt="Editar Etiqueta")
                                     button.but_eliminar_etiqueta(type="button")
-                                        img(src="icon/trash.svg" alt="Eliminar Etiqueta")
+                                        img.but_eliminar_etiqueta_icon(src="icon/trash.svg" alt="Eliminar Etiqueta")
     article.contenido_nota_seleccionada
         p.text-break(contenteditable="") #{texto}

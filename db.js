@@ -9,6 +9,7 @@ exports.conectar = async function () {
 const notaSchema = new mongoose.Schema(
   {
     titulo: { type: String, required: true, default: "Nueva Nota" },
+    color: { type: String, required: true, default: "#FF0A0A"  },
     texto: {
       type: String,
       required: true,

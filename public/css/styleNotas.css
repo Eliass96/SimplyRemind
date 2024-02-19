@@ -87,6 +87,15 @@
   margin-top: 2.85px;
 }
 
+.todas_las_notas input[type="color"] {
+  padding: 5px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  height: 26px;
+  width: 27px;
+}
+
 /* Nota Seleccionada */
 .cabecero_nota_seleccionada {
   display: flex;
@@ -112,6 +121,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.nota_seleccionada input[type="color"] {
+  padding: 5px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  height: 30px;
+  width: 31px;
 }
 
 .but_editar_nota,

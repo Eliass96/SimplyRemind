@@ -22,15 +22,18 @@ document.addEventListener("DOMContentLoaded", function () {
   outputNotaSeleccionada.addEventListener("click", cerrarNota);
   outputNotaSeleccionada.addEventListener("click", editarNota);
 
-  document.getElementById('ordenar_por_fecha').addEventListener('click', function () {
-    cargarNotas(buscadorNotas.value, 'fecha');
-  });
-  document.getElementById('ordenar_por_nombre').addEventListener('click', function () {
-    cargarNotas(buscadorNotas.value, 'nombre');
-  });
+  document
+    .getElementById("ordenar_por_fecha")
+    .addEventListener("click", function () {
+      cargarNotas(buscadorNotas.value, "fecha");
+    });
+  document
+    .getElementById("ordenar_por_nombre")
+    .addEventListener("click", function () {
+      cargarNotas(buscadorNotas.value, "nombre");
+    });
 
   cargarNotas();
-});
 
 function buscar() {
   cargarNotas(buscadorNotas.value);
@@ -43,20 +46,24 @@ function buscar() {
 async function cargarNotas(filtro, ordenarPor) {
   let resp;
   if (filtro) {
-    url_eventos = `/notas?titulo=${filtro}`;
+    url_notas = `/notas?titulo=${filtro}`;
   } else {
-    url_eventos = "/notas";
+    url_notas = "/notas";
   }
   try {
-    resp = await fetch(url_eventos);
+    resp = await fetch(url_notas);
     if (!resp.ok) {
       throw new Error("Error al cargar");
     }
     const datosNotas = await resp.json();
-    if (ordenarPor === 'fecha') {
-      datosNotas.sort((a, b) => (a.fecha < b.fecha) ? 1 : ((b.fecha < a.fecha) ? -1 : 0));
+    if (ordenarPor === "fecha") {
+      datosNotas.sort((a, b) =>
+        a.fecha < b.fecha ? 1 : b.fecha < a.fecha ? -1 : 0
+      );
     } else {
-      datosNotas.sort((a, b) => (a.titulo > b.titulo) ? 1 : ((b.titulo > a.titulo) ? -1 : 0));
+      datosNotas.sort((a, b) =>
+        a.titulo > b.titulo ? 1 : b.titulo > a.titulo ? -1 : 0
+      );
     }
     const html = crearNotas({ notas: datosNotas });
     outputNotas.innerHTML = html;
@@ -82,10 +89,10 @@ async function abrirNota(evt) {
 
 async function cargarNotaSeleccionada(idNota) {
   let resp;
-  url_eventos = `/notas/${idNota}`;
-  console.log(url_eventos);
+  url_notas = `/notas/${idNota}`;
+  console.log(url_notas);
   try {
-    resp = await fetch(url_eventos);
+    resp = await fetch(url_notas);
     if (!resp.ok) {
       throw new Error("Error al cargar");
     }
@@ -98,7 +105,7 @@ async function cargarNotaSeleccionada(idNota) {
 }
 
 function cerrarNota(evt) {
-  if (evt.target.classList.contains("but_volver_al_listado")) {
+  if (evt.target.classList.contains("but_volver_al_listado") || evt.target.classList.contains("but_volver_al_listado_icon")) {
     cargarNotas(buscadorNotas.value);
     let nota = document.getElementById("nota_seleccionada");
     let listado = document.getElementById("listado_notas");
@@ -108,17 +115,17 @@ function cerrarNota(evt) {
 }
 
 async function eliminarNotaLista(evt) {
-  if (evt.target.classList.contains("but_eliminar_nota_lista")) {
+  if (evt.target.classList.contains("but_eliminar_nota_lista") || evt.target.classList.contains("but_eliminar_nota_lista_icon")) {
     const item = evt.target.closest("li.todas_las_notas");
     const id = item.dataset.idNota;
 
     Swal.fire({
-      title: "¿Estás seguro de que deseas eliminar esta nota?",
-      text: "Si la eliminas no la podrás recuperar",
+      title: "Advertencia",
+      text: "¿Estás seguro de que deseas eliminar esta nota?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
+      confirmButtonColor: "#3085d6",
       cancelButtonText: "Cancelar",
       confirmButtonText: "Sí",
     }).then(async (result) => {
@@ -146,11 +153,10 @@ async function eliminarNotaLista(evt) {
 }
 
 async function eliminarNota(evt) {
-  if (evt.target.classList.contains("but_eliminar_nota")) {
+  if (evt.target.classList.contains("but_eliminar_nota") || evt.target.classList.contains("but_eliminar_nota_icon")) {
     const item = evt.target.closest("#outputNotaSeleccionada");
-    console.log(item);
-    const id = item.dataset.idNota;
-    console.log(id);
+    let id = item.dataset.idNota;
+    url_notas = `/notas/${id}`
 
     Swal.fire({
       title: "¿Estás seguro de que deseas eliminar esta nota?",
@@ -163,7 +169,7 @@ async function eliminarNota(evt) {
       confirmButtonText: "Sí",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const resp = await fetch(url_eventos, { method: "DELETE" });
+        const resp = await fetch(url_notas, { method: "DELETE" });
         if (resp.ok) {
           cargarNotas(buscadorNotas.value);
           let nota = document.getElementById("nota_seleccionada");
@@ -190,7 +196,7 @@ async function eliminarNota(evt) {
 }
 
 async function duplicarNotaLista(evt) {
-  if (evt.target.classList.contains("but_duplicar_nota_lista")) {
+  if (evt.target.classList.contains("but_duplicar_nota_lista") || evt.target.classList.contains("but_duplicar_nota_lista_icon")) {
     const item = evt.target.closest("li.todas_las_notas");
     const id = item.dataset.idNota;
     const resp = await fetch(`/notas/${id}`, { method: "GET" });
@@ -200,6 +206,7 @@ async function duplicarNotaLista(evt) {
       let nuevaNota = {
         titulo: nota.titulo + " (copia)",
         texto: nota.texto,
+        color: nota.color,
         etiquetas: nota.etiquetas,
       };
       const respDuplicar = await fetch("/notas", {
@@ -236,16 +243,19 @@ async function duplicarNotaLista(evt) {
 }
 
 async function duplicarNota(evt) {
-  if (evt.target.classList.contains("but_duplicar_nota")) {
-    const item = evt.target.closest("section.nota_seleccionada");
-    const id = item.dataset.idNota;
-    const resp = await fetch(url_eventos, { method: "GET" });
+  if (evt.target.classList.contains("but_duplicar_nota") || evt.target.classList.contains("but_duplicar_nota_icon")) {
+    const item = evt.target.closest("#outputNotaSeleccionada");
+    let id = item.dataset.idNota;
+    url_notas = `/notas/${id}`
+
+    const resp = await fetch(url_notas, { method: "GET" });
     if (resp.ok) {
       const nota = await resp.json();
       console.log(nota);
       let nuevaNota = {
         titulo: nota.titulo + " (copia)",
         texto: nota.texto,
+        color: nota.color,
         etiquetas: nota.etiquetas,
       };
       const respDuplicar = await fetch("/notas", {
@@ -284,7 +294,7 @@ async function crearNota() {
   let nuevaNota = {
     titulo: "Nueva nota",
     texto: "Introduce el texto de tu nota...",
-    etiquetas: []
+    etiquetas: [],
   };
   const resp = await fetch("/notas", {
     method: "POST",
@@ -312,25 +322,37 @@ async function crearNota() {
 }
 
 async function editarNota(evt) {
-  if (evt.target.classList.contains("but_editar_nota")) {
+  if (evt.target.classList.contains("but_editar_nota") || evt.target.classList.contains("but_editar_nota_icon")) {
     const item = evt.target.closest("#outputNotaSeleccionada");
-    const resp = await fetch(url_eventos, { method: "GET" });
+    let id = item.dataset.idNota;
+    url_notas = `/notas/${id}`
+
+    const resp = await fetch(url_notas, { method: "GET" });
 
     if (resp.ok) {
       const nota = await resp.json();
+      nota.titulo = item
+        .querySelector(".titulo_nota_seleccionada")
+        .textContent.trim();
+      nota.texto = item
+        .querySelector(".contenido_nota_seleccionada")
+        .textContent.trim();
+      nota.color = item.querySelector("input[type='color']").value;
+      const etiquetasElementos = item.querySelectorAll(".etiqueta");
+      const etiquetas = Array.from(etiquetasElementos).map((etiqueta) =>
+        etiqueta.textContent.trim()
+      );
+      nota.etiquetas = etiquetas;
       console.log(nota);
-      let nuevaNota = {
-        titulo: item.dataset.titulo,
-        texto: item.dataset.texto,
-        etiquetas: item.dataset.etiquetas,
-      };
-      const respEditar = await fetch(url_eventos, {
+
+      const respEditar = await fetch(url_notas, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(nuevaNota),
+        body: JSON.stringify(nota)
       });
+
       if (respEditar.ok) {
         Swal.fire({
           position: "center",
@@ -343,15 +365,16 @@ async function editarNota(evt) {
         Swal.fire({
           icon: "error",
           title: "Ups...",
-          text: "Error al guardar los cambios.",
+          text: "Error al guardar los cambios",
         });
       }
     } else {
       Swal.fire({
         icon: "error",
         title: "Ups...",
-        text: "Error al guardar los cambios.",
+        text: "Error al guardar los cambios",
       });
     }
   }
 }
+});

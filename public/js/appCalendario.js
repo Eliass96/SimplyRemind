@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
   outputEventos.addEventListener("click", eliminarEvento);
   outputEventos.addEventListener("click", editarEvento);
 
+  outputEventos.addEventListener("click", etiquetarEvento);
+  outputEventos.addEventListener("click", editarEtiqueta);
+  outputEventos.addEventListener("click", eliminarEtiqueta);
+
   let isEditing = false; // Variable para indicar si se está editando un evento
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -117,13 +121,13 @@ document.addEventListener("DOMContentLoaded", function () {
         nombre: nombre,
         diaEvento: diaEvento,
         descripcion: descripcion,
-        color: color
+        color: color,
       };
 
       if (isEditing) {
         // Si se está editando un evento, realizar una solicitud PUT
         const id = document.getElementById("id").value; // Obtener el ID del evento
-        evento._id = id
+        evento._id = id;
         const resp = await fetch(`/eventos/${id}`, {
           method: "PUT",
           headers: {
@@ -314,6 +318,233 @@ document.addEventListener("DOMContentLoaded", function () {
               title: "Ups...",
               text: "Error al eliminar el evento.",
             });
+          }
+        }
+      });
+    }
+  }
+
+  async function etiquetarEvento(evt) {
+    if (
+      evt.target.classList.contains("but_nueva_etiqueta") ||
+      evt.target.classList.contains("but_nueva_etiqueta_icon")
+    ) {
+      const item = evt.target.closest("article.evento");
+      let id = item.dataset.idEvento;
+      let url_eventos = `/eventos/${id}`;
+      let nuevaEtiqueta = "";
+      console.log(item);
+
+      const resp = await fetch(url_eventos, { method: "GET" });
+
+      Swal.fire({
+        title: "Etiqueta tu evento",
+        input: "text",
+        showCancelButton: true,
+        confirmButtonText: "Etiquetar",
+        cancelButtonText: "Cancelar",
+        showLoaderOnConfirm: true,
+        preConfirm: async (valor) => {
+          try {
+            if (valor === "") {
+              Swal.fire(
+                "Aviso",
+                "No se puede crear una etiqueta vacía",
+                "warning"
+              );
+            } else {
+              nuevaEtiqueta = valor;
+            }
+          } catch (error) {
+            console.log(error);
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al crear la etiqueta",
+            });
+          }
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (resp.ok) {
+            const evento = await resp.json();
+            if (nuevaEtiqueta !== "") {
+              evento.etiquetas.push(nuevaEtiqueta);
+
+              const respEditar = await fetch(url_eventos, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(evento),
+              });
+
+              if (respEditar.ok) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Etiqueta creada",
+                  showConfirmButton: false,
+                  timer: 1000,
+                });
+                cargarEventos(fecha);
+                item.classList.add('expanded');
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Ups...",
+                  text: "Error al crear la etiqueta",
+                });
+              }
+            }
+          }
+        }
+      });
+    }
+  }
+
+  async function editarEtiqueta(evt) {
+    if (
+      evt.target.classList.contains("but_editar_etiqueta") ||
+      evt.target.classList.contains("but_editar_etiqueta_icon")
+    ) {
+      const etiquetaAnterior = evt.target
+        .closest("li.etiqueta")
+        .textContent.trim();
+      let etiquetaEditada = "";
+
+      const item = evt.target.closest("article.evento");
+      let id = item.dataset.idEvento;
+      let url_eventos = `/eventos/${id}`;
+
+      console.log(url_eventos);
+      const resp = await fetch(url_eventos, { method: "GET" });
+
+      Swal.fire({
+        title: "Edita tu etiqueta",
+        input: "text",
+        inputValue: etiquetaAnterior,
+        showCancelButton: true,
+        confirmButtonText: "Modificar",
+        cancelButtonText: "Cancelar",
+        showLoaderOnConfirm: true,
+        preConfirm: async (valor) => {
+          try {
+            if (valor === "") {
+              Swal.fire(
+                "Aviso",
+                "No se puede modificar una etiqueta vacía",
+                "warning"
+              );
+            } else {
+              etiquetaEditada = valor;
+            }
+          } catch (error) {
+            console.log(error);
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al modificar la etiqueta",
+            });
+          }
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          if (resp.ok) {
+            const evento = await resp.json();
+            console.log(etiquetaEditada);
+            if (etiquetaEditada !== "") {
+              evento.etiquetas = evento.etiquetas.map((etiqueta) => {
+                if (etiqueta === etiquetaAnterior) {
+                  return etiquetaEditada; // Reemplaza la etiqueta anterior con la etiqueta editada
+                }
+                return etiqueta; // Devuelve la etiqueta sin cambios si no coincide con la anterior
+              });
+
+              const respEditar = await fetch(url_eventos, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(evento),
+              });
+              console.log(evento);
+
+              if (respEditar.ok) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Etiqueta modificada",
+                  showConfirmButton: false,
+                  timer: 1000,
+                });
+                cargarEventos(fecha);
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Ups...",
+                  text: "Error al modificar la etiqueta",
+                });
+              }
+            }
+          }
+        }
+      });
+    }
+  }
+
+  async function eliminarEtiqueta(evt) {
+    if (
+      evt.target.classList.contains("but_eliminar_etiqueta") ||
+      evt.target.classList.contains("but_eliminar_etiqueta_icon")
+    ) {
+      const etiquetaAEliminar = evt.target.closest("li.etiqueta");
+      const item = evt.target.closest("article.evento");
+      let id = item.dataset.idEvento;
+      let url_eventos = `/eventos/${id}`;
+
+      Swal.fire({
+        title: "Advertencia",
+        text: "¿Estás seguro de que deseas eliminar esta etiqueta?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Sí",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const resp = await fetch(url_eventos, { method: "GET" });
+          if (resp.ok) {
+            const evento = await resp.json();
+            evento.etiquetas = evento.etiquetas.filter(
+              (etiqueta) => etiqueta !== etiquetaAEliminar.textContent
+            );
+            const respEliminar = await fetch(url_eventos, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(evento),
+            });
+            if (respEliminar.ok) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Etiqueta eliminada",
+                showConfirmButton: false,
+                timer: 1000,
+              });
+              cargarEventos(fecha);
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al eliminar la etiqueta",
+              });
+            }
           }
         }
       });

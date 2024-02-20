@@ -109,11 +109,13 @@
   height: 100%;
 }
 
+/* EVENTOS */
 .eventos_dia_seleccionado {
   max-height: 55vh;
   scrollbar-width: thin;
   scrollbar-color: #888 #f8f8f8;
   overflow-y: auto;
+  margin-top: 8px;
 }
 
 .evento {
@@ -149,6 +151,7 @@
   display: flex;
 }
 
+.but_etiquetas_evento,
 .but_expandir_evento,
 .but_cerrar_evento,
 .but_editar_evento,
@@ -181,6 +184,7 @@
   display: none;
 }
 
+.but_etiquetas_evento:active,
 .but_expandir_evento:active,
 .but_cerrar_evento:active,
 .but_editar_evento:active,

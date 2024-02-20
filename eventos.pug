@@ -1,6 +1,5 @@
 each evento in eventos
-    section#outputEventos.d-flex.align-items-stretch.justify-content-stretch.flex-direction-row
-    article.evento#evento(data-id-evento=evento._id)
+    .evento#evento(data-id-evento=evento._id)
         .cabecero_evento.d-flex.align-items-center.justify-content-between
             .nombre_color_evento.d-flex.align-items-center.justify-content-center
                 input(type="color" value=evento.color)

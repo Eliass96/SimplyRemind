@@ -12,7 +12,7 @@ body {
   flex-direction: column;
 }
 
-header {
+.cabecero_web {
   background: white;
   border-bottom: 2px solid black;
 }

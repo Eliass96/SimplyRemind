@@ -19,7 +19,7 @@
 
 <body>
 
-  <header class="reglas container-fluid row">
+  <header class="reglas cabecero_web container-fluid row">
     <section
       class="titulo container text-center col-xl-5 container-fluid d-flex align-items-center justify-content-center">
       <h1 class="titulo_texto mx-auto">SimplyRemind</h1>
@@ -50,21 +50,21 @@
 
     <!-- Listado de notas -->
     <section class="listado_notas col-xl-7" id="listado_notas">
-      <section class="cabecero_listado_notas">
+      <header class="cabecero_listado_notas">
         <h2 class="titulo_notas">TUS NOTAS</h2>
         <form>
           <button id="but_add_notas" class="but_add_notas" type="button">
             <img src="img/mas(2).png" alt="Botón de añadir notas.">
           </button>
         </form>
-      </section>
-      <section id="output_notas"></section>
+      </header>
+      <output id="output_notas"></output>
     </section>
 
 
     <!-- Nota seleccionada -->
     <section class="nota_seleccionada col-xl-7" id="nota_seleccionada">
-      <section id="outputNotaSeleccionada"></section>
+      <output id="outputNotaSeleccionada"></output>
     </section>
 
     <!-- Calendario -->
@@ -74,7 +74,7 @@
 
     <!-- Listado de Eventos -->
     <section id="eventos_dia_seleccionado" class="eventos_dia_seleccionado col-12">
-      <section id="outputEventos"></section>
+      <output id="outputEventos"></output>
     </section>
 
   </main>
@@ -86,10 +86,10 @@
   <dialog id="myModal" class="myModal modal fade" aria-hidden="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header bg-info">
+        <header class="modal-header bg-info">
           <h5 class="modal-title" id="titulo">Registro de Eventos</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
+        </header>
         <form id="formulario" autocomplete="off">
           <div class="modal-body">
             <fieldset>

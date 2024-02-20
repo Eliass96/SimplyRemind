@@ -194,7 +194,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const html = crearEventos({ eventos: datosEventos });
       outputEventos.innerHTML = html;
     } catch (error) {
-      alert(error);
+      Swal.fire({
+        icon: "error",
+        title: "Ups...",
+        text: "Error al cargar los eventos... Pruebe a reiniciar la página",
+      });
     }
   }
 

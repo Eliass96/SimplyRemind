@@ -76,7 +76,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const html = crearNotas({ notas: datosNotas });
       outputNotas.innerHTML = html;
     } catch (error) {
-      alert(error);
+      Swal.fire({
+        icon: "error",
+        title: "Ups...",
+        text: "Error al cargar las notas... Pruebe a reiniciar la página",
+      });
     }
   }
 
@@ -107,7 +111,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const html = vistaNotaSeleccionada(datosNota);
       outputNotaSeleccionada.innerHTML = html;
     } catch (error) {
-      alert(error);
+      Swal.fire({
+        icon: "error",
+        title: "Ups...",
+        text: "Parece que no se ha podido cargar la nota... Pruebe a reiniciar la página",
+      });
     }
   }
 

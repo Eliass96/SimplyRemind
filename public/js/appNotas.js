@@ -28,12 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("ordenar_por_fecha")
     .addEventListener("click", function () {
-      cargarNotas(buscadorNotas.value, "fecha");
+      cargarNotas(buscadorNotas.value, true);
     });
   document
     .getElementById("ordenar_por_nombre")
     .addEventListener("click", function () {
-      cargarNotas(buscadorNotas.value, "nombre");
+      cargarNotas(buscadorNotas.value, false);
     });
 
   cargarNotas();
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     listado.style.display = "block";
   }
 
-  async function cargarNotas(filtro, ordenarPor) {
+  async function cargarNotas(filtro, ordenarPorFecha) {
     let url_notas;
     if (filtro) {
       url_notas = `/notas?titulo=${filtro}`;
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error("Error al cargar");
       }
       const datosNotas = await resp.json();
-      if (ordenarPor === "fecha") {
+      if (ordenarPorFecha === true) {
         datosNotas.sort((a, b) =>
           a.fecha < b.fecha ? 1 : b.fecha < a.fecha ? -1 : 0
         );
@@ -362,7 +362,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         nota.etiquetas = etiquetas;
         nota._id = nota._id;
-        console.log(nota);
 
         const respEditar = await fetch(url_notas, {
           method: "PUT",
@@ -428,7 +427,6 @@ document.addEventListener("DOMContentLoaded", function () {
               nuevaEtiqueta = valor;
             }
           } catch (error) {
-            console.log(error);
             Swal.fire({
               icon: "error",
               title: "Ups...",
@@ -461,7 +459,6 @@ document.addEventListener("DOMContentLoaded", function () {
                   timer: 1000,
                 });
                 cargarNotaSeleccionada(id);
-                console.log(nota);
               } else {
                 Swal.fire({
                   icon: "error",
@@ -490,7 +487,6 @@ document.addEventListener("DOMContentLoaded", function () {
       let id = item.dataset.idNota;
       let url_notas = `/notas/${id}`;
 
-      console.log(url_notas);
       const resp = await fetch(url_notas, { method: "GET" });
 
       Swal.fire({
@@ -513,7 +509,6 @@ document.addEventListener("DOMContentLoaded", function () {
               etiquetaEditada = valor;
             }
           } catch (error) {
-            console.log(error);
             Swal.fire({
               icon: "error",
               title: "Ups...",
@@ -526,7 +521,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (result.isConfirmed) {
           if (resp.ok) {
             const nota = await resp.json();
-            console.log(etiquetaEditada);
             if (etiquetaEditada !== "") {
               nota.etiquetas = nota.etiquetas.map((etiqueta) => {
                 if (etiqueta === etiquetaAnterior) {
@@ -542,7 +536,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify(nota),
               });
-              console.log(nota);
 
               if (respEditar.ok) {
                 Swal.fire({

@@ -57,43 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
       center: "title",
       right: "botonNext addEvento",
     },
-    //events: "/eventos/" + datosEventos,
     editable: true,
     dateClick: function (info) {
       fecha = info.dateStr;
       cargarEventos(fecha);
     },
-    /*eventClick: function (info) {
-      document.getElementById("id").value = info.event.id;
-      document.getElementById("title").value = info.event.title;
-      document.getElementById("start").value = info.event.startStr;
-      document.getElementById("color").value = info.event.backgroundColor;
-      document.getElementById("btnAccion").textContent = "Modificar";
-      document.getElementById("titulo").textContent = "Actualizar Evento";
-      myModal.show();
-    },
-    eventDrop: function (info) {
-      const start = info.event.startStr;
-      const id = info.event.id;
-      const url = base_url + "Home/drag";
-      const http = new XMLHttpRequest();
-      const formDta = new FormData();
-      formDta.append("start", start);
-      formDta.append("id", id);
-      http.open("POST", url, true);
-      http.send(formDta);
-      http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
-          const res = JSON.parse(this.responseText);
-          Swal.fire("Avisos?", res.msg, res.tipo);
-          if (res.estado) {
-            myModal.hide();
-            calendar.refetchEvents();
-          }
-        }
-      };
-    },*/
     firstDay: 1,
   });
   calendar.render();
@@ -135,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           body: JSON.stringify(evento),
         });
-        console.log(evento);
+
         if (resp.ok) {
           myModal.hide();
           calendar.refetchEvents();
@@ -200,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let resp = await fetch(`/eventos/${id}`, { method: "GET" });
       if (resp.ok) {
         let evento = await resp.json();
-        console.log(evento);
+
         document.getElementById("id").value = evento._id;
         document.getElementById("title").value = evento.nombre;
         document.getElementById("description").value = evento.descripcion;
@@ -213,26 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
-
-  /*async function listarEventos() {
-  let resp;
-  try {
-    resp = await fetch(`/eventos`);
-    if (!resp.ok) {
-      throw new Error("Error al cargar");
-    }
-    datosEventos = await resp.json();
-
-    datosEventos.forEach(evento => {
-      if (!evento.color) {
-        evento.color = '#3788D8';
-      }
-    });
-    console.log(datosEventos);
-  } catch (error) {
-    alert(error);
-  }
-}*/
 
   async function cargarEventos(filtro) {
     let resp;
@@ -258,7 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const item = evt.target.closest("article.evento");
       const id = item.dataset.idEvento;
       url_eventos = `/eventos/${id}`;
-      console.log(url_eventos);
       const resp = await fetch(url_eventos, { method: "GET" });
       if (resp.ok) {
         item.classList.add("expanded");
@@ -273,9 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       const item = evt.target.closest("article.evento");
       const id = item.dataset.idEvento;
-      console.log(id);
       url_eventos = `/eventos/${id}`;
-      console.log(url_eventos);
       const resp = await fetch(url_eventos, { method: "GET" });
       if (resp.ok) {
         item.classList.remove("expanded");
@@ -333,7 +278,6 @@ document.addEventListener("DOMContentLoaded", function () {
       let id = item.dataset.idEvento;
       let url_eventos = `/eventos/${id}`;
       let nuevaEtiqueta = "";
-      console.log(item);
 
       const resp = await fetch(url_eventos, { method: "GET" });
 
@@ -356,7 +300,6 @@ document.addEventListener("DOMContentLoaded", function () {
               nuevaEtiqueta = valor;
             }
           } catch (error) {
-            console.log(error);
             Swal.fire({
               icon: "error",
               title: "Ups...",
@@ -418,7 +361,6 @@ document.addEventListener("DOMContentLoaded", function () {
       let id = item.dataset.idEvento;
       let url_eventos = `/eventos/${id}`;
 
-      console.log(url_eventos);
       const resp = await fetch(url_eventos, { method: "GET" });
 
       Swal.fire({
@@ -441,7 +383,6 @@ document.addEventListener("DOMContentLoaded", function () {
               etiquetaEditada = valor;
             }
           } catch (error) {
-            console.log(error);
             Swal.fire({
               icon: "error",
               title: "Ups...",
@@ -454,7 +395,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (result.isConfirmed) {
           if (resp.ok) {
             const evento = await resp.json();
-            console.log(etiquetaEditada);
             if (etiquetaEditada !== "") {
               evento.etiquetas = evento.etiquetas.map((etiqueta) => {
                 if (etiqueta === etiquetaAnterior) {
@@ -470,7 +410,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify(evento),
               });
-              console.log(evento);
 
               if (respEditar.ok) {
                 Swal.fire({

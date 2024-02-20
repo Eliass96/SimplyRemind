@@ -1,14 +1,16 @@
 each evento in eventos
-    section#outputEventos.d-flex.align-items-stretch.justify-content-stretch.flex-direction-row.card-producto
+    section#outputEventos.d-flex.align-items-stretch.justify-content-stretch.flex-direction-row
     article.evento#evento(data-id-evento=evento._id)
-        .cabecero_evento
-            h3 #{evento.nombre}
+        .cabecero_evento.d-flex.align-items-center.justify-content-between
+            .nombre_color_evento.d-flex.align-items-center.justify-content-center
+                input(type="color" value=evento.color)
+                h3 #{evento.nombre}
             button.but_cerrar_evento#but_cerrar_evento(type='button')
                 img.but_cerrar_evento_icon(src='icon/down-left-and-up-right-to-center.svg' alt='Cerrar Evento')
             button.but_expandir_evento#but_expandir_evento(type='button')
                 img.but_expandir_evento_icon(src='icon/up-right-and-down-left-from-center.svg' alt='Cerrar Evento')
         .contenido_evento#contenido_evento
-            p #{evento.descripcion}
+            p.text-break #{evento.descripcion}
             .botones_evento
                 button.but_editar_evento#but_editar_evento(type='button')
                     img.but_editar_evento_icon(src='icon/pen-to-square.svg' alt='Editar Evento')

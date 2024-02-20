@@ -23,7 +23,6 @@ const notaSchema = new mongoose.Schema({
     required: true,
     default: new Date().toLocaleDateString(),
   },
-  //color: { type: String, required: true, default: "#ff0000" },
   etiquetas: [String],
 });
 
@@ -94,12 +93,9 @@ exports.duplicarNota = async function (datosNota) {
 exports.editarNota = async function (datosNota) {
   try {
     let filtro = { _id: datosNota._id };
-    console.log("Filtro de actualización:", filtro);
-    console.log("Datos de actualización:", datosNota);
     let notaActualizada = await Nota.findOneAndUpdate(filtro, datosNota, {
       new: true,
     });
-    console.log("Nota actualizada:", notaActualizada);
     return notaActualizada;
   } catch (error) {
     console.error("Error al editar la nota: ", error);
@@ -165,15 +161,6 @@ exports.listarEventos = async function (diaSeleccionado) {
     throw error;
   }
 };
-
-/*exports.listarEventos = async function () {
-  try {
-    return Evento.find();
-  } catch (error) {
-    console.error("Error al listar los eventos: ", error);
-    throw error;
-  }
-};*/
 
 exports.borrarEvento = async function (idEvento) {
   try {

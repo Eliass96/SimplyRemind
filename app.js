@@ -140,7 +140,6 @@ app.put("/eventos/:id", async function (req, resp) {
   try {
     const evento = await Evento.findById(req.params.id);
     if (evento) {
-      console.log(req.body);
       const eventoActualizado = await db.editarEvento(req.body);
       resp.status(HTTP_OK).send(eventoActualizado);
     } else {

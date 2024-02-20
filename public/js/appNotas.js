@@ -129,11 +129,18 @@ document.addEventListener("DOMContentLoaded", function () {
       let url_notas = `/notas/${id}`;
 
       resp = await fetch(url_notas);
+      let nota = undefined;
       if (resp.ok) {
-        const nota = await resp.json();
+        nota = await resp.json();
         if (
-          nota.titulo != item.querySelector(".titulo_nota_seleccionada").textContent.trim() ||
-          nota.texto != item.querySelector(".contenido_nota_seleccionada").textContent.trim() ||
+          nota.titulo !=
+            item
+              .querySelector(".titulo_nota_seleccionada")
+              .textContent.trim() ||
+          nota.texto !=
+            item
+              .querySelector(".contenido_nota_seleccionada")
+              .textContent.trim() ||
           nota.color != item.querySelector("input[type='color']").value
         ) {
           cambiosGuardados = false;
@@ -145,27 +152,71 @@ document.addEventListener("DOMContentLoaded", function () {
           nota.style.display = "none";
           listado.style.display = "block";
         }
-      }
 
-      if (!cambiosGuardados) {
-        Swal.fire({
-          title: "Advertencia",
-          text: "No se han guardado los cambios",
-          icon: "warning",
-          showCancelButton: true,
-          cancelButtonColor: "#d33",
-          confirmButtonColor: "#3085d6",
-          cancelButtonText: "Cancelar",
-          confirmButtonText: "Salir igualmente",
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-            cargarNotas(buscadorNotas.value, ordenarPorFecha);
-            let nota = document.getElementById("nota_seleccionada");
-            let listado = document.getElementById("listado_notas");
-            nota.style.display = "none";
-            listado.style.display = "block";
-          }
-        });
+        if (!cambiosGuardados) {
+          Swal.fire({
+            title: "Advertencia",
+            text: "No se han guardado los cambios",
+            icon: "warning",
+            showCancelButton: true,
+            cancelButtonColor: "#d33",
+            confirmButtonColor: "#3085d6",
+            cancelButtonText: "Salir sin guardar",
+            confirmButtonText: "Guardar",
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              nota.titulo = item
+                .querySelector(".titulo_nota_seleccionada")
+                .textContent.trim();
+              nota.texto = item
+                .querySelector(".contenido_nota_seleccionada")
+                .textContent.trim();
+              nota.color = item.querySelector("input[type='color']").value;
+              const etiquetasElementos = item.querySelectorAll(".etiqueta");
+              const etiquetas = Array.from(etiquetasElementos).map((etiqueta) =>
+                etiqueta.textContent.trim()
+              );
+              nota.etiquetas = etiquetas;
+              nota._id = nota._id;
+
+              const respEditar = await fetch(url_notas, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(nota),
+              });
+
+              if (respEditar.ok) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Cambios guardados",
+                  showConfirmButton: false,
+                  timer: 1000,
+                });
+                cambiosGuardados = true;
+                cargarNotas(buscadorNotas.value, ordenarPorFecha);
+                let nota = document.getElementById("nota_seleccionada");
+                let listado = document.getElementById("listado_notas");
+                nota.style.display = "none";
+                listado.style.display = "block";
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Ups...",
+                  text: "Error al guardar los cambios",
+                });
+              }
+            } else {
+              cargarNotas(buscadorNotas.value, ordenarPorFecha);
+              let nota = document.getElementById("nota_seleccionada");
+              let listado = document.getElementById("listado_notas");
+              nota.style.display = "none";
+              listado.style.display = "block";
+            }
+          });
+        }
       }
     }
   }
@@ -689,6 +740,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: "Error al eliminar la etiqueta",
               });
             }
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al eliminar la etiqueta",
+            });
           }
         }
       });

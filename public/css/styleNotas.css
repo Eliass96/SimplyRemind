@@ -99,7 +99,7 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: calc(0.65vw + 1rem);
   font-weight: bold;
-  max-width: 40vw;
+  max-width: 35vw;
   overflow: hidden; /* Oculta el contenido que excede el ancho */
   white-space: nowrap; /* Evita que el texto se divida en varias líneas */
   text-overflow: ellipsis; /* Muestra puntos suspensivos (...) cuando el texto se recorta */

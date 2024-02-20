@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
       evt.stopPropagation(); // Detiene la propagación del evento para evitar que se ejecute el formulario
       isEditing = true; // Establecer la variable isEditing a true para indicar que se está editando un evento
 
-      const item = evt.target.closest("article.evento");
+      const item = evt.target.closest(".evento");
       const id = item.dataset.idEvento;
 
       let resp = await fetch(`/eventos/${id}`, { method: "GET" });
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
       evt.target.classList.contains("but_expandir_evento") ||
       evt.target.classList.contains("but_expandir_evento_icon")
     ) {
-      const item = evt.target.closest("article.evento");
+      const item = evt.target.closest(".evento");
       const id = item.dataset.idEvento;
       url_eventos = `/eventos/${id}`;
       const resp = await fetch(url_eventos, { method: "GET" });
@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
       evt.target.classList.contains("but_cerrar_evento") ||
       evt.target.classList.contains("but_cerrar_evento_icon")
     ) {
-      const item = evt.target.closest("article.evento");
+      const item = evt.target.closest(".evento");
       const id = item.dataset.idEvento;
       url_eventos = `/eventos/${id}`;
       const resp = await fetch(url_eventos, { method: "GET" });
@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
       evt.target.classList.contains("but_eliminar_evento") ||
       evt.target.classList.contains("but_eliminar_evento_icon")
     ) {
-      const item = evt.target.closest("article.evento");
+      const item = evt.target.closest(".evento");
       const id = item.dataset.idEvento;
 
       Swal.fire({
@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function () {
       evt.target.classList.contains("but_nueva_etiqueta") ||
       evt.target.classList.contains("but_nueva_etiqueta_icon")
     ) {
-      const item = evt.target.closest("article.evento");
+      const item = evt.target.closest(".evento");
       let id = item.dataset.idEvento;
       let url_eventos = `/eventos/${id}`;
       let nuevaEtiqueta = "";
@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .textContent.trim();
       let etiquetaEditada = "";
 
-      const item = evt.target.closest("article.evento");
+      const item = evt.target.closest(".evento");
       let id = item.dataset.idEvento;
       let url_eventos = `/eventos/${id}`;
 
@@ -443,7 +443,7 @@ document.addEventListener("DOMContentLoaded", function () {
       evt.target.classList.contains("but_eliminar_etiqueta_icon")
     ) {
       const etiquetaAEliminar = evt.target.closest("li.etiqueta");
-      const item = evt.target.closest("article.evento");
+      const item = evt.target.closest(".evento");
       let id = item.dataset.idEvento;
       let url_eventos = `/eventos/${id}`;
 
@@ -487,6 +487,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: "Error al eliminar la etiqueta",
               });
             }
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al eliminar la etiqueta",
+            });
           }
         }
       });

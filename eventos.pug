@@ -4,7 +4,7 @@ each evento in eventos
         .cabecero_evento.d-flex.align-items-center.justify-content-between
             .nombre_color_evento.d-flex.align-items-center.justify-content-center
                 input(type="color" value=evento.color)
-                h3 #{evento.nombre}
+                h2 #{evento.nombre}
             button.but_cerrar_evento#but_cerrar_evento(type='button')
                 img.but_cerrar_evento_icon(src='icon/down-left-and-up-right-to-center.svg' alt='Cerrar Evento')
             button.but_expandir_evento#but_expandir_evento(type='button')
@@ -20,10 +20,6 @@ each evento in eventos
                     button.but_etiquetas_evento(type="button" data-bs-toggle="dropdown" aria-expanded="false")
                         img.but_etiquetas_evento_icon(src="icon/tags.svg" alt="Etiquetas de la nota")
                     .dropdown_content_filtros.dropdown-menu
-                        .add_etiqueta
-                            p.text-wrap Añadir etiqueta
-                            button.but_nueva_etiqueta(type="button")
-                                img.but_nueva_etiqueta_icon(src="icon/plus.svg" alt="Añadir Etiqueta")
                         ul#lista_etiquetas
                             each etiqueta in evento.etiquetas
                                 li.etiqueta
@@ -33,3 +29,7 @@ each evento in eventos
                                             img.but_editar_etiqueta_icon(src="icon/pen-to-square.svg" alt="Editar Etiqueta")
                                         button.but_eliminar_etiqueta(type="button")
                                             img.but_eliminar_etiqueta_icon(src="icon/trash.svg" alt="Eliminar Etiqueta")
+                        .add_etiqueta
+                            p.text-wrap Añadir etiqueta
+                            button.but_nueva_etiqueta(type="button")
+                                img.but_nueva_etiqueta_icon(src="icon/plus.svg" alt="Añadir Etiqueta")

@@ -16,7 +16,7 @@ const notaSchema = new mongoose.Schema({
   texto: {
     type: String,
     required: true,
-    default: "Texto de prueba para las notas...",
+    default: "Introduce el texto de tu nota...",
   },
   fecha_creacion: {
     type: String,
@@ -36,19 +36,6 @@ const eventoSchema = new mongoose.Schema(
     },
     color: { type: String, required: true },
     etiquetas: [String],
-  },
-  {
-    // Campos virtuales
-    toObject: { virtuals: true },
-    toJSON: { virtuals: true },
-    virtuals: {
-      diasHastaEvento: {
-        get() {
-          let tiempo = this.diaEvento - new Date();
-          return Math.floor(tiempo / (1000 * 60 * 60 * 24));
-        },
-      },
-    },
   }
 );
 
@@ -61,14 +48,6 @@ exports.Evento = Evento;
 // Notas
 exports.nuevaNota = async function (datosNota) {
   try {
-    if (!datosNota.titulo) {
-      datosNota.titulo = "Nueva nota";
-    }
-
-    if (!datosNota.texto) {
-      datosNota.texto = "Introduce el texto de tu nota...";
-    }
-
     return await Nota.create(datosNota);
   } catch (error) {
     console.error("Error al crear una nueva nota: ", error);

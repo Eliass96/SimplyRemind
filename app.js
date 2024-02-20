@@ -124,6 +124,9 @@ app.get("/eventos/:id", async function (req, resp) {
 // Crear evento
 app.post("/eventos", async function (req, resp) {
   try {
+    if (!req.body.nombre || !req.body.descripcion || !req.body.color || !req.body.diaEvento) {
+      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para crear el evento.")
+    }
     const nuevoEvento = await db.nuevoEvento(req.body);
 
     resp

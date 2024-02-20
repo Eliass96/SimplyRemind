@@ -118,6 +118,10 @@
   margin-top: 8px;
 }
 
+.nombre_color_evento h2 {
+  font-size: calc(0.75vw + 1rem);
+}
+
 .evento {
   border: 1px solid darkgray;
   background: #f8f8f8;

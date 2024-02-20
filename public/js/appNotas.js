@@ -510,6 +510,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   showConfirmButton: false,
                   timer: 1000,
                 });
+                cambiosGuardados = true;
                 cargarNotaSeleccionada(id);
               } else {
                 Swal.fire({
@@ -605,6 +606,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   showConfirmButton: false,
                   timer: 1000,
                 });
+                cambiosGuardados = true;
                 cargarNotaSeleccionada(id);
               } else {
                 Swal.fire({
@@ -670,6 +672,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 showConfirmButton: false,
                 timer: 1000,
               });
+              cambiosGuardados = true;
               cargarNotaSeleccionada(id);
             } else {
               Swal.fire({

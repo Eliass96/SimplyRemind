@@ -332,7 +332,6 @@ document.addEventListener("DOMContentLoaded", function () {
                   timer: 1000,
                 });
                 cargarEventos(fecha);
-                item.classList.add('expanded');
               } else {
                 Swal.fire({
                   icon: "error",

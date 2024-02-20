@@ -17,17 +17,15 @@
 
 .cabecero_listado_notas {
   display: flex;
-  position: relative;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: end;
   margin-bottom: 7px;
 }
 
 .titulo_notas {
   font-family: system-ui, sans-serif;
-  position: absolute;
   transform: translateX(-50%);
-  text-overflow: ellipsis !important;
+  text-overflow: ellipsis;
 }
 
 .but_add_notas {
@@ -47,12 +45,19 @@
 .but_duplicar_nota_lista,
 .but_eliminar_nota_lista {
   text-decoration: none;
-  display: inline-block;
   padding: 10px;
   color: black;
+  max-width: 45vw;
+  text-overflow: ellipsis; /* Muestra puntos suspensivos (...) cuando el texto se recorta */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  overflow-x: hidden;
+  
 }
 
 .todas_las_notas li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   list-style-type: none;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -61,7 +66,6 @@
   cursor: pointer;
   border-radius: 12px;
   width: calc(100% - 20px);
-  text-overflow: ellipsis !important;
 }
 
 .but_duplicar_nota_lista,
@@ -101,6 +105,10 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: calc(0.65vw + 1rem);
   font-weight: bold;
+  max-width: 40vw;
+  overflow: hidden; /* Oculta el contenido que excede el ancho */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos (...) cuando el texto se recorta */
 }
 
 .botones_nota_seleccionada {
@@ -130,6 +138,7 @@
   width: 30px;
 }
 
+.add_etiqueta,
 .etiqueta {
   display: flex;
   justify-content: space-between;
@@ -138,6 +147,7 @@
   padding: 0.5rem;
 }
 
+.add_etiqueta p,
 .etiqueta p {
   cursor: default;
   margin-block: 0;

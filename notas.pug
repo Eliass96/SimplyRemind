@@ -3,9 +3,11 @@ each nota in notas
         .todas_las_notas
     ol.todas_las_notas
         li.todas_las_notas(data-id-nota=nota._id)
-            input(type='color' value=nota.color)
-            a.todas_las_notas #{nota.titulo}
-            button#but_eliminar_nota_lista.but_eliminar_nota_lista
-                img.but_eliminar_nota_lista_icon(src='icon/trash.svg' alt='Eliminar Nota')
-            button#but_duplicar_nota_lista.but_duplicar_nota_lista
-                img.but_duplicar_nota_lista_icon(src='icon/clone.svg' alt='Duplicar Nota')
+            .nombre_nota.d-flex.align-items-center.justify-content-center
+                input(type='color' value=nota.color)
+                a.todas_las_notas #{nota.titulo}
+            .botones_nota.d-flex.align-items-center.justify-content-center
+                button#but_eliminar_nota_lista.but_eliminar_nota_lista
+                    img.but_eliminar_nota_lista_icon(src='icon/trash.svg' alt='Eliminar Nota')
+                button#but_duplicar_nota_lista.but_duplicar_nota_lista
+                    img.but_duplicar_nota_lista_icon(src='icon/clone.svg' alt='Duplicar Nota')

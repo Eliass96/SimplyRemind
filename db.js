@@ -6,24 +6,26 @@ exports.conectar = async function () {
 };
 
 // Creación de los esquemas
-const notaSchema = new mongoose.Schema(
-  {
-    titulo: { type: String, required: true, default: "Nueva Nota" },
-    color: { type: String, required: true, default: "#000000" },
-    texto: {
-      type: String,
-      required: true,
-      default: "Texto de prueba para las notas...",
-    },
-    fecha_creacion: {
-      type: String,
-      required: true,
-      default: new Date().toLocaleDateString(),
-    },
-    //color: { type: String, required: true, default: "#ff0000" },
-    etiquetas: [String]
-  }
-);
+const notaSchema = new mongoose.Schema({
+  titulo: {
+    type: String,
+    required: true,
+    default: "Nueva Nota"
+  },
+  color: { type: String, required: true, default: "#000000" },
+  texto: {
+    type: String,
+    required: true,
+    default: "Texto de prueba para las notas...",
+  },
+  fecha_creacion: {
+    type: String,
+    required: true,
+    default: new Date().toLocaleDateString(),
+  },
+  //color: { type: String, required: true, default: "#ff0000" },
+  etiquetas: [String],
+});
 
 const eventoSchema = new mongoose.Schema(
   {
@@ -31,7 +33,7 @@ const eventoSchema = new mongoose.Schema(
     descripcion: { type: String, required: true, default: "" },
     diaEvento: {
       type: String,
-      required: true
+      required: true,
     },
     color: { type: String, required: true },
     etiquetas: [String],
@@ -94,7 +96,9 @@ exports.editarNota = async function (datosNota) {
     let filtro = { _id: datosNota._id };
     console.log("Filtro de actualización:", filtro);
     console.log("Datos de actualización:", datosNota);
-    let notaActualizada = await Nota.findOneAndUpdate(filtro, datosNota, { new: true });
+    let notaActualizada = await Nota.findOneAndUpdate(filtro, datosNota, {
+      new: true,
+    });
     console.log("Nota actualizada:", notaActualizada);
     return notaActualizada;
   } catch (error) {
@@ -102,7 +106,6 @@ exports.editarNota = async function (datosNota) {
     throw error;
   }
 };
-
 
 exports.listarNotas = async function () {
   try {

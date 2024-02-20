@@ -2,7 +2,6 @@ let outputNotas;
 let buscadorNotas;
 let botonBorrarNota;
 let botonDuplicarNota;
-let url_notas;
 
 document.addEventListener("DOMContentLoaded", function () {
   outputNotas = document.getElementById("output_notas");
@@ -48,14 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function cargarNotas(filtro, ordenarPor) {
-    let resp;
+    let url_notas;
     if (filtro) {
       url_notas = `/notas?titulo=${filtro}`;
     } else {
       url_notas = "/notas";
     }
     try {
-      resp = await fetch(url_notas);
+      let resp = await fetch(url_notas);
       if (!resp.ok) {
         throw new Error("Error al cargar");
       }
@@ -93,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function cargarNotaSeleccionada(idNota) {
     let resp;
-    url_notas = `/notas/${idNota}`;
+    let url_notas = `/notas/${idNota}`;
     try {
       resp = await fetch(url_notas);
       if (!resp.ok) {
@@ -168,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       const item = evt.target.closest("#outputNotaSeleccionada");
       let id = item.dataset.idNota;
-      url_notas = `/notas/${id}`;
+      let url_notas = `/notas/${id}`;
 
       Swal.fire({
         title: "¿Estás seguro de que deseas eliminar esta nota?",
@@ -263,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       const item = evt.target.closest("#outputNotaSeleccionada");
       let id = item.dataset.idNota;
-      url_notas = `/notas/${id}`;
+      let url_notas = `/notas/${id}`;
 
       const resp = await fetch(url_notas, { method: "GET" });
       if (resp.ok) {
@@ -344,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       const item = evt.target.closest("#outputNotaSeleccionada");
       let id = item.dataset.idNota;
-      url_notas = `/notas/${id}`;
+      let url_notas = `/notas/${id}`;
 
       const resp = await fetch(url_notas, { method: "GET" });
 
@@ -405,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       const item = evt.target.closest("#outputNotaSeleccionada");
       let id = item.dataset.idNota;
-      url_notas = `/notas/${id}`;
+      let url_notas = `/notas/${id}`;
       let nuevaEtiqueta = "";
 
       const resp = await fetch(url_notas, { method: "GET" });
@@ -482,12 +481,14 @@ document.addEventListener("DOMContentLoaded", function () {
       evt.target.classList.contains("but_editar_etiqueta") ||
       evt.target.classList.contains("but_editar_etiqueta_icon")
     ) {
-      const etiquetaAnterior = evt.target.closest("li.etiqueta").textContent.trim();
+      const etiquetaAnterior = evt.target
+        .closest("li.etiqueta")
+        .textContent.trim();
       let etiquetaEditada = "";
 
       const item = evt.target.closest("#outputNotaSeleccionada");
       let id = item.dataset.idNota;
-      url_notas = `/notas/${id}`;
+      let url_notas = `/notas/${id}`;
 
       console.log(url_notas);
       const resp = await fetch(url_notas, { method: "GET" });
@@ -527,7 +528,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const nota = await resp.json();
             console.log(etiquetaEditada);
             if (etiquetaEditada !== "") {
-              nota.etiquetas = nota.etiquetas.map(etiqueta => {
+              nota.etiquetas = nota.etiquetas.map((etiqueta) => {
                 if (etiqueta === etiquetaAnterior) {
                   return etiquetaEditada; // Reemplaza la etiqueta anterior con la etiqueta editada
                 }
@@ -574,7 +575,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const etiquetaAEliminar = evt.target.closest("li.etiqueta");
       const item = evt.target.closest("#outputNotaSeleccionada");
       let id = item.dataset.idNota;
-      url_notas = `/notas/${id}`;
+      let url_notas = `/notas/${id}`;
 
       Swal.fire({
         title: "Advertencia",

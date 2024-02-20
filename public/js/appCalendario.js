@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
           isEditing = false;
           frm.reset();
           document.getElementById("start").value = fecha;
+          document.getElementById("start").readOnly = false;
           document.getElementById("btnAccion").textContent = "Registrar";
           document.getElementById("titulo").textContent = "Registrar Evento";
           myModal.show();
@@ -181,7 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Método para editar un evento existente
   async function editarEvento(evt) {
     if (
       evt.target.classList.contains("but_editar_evento") ||
@@ -201,6 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("title").value = evento.nombre;
         document.getElementById("description").value = evento.descripcion;
         document.getElementById("start").value = fecha;
+        document.getElementById("start").readOnly = true;
         document.getElementById("color").value = evento.color;
         document.getElementById("btnAccion").textContent = "Modificar";
         document.getElementById("titulo").textContent = "Actualizar Evento";

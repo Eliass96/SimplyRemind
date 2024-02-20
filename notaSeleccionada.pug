@@ -2,10 +2,10 @@
     .cabecero_nota_seleccionada
         button.but_volver_al_listado.col-2(type="button" id="but_volver_al_listado")
             img.but_volver_al_listado_icon(src="icon/arrow-left.svg" alt="Buscar Nota")
-        div.titulo_input_container.d-flex.align-items-center.justify-content-center
+        .titulo_input_container.d-flex.align-items-center.justify-content-center
             input(type="color" value=color).color_nota_seleccionada
             h2.titulo_nota_seleccionada.text-break#titulo_nota_seleccionada(contenteditable="") #{titulo}
-        div.botones_nota_seleccionada
+        .botones_nota_seleccionada
             button#but_editar_nota.but_editar_nota(type="button")
                 img.but_editar_nota_icon(src="icon/floppy-disk.svg" alt="Editar Nota")
             button#but_duplicar_nota.but_duplicar_nota(type="button")
@@ -16,7 +16,7 @@
                 button.but_etiquetas_nota(type="button" data-bs-toggle="dropdown" aria-expanded="false")
                     img.but_etiquetas_nota_icon(src="icon/tags.svg" alt="Etiquetas de la nota")
                 div.dropdown_content_filtros.dropdown-menu
-                    div.etiqueta
+                    div.add_etiqueta
                         p.text-wrap Añadir etiqueta
                         button.but_nueva_etiqueta(type="button")
                             img.but_nueva_etiqueta_icon(src="icon/plus.svg" alt="Añadir Etiqueta")

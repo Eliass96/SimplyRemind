@@ -25,21 +25,26 @@ document.addEventListener("DOMContentLoaded", function () {
   outputNotaSeleccionada.addEventListener("click", editarEtiqueta);
   outputNotaSeleccionada.addEventListener("click", eliminarEtiqueta);
 
+  let ordenarPorFecha = false;
+  let cambiosGuardados;
+
   document
     .getElementById("ordenar_por_fecha")
     .addEventListener("click", function () {
-      cargarNotas(buscadorNotas.value, true);
+      ordenarPorFecha = true;
+      cargarNotas(buscadorNotas.value, ordenarPorFecha);
     });
   document
     .getElementById("ordenar_por_nombre")
     .addEventListener("click", function () {
-      cargarNotas(buscadorNotas.value, false);
+      ordenarPorFecha = false;
+      cargarNotas(buscadorNotas.value, ordenarPorFecha);
     });
 
-  cargarNotas();
+  cargarNotas(ordenarPorFecha);
 
   function buscar() {
-    cargarNotas(buscadorNotas.value);
+    cargarNotas(buscadorNotas.value, ordenarPorFecha);
     let nota = document.getElementById("nota_seleccionada");
     let listado = document.getElementById("listado_notas");
     nota.style.display = "none";
@@ -106,16 +111,54 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function cerrarNota(evt) {
+  async function cerrarNota(evt) {
     if (
       evt.target.classList.contains("but_volver_al_listado") ||
       evt.target.classList.contains("but_volver_al_listado_icon")
     ) {
-      cargarNotas(buscadorNotas.value);
-      let nota = document.getElementById("nota_seleccionada");
-      let listado = document.getElementById("listado_notas");
-      nota.style.display = "none";
-      listado.style.display = "block";
+      const item = evt.target.closest("#outputNotaSeleccionada");
+      let id = item.dataset.idNota;
+      let url_notas = `/notas/${id}`;
+
+      resp = await fetch(url_notas);
+      if (resp.ok) {
+        const nota = await resp.json();
+        if (
+          nota.titulo != item.querySelector(".titulo_nota_seleccionada").textContent.trim() ||
+          nota.texto != item.querySelector(".contenido_nota_seleccionada").textContent.trim() ||
+          nota.color != item.querySelector("input[type='color']").value
+        ) {
+          cambiosGuardados = false;
+        } else {
+          cambiosGuardados = true;
+          cargarNotas(buscadorNotas.value, ordenarPorFecha);
+          let nota = document.getElementById("nota_seleccionada");
+          let listado = document.getElementById("listado_notas");
+          nota.style.display = "none";
+          listado.style.display = "block";
+        }
+      }
+
+      if (!cambiosGuardados) {
+        Swal.fire({
+          title: "Advertencia",
+          text: "No se han guardado los cambios",
+          icon: "warning",
+          showCancelButton: true,
+          cancelButtonColor: "#d33",
+          confirmButtonColor: "#3085d6",
+          cancelButtonText: "Cancelar",
+          confirmButtonText: "Salir igualmente",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            cargarNotas(buscadorNotas.value, ordenarPorFecha);
+            let nota = document.getElementById("nota_seleccionada");
+            let listado = document.getElementById("listado_notas");
+            nota.style.display = "none";
+            listado.style.display = "block";
+          }
+        });
+      }
     }
   }
 
@@ -140,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (result.isConfirmed) {
           const resp = await fetch(`/notas/${id}`, { method: "DELETE" });
           if (resp.ok) {
-            cargarNotas(buscadorNotas.value);
+            cargarNotas(buscadorNotas.value, ordenarPorFecha);
             Swal.fire({
               position: "center",
               icon: "success",
@@ -182,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (result.isConfirmed) {
           const resp = await fetch(url_notas, { method: "DELETE" });
           if (resp.ok) {
-            cargarNotas(buscadorNotas.value);
+            cargarNotas(buscadorNotas.value, ordenarPorFecha);
             let nota = document.getElementById("nota_seleccionada");
             let listado = document.getElementById("listado_notas");
             nota.style.display = "none";
@@ -230,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
           body: JSON.stringify(nuevaNota),
         });
         if (respDuplicar.ok) {
-          cargarNotas(buscadorNotas.value);
+          cargarNotas(buscadorNotas.value, ordenarPorFecha);
           Swal.fire({
             position: "center",
             icon: "success",
@@ -319,7 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
       body: JSON.stringify(nuevaNota),
     });
     if (resp.ok) {
-      cargarNotas(buscadorNotas.value);
+      cargarNotas(buscadorNotas.value, ordenarPorFecha);
       Swal.fire({
         position: "center",
         icon: "success",
@@ -379,6 +422,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showConfirmButton: false,
             timer: 1000,
           });
+          cambiosGuardados = true;
         } else {
           Swal.fire({
             icon: "error",
@@ -440,6 +484,14 @@ document.addEventListener("DOMContentLoaded", function () {
           if (resp.ok) {
             const nota = await resp.json();
             if (nuevaEtiqueta !== "") {
+              nota.titulo = item
+                .querySelector(".titulo_nota_seleccionada")
+                .textContent.trim();
+              nota.texto = item
+                .querySelector(".contenido_nota_seleccionada")
+                .textContent.trim();
+              nota.color = item.querySelector("input[type='color']").value;
+              nota._id = nota._id;
               nota.etiquetas.push(nuevaEtiqueta);
 
               const respEditar = await fetch(url_notas, {
@@ -522,6 +574,14 @@ document.addEventListener("DOMContentLoaded", function () {
           if (resp.ok) {
             const nota = await resp.json();
             if (etiquetaEditada !== "") {
+              nota.titulo = item
+                .querySelector(".titulo_nota_seleccionada")
+                .textContent.trim();
+              nota.texto = item
+                .querySelector(".contenido_nota_seleccionada")
+                .textContent.trim();
+              nota.color = item.querySelector("input[type='color']").value;
+              nota._id = nota._id;
               nota.etiquetas = nota.etiquetas.map((etiqueta) => {
                 if (etiqueta === etiquetaAnterior) {
                   return etiquetaEditada; // Reemplaza la etiqueta anterior con la etiqueta editada
@@ -584,6 +644,14 @@ document.addEventListener("DOMContentLoaded", function () {
           const resp = await fetch(url_notas, { method: "GET" });
           if (resp.ok) {
             const nota = await resp.json();
+            nota.titulo = item
+              .querySelector(".titulo_nota_seleccionada")
+              .textContent.trim();
+            nota.texto = item
+              .querySelector(".contenido_nota_seleccionada")
+              .textContent.trim();
+            nota.color = item.querySelector("input[type='color']").value;
+            nota._id = nota._id;
             nota.etiquetas = nota.etiquetas.filter(
               (etiqueta) => etiqueta !== etiquetaAEliminar.textContent
             );

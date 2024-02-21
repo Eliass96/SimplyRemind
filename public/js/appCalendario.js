@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
           Swal.fire({
             icon: "error",
             title: "Ups...",
-            text: "Error al crear el evento.",
+            text: "Error al crear el evento",
           });
         }
       }
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
               icon: "error",
               title: "Ups...",
-              text: "Error al eliminar el evento.",
+              text: "Error al eliminar el evento",
             });
           }
         }
@@ -293,23 +293,14 @@ document.addEventListener("DOMContentLoaded", function () {
         cancelButtonText: "Cancelar",
         showLoaderOnConfirm: true,
         preConfirm: async (valor) => {
-          try {
-            if (valor === "") {
-              Swal.fire(
-                "Aviso",
-                "No se puede crear una etiqueta vacía",
-                "warning"
-              );
-            } else {
-              nuevaEtiqueta = valor;
-            }
-          } catch (error) {
-            Swal.fire({
-              icon: "error",
-              title: "Ups...",
-              text: "Error al crear la etiqueta",
-            });
+          if (valor === "") {
+            Swal.fire(
+              "Aviso",
+              "No se puede crear una etiqueta vacía",
+              "warning"
+            );
           }
+          nuevaEtiqueta = valor;
         },
         allowOutsideClick: () => !Swal.isLoading(),
       }).then(async (result) => {
@@ -318,7 +309,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const evento = await resp.json();
             if (nuevaEtiqueta !== "") {
               evento.etiquetas.push(nuevaEtiqueta);
-
               const respEditar = await fetch(url_eventos, {
                 method: "PUT",
                 headers: {
@@ -326,7 +316,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify(evento),
               });
-
               if (respEditar.ok) {
                 Swal.fire({
                   position: "center",
@@ -375,23 +364,14 @@ document.addEventListener("DOMContentLoaded", function () {
         cancelButtonText: "Cancelar",
         showLoaderOnConfirm: true,
         preConfirm: async (valor) => {
-          try {
-            if (valor === "") {
-              Swal.fire(
-                "Aviso",
-                "No se puede modificar una etiqueta vacía",
-                "warning"
-              );
-            } else {
-              etiquetaEditada = valor;
-            }
-          } catch (error) {
-            Swal.fire({
-              icon: "error",
-              title: "Ups...",
-              text: "Error al modificar la etiqueta",
-            });
+          if (valor === "") {
+            Swal.fire(
+              "Aviso",
+              "No se puede modificar una etiqueta vacía",
+              "warning"
+            );
           }
+          etiquetaEditada = valor;
         },
         allowOutsideClick: () => !Swal.isLoading(),
       }).then(async (result) => {
@@ -405,7 +385,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 return etiqueta; // Devuelve la etiqueta sin cambios si no coincide con la anterior
               });
-
               const respEditar = await fetch(url_eventos, {
                 method: "PUT",
                 headers: {

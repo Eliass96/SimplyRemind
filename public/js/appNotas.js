@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cargarNotas(buscadorNotas.value, ordenarPorFecha);
     });
 
-  cargarNotas(ordenarPorFecha);
+  cargarNotas();
 
   function buscar() {
     cargarNotas(buscadorNotas.value, ordenarPorFecha);
@@ -66,11 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const datosNotas = await resp.json();
       if (ordenarPorFecha === true) {
         datosNotas.sort((a, b) =>
-          a.fecha < b.fecha ? 1 : b.fecha < a.fecha ? -1 : 0
+          a.fecha_creacion < b.fecha_creacion ? 1 : b.fecha_creacion < a.fecha_creacion ? -1 : 0
         );
       } else {
         datosNotas.sort((a, b) =>
-          a.titulo > b.titulo ? 1 : b.titulo > a.titulo ? -1 : 0
+          a.titulo < b.titulo ? 1 : b.titulo < a.titulo ? -1 : 0
         );
       }
       const html = crearNotas({ notas: datosNotas });
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   text: "Error al guardar los cambios",
                 });
               }
-            } else {
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
               cargarNotas(buscadorNotas.value, ordenarPorFecha);
               let nota = document.getElementById("nota_seleccionada");
               let listado = document.getElementById("listado_notas");
@@ -579,6 +579,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
               }
             }
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al crear la etiqueta",
+            });
           }
         }
       });
@@ -610,23 +616,20 @@ document.addEventListener("DOMContentLoaded", function () {
         cancelButtonText: "Cancelar",
         showLoaderOnConfirm: true,
         preConfirm: async (valor) => {
-          try {
-            if (valor === "") {
-              Swal.fire(
-                "Aviso",
-                "No se puede modificar una etiqueta vacía",
-                "warning"
-              );
-            } else {
-              etiquetaEditada = valor;
-            }
-          } catch (error) {
-            Swal.fire({
-              icon: "error",
-              title: "Ups...",
-              text: "Error al modificar la etiqueta",
-            });
+          if (valor === "") {
+            Swal.fire(
+              "Aviso",
+              "No se puede modificar una etiqueta vacía",
+              "warning"
+            );
+          } else {
+            etiquetaEditada = valor;
           }
+          Swal.fire({
+            icon: "error",
+            title: "Ups...",
+            text: "Error al modificar la etiqueta",
+          });
         },
         allowOutsideClick: () => !Swal.isLoading(),
       }).then(async (result) => {
@@ -675,6 +678,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
               }
             }
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al modificar la etiqueta",
+            });
           }
         }
       });

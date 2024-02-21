@@ -12,11 +12,6 @@ body {
   flex-direction: column;
 }
 
-.cabecero_web {
-  background: white;
-  border-bottom: 2px solid black;
-}
-
 main {
   margin-top: 8px !important;
   margin-bottom: 8px !important;
@@ -37,10 +32,6 @@ section {
   padding: 0 !important;
 }
 
-article {
-  height: auto !important;
-}
-
 ul {
   margin-block: 0 !important;
 }
@@ -48,7 +39,6 @@ ul {
 footer {
   background-color: white;
   width: 100%;
-  z-index: 10;
   height: auto;
 }
 

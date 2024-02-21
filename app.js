@@ -54,7 +54,7 @@ app.post("/notas", async function (req, resp) {
     resp
       .location(`/notas/${nuevaNota._id}`)
       .status(HTTP_CREATED)
-      .send("Nota creada.");
+      .send({ nota: nuevaNota, mensaje: "Nota creada" });
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }

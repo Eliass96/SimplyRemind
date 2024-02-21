@@ -1,3 +1,9 @@
+
+.cabecero_web {
+  background: white;
+  border-bottom: 2px solid black;
+}
+
 .titulo {
   background: black;
   border-bottom-right-radius: 12px;
@@ -100,5 +106,8 @@
   }
   .calendario {
     margin-right: 0px !important;
+  }
+  .nombre_color_evento h2 {
+    max-width: 70vw !important;
   }
 }

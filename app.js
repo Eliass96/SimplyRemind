@@ -39,7 +39,7 @@ app.get("/notas/:id", async function (req, resp) {
     if (nota) {
       resp.status(HTTP_OK).send(nota);
     } else {
-      resp.status(HTTP_NOT_FOUND).send({ message: 'Nota no encontrada' });
+      resp.status(HTTP_NOT_FOUND).send({ message: "Nota no encontrada" });
     }
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
@@ -49,12 +49,21 @@ app.get("/notas/:id", async function (req, resp) {
 // Crear nota
 app.post("/notas", async function (req, resp) {
   try {
-    const nuevaNota = await db.nuevaNota(req.body);
-
-    resp
-      .location(`/notas/${nuevaNota._id}`)
-      .status(HTTP_CREATED)
-      .send({ nota: nuevaNota, mensaje: "Nota creada" });
+    let nuevaNota;
+    if (
+      !req.body.titulo ||
+      !req.body.texto ||
+      !req.body.color ||
+      !req.body.fecha_creacion
+    ) {
+      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para crear la nota");
+    } else {
+      nuevaNota = await db.nuevaNota(req.body);
+      resp
+        .location(`/notas/${nuevaNota._id}`)
+        .status(HTTP_CREATED)
+        .send({ nota: nuevaNota, mensaje: "Nota creada" });
+    }
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }
@@ -63,16 +72,25 @@ app.post("/notas", async function (req, resp) {
 // Editar nota
 app.put("/notas/:id", async function (req, resp) {
   try {
-    const nota = await Nota.findById(req.params.id);
-    if (nota) {
-      const idNota = req.params.id.toString();
-      req.body._id = idNota;
-      const notaActualizada = await db.editarNota(req.body);
-      resp.status(HTTP_OK).send(notaActualizada);
+    if (
+      !req.body.titulo ||
+      !req.body.texto ||
+      !req.body.color ||
+      !req.body.fecha_creacion
+    ) {
+      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para editar la nota");
     } else {
-      resp
-        .status(HTTP_NOT_FOUND)
-        .send(`No existe la nota con el ID ${req.params.id}`);
+      const nota = await Nota.findById(req.params.id);
+      if (nota) {
+        const idNota = req.params.id.toString();
+        req.body._id = idNota;
+        const notaActualizada = await db.editarNota(req.body);
+        resp.status(HTTP_OK).send(notaActualizada);
+      } else {
+        resp
+          .status(HTTP_NOT_FOUND)
+          .send(`No existe la nota con el ID ${req.params.id}`);
+      }
     }
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
@@ -96,7 +114,6 @@ app.delete("/notas/:id", async function (req, resp) {
   }
 });
 
-
 // EVENTOS
 // Listar eventos
 app.get("/eventos", async function (req, resp) {
@@ -114,7 +131,7 @@ app.get("/eventos/:id", async function (req, resp) {
     if (evento) {
       resp.status(HTTP_OK).send(evento);
     } else {
-      resp.status(HTTP_NOT_FOUND).send({ message: 'Evento no encontrado' });
+      resp.status(HTTP_NOT_FOUND).send({ message: "Evento no encontrado" });
     }
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send(err);
@@ -124,15 +141,20 @@ app.get("/eventos/:id", async function (req, resp) {
 // Crear evento
 app.post("/eventos", async function (req, resp) {
   try {
-    if (!req.body.nombre || !req.body.descripcion || !req.body.color || !req.body.diaEvento) {
-      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para crear el evento.")
+    if (
+      !req.body.nombre ||
+      !req.body.descripcion ||
+      !req.body.color ||
+      !req.body.diaEvento
+    ) {
+      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para crear el evento.");
+    } else {
+      const nuevoEvento = await db.nuevoEvento(req.body);
+      resp
+        .location(`/eventos/${nuevoEvento._id}`)
+        .status(HTTP_CREATED)
+        .send("Evento creado.");
     }
-    const nuevoEvento = await db.nuevoEvento(req.body);
-
-    resp
-      .location(`/eventos/${nuevoEvento._id}`)
-      .status(HTTP_CREATED)
-      .send("Evento creado.");
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");
   }
@@ -141,14 +163,23 @@ app.post("/eventos", async function (req, resp) {
 // Editar evento
 app.put("/eventos/:id", async function (req, resp) {
   try {
-    const evento = await Evento.findById(req.params.id);
-    if (evento) {
-      const eventoActualizado = await db.editarEvento(req.body);
-      resp.status(HTTP_OK).send(eventoActualizado);
+    if (
+      !req.body.nombre ||
+      !req.body.descripcion ||
+      !req.body.color ||
+      !req.body.diaEvento
+    ) {
+      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para editar el evento.");
     } else {
-      resp
-        .status(HTTP_NOT_FOUND)
-        .send(`No existe el evento con el ID ${req.params.id}`);
+      const evento = await Evento.findById(req.params.id);
+      if (evento) {
+        const eventoActualizado = await db.editarEvento(req.body);
+        resp.status(HTTP_OK).send(eventoActualizado);
+      } else {
+        resp
+          .status(HTTP_NOT_FOUND)
+          .send(`No existe el evento con el ID ${req.params.id}`);
+      }
     }
   } catch (err) {
     resp.status(HTTP_INTERNAL_SERVER_ERROR).send("Error interno del servidor");

@@ -12,7 +12,18 @@ const notaSchema = new mongoose.Schema({
     required: true,
     default: "Nueva Nota"
   },
-  color: { type: String, required: true, default: "#000000" },
+  color: { 
+    type: String, 
+    required: true, 
+    default: "#000000",
+    validate: {
+      validator: function(v) {
+        // Verificar el formato dd/MM/yyyy usando una expresión regular
+        return /^#[A-Fa-f0-9]{6}$/.test(v);
+      },
+      message: props => `${props.value} no tiene el formato #RRGGBB o es un color inválido.`
+    }
+  },
   texto: {
     type: String,
     required: true,
@@ -22,6 +33,13 @@ const notaSchema = new mongoose.Schema({
     type: String,
     required: true,
     default: new Date().toLocaleDateString(),
+    validate: {
+      validator: function(v) {
+        // Verificar el formato dd/MM/yyyy usando una expresión regular
+        return /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(v);
+      },
+      message: props => `${props.value} no tiene el formato dd/MM/yyyy o es una fecha inválida.`
+    }
   },
   etiquetas: [String],
 });
@@ -33,8 +51,26 @@ const eventoSchema = new mongoose.Schema(
     diaEvento: {
       type: String,
       required: true,
+      validate: {
+        validator: function(v) {
+          // Verificar el formato dd/MM/yyyy usando una expresión regular
+          return /^\d{4}\-\d{2}\-\d{2}$/.test(v);
+        },
+        message: props => `${props.value} no tiene el formato yyyy-MM-dd o es una fecha inválida.`
+      }
     },
-    color: { type: String, required: true },
+    color: { 
+      type: String, 
+      required: true, 
+      default: "#000000",
+      validate: {
+        validator: function(v) {
+          // Verificar el formato dd/MM/yyyy usando una expresión regular
+          return /^#[A-Fa-f0-9]{6}$/.test(v);
+        },
+        message: props => `${props.value} no tiene el formato #RRGGBB o es un color inválido.`
+      }
+    },
     etiquetas: [String],
   }
 );

@@ -66,7 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const datosNotas = await resp.json();
       if (ordenarPorFecha === true) {
         datosNotas.sort((a, b) =>
-          a.fecha_creacion < b.fecha_creacion ? 1 : b.fecha_creacion < a.fecha_creacion ? -1 : 0
+          a.fecha_creacion < b.fecha_creacion
+            ? 1
+            : b.fecha_creacion < a.fecha_creacion
+            ? -1
+            : 0
         );
       } else {
         datosNotas.sort((a, b) =>
@@ -88,13 +92,21 @@ document.addEventListener("DOMContentLoaded", function () {
     if (evt.target.classList.contains("todas_las_notas")) {
       const item = evt.target.closest("li.todas_las_notas");
       const id = item.dataset.idNota;
-      const resp = await fetch("/notas", { method: "GET" });
-      if (resp.ok) {
-        cargarNotaSeleccionada(id);
-        let nota = document.getElementById("nota_seleccionada");
-        let listado = document.getElementById("listado_notas");
-        nota.style.display = "block";
-        listado.style.display = "none";
+      try {
+        const resp = await fetch("/notas", { method: "GET" });
+        if (resp.ok) {
+          cargarNotaSeleccionada(id);
+          let nota = document.getElementById("nota_seleccionada");
+          let listado = document.getElementById("listado_notas");
+          nota.style.display = "block";
+          listado.style.display = "none";
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Ups...",
+          text: "Parece que no se ha podido cargar la nota... Pruebe a reiniciar la página",
+        });
       }
     }
   }
@@ -128,95 +140,103 @@ document.addEventListener("DOMContentLoaded", function () {
       let id = item.dataset.idNota;
       let url_notas = `/notas/${id}`;
 
-      resp = await fetch(url_notas);
-      let nota = undefined;
-      if (resp.ok) {
-        nota = await resp.json();
-        if (
-          nota.titulo !=
-            item
-              .querySelector(".titulo_nota_seleccionada")
-              .textContent.trim() ||
-          nota.texto !=
-            item
-              .querySelector(".contenido_nota_seleccionada")
-              .textContent.trim() ||
-          nota.color != item.querySelector("input[type='color']").value
-        ) {
-          cambiosGuardados = false;
-        } else {
-          cambiosGuardados = true;
-          cargarNotas(buscadorNotas.value, ordenarPorFecha);
-          let nota = document.getElementById("nota_seleccionada");
-          let listado = document.getElementById("listado_notas");
-          nota.style.display = "none";
-          listado.style.display = "block";
-        }
-
-        if (!cambiosGuardados) {
-          Swal.fire({
-            title: "Advertencia",
-            text: "No se han guardado los cambios",
-            icon: "warning",
-            showCancelButton: true,
-            cancelButtonColor: "#d33",
-            confirmButtonColor: "#3085d6",
-            cancelButtonText: "Salir sin guardar",
-            confirmButtonText: "Guardar",
-          }).then(async (result) => {
-            if (result.isConfirmed) {
-              nota.titulo = item
+      try {
+        resp = await fetch(url_notas);
+        let nota = undefined;
+        if (resp.ok) {
+          nota = await resp.json();
+          if (
+            nota.titulo !=
+              item
                 .querySelector(".titulo_nota_seleccionada")
-                .textContent.trim();
-              nota.texto = item
+                .textContent.trim() ||
+            nota.texto !=
+              item
                 .querySelector(".contenido_nota_seleccionada")
-                .textContent.trim();
-              nota.color = item.querySelector("input[type='color']").value;
-              const etiquetasElementos = item.querySelectorAll(".etiqueta");
-              const etiquetas = Array.from(etiquetasElementos).map((etiqueta) =>
-                etiqueta.textContent.trim()
-              );
-              nota.etiquetas = etiquetas;
-              nota._id = nota._id;
+                .textContent.trim() ||
+            nota.color != item.querySelector("input[type='color']").value
+          ) {
+            cambiosGuardados = false;
+          } else {
+            cambiosGuardados = true;
+            cargarNotas(buscadorNotas.value, ordenarPorFecha);
+            let nota = document.getElementById("nota_seleccionada");
+            let listado = document.getElementById("listado_notas");
+            nota.style.display = "none";
+            listado.style.display = "block";
+          }
 
-              const respEditar = await fetch(url_notas, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(nota),
-              });
+          if (!cambiosGuardados) {
+            Swal.fire({
+              title: "Advertencia",
+              text: "No se han guardado los cambios",
+              icon: "warning",
+              showCancelButton: true,
+              cancelButtonColor: "#d33",
+              confirmButtonColor: "#3085d6",
+              cancelButtonText: "Salir sin guardar",
+              confirmButtonText: "Guardar",
+            }).then(async (result) => {
+              if (result.isConfirmed) {
+                nota.titulo = item
+                  .querySelector(".titulo_nota_seleccionada")
+                  .textContent.trim();
+                nota.texto = item
+                  .querySelector(".contenido_nota_seleccionada")
+                  .textContent.trim();
+                nota.color = item.querySelector("input[type='color']").value;
+                const etiquetasElementos = item.querySelectorAll(".etiqueta");
+                const etiquetas = Array.from(etiquetasElementos).map(
+                  (etiqueta) => etiqueta.textContent.trim()
+                );
+                nota.etiquetas = etiquetas;
+                nota._id = nota._id;
 
-              if (respEditar.ok) {
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "Cambios guardados",
-                  showConfirmButton: false,
-                  timer: 1000,
+                const respEditar = await fetch(url_notas, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(nota),
                 });
-                cambiosGuardados = true;
+
+                if (respEditar.ok) {
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Cambios guardados",
+                    showConfirmButton: false,
+                    timer: 1000,
+                  });
+                  cambiosGuardados = true;
+                  cargarNotas(buscadorNotas.value, ordenarPorFecha);
+                  let nota = document.getElementById("nota_seleccionada");
+                  let listado = document.getElementById("listado_notas");
+                  nota.style.display = "none";
+                  listado.style.display = "block";
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Ups...",
+                    text: "Error al guardar los cambios",
+                  });
+                }
+              } else if (result.dismiss === Swal.DismissReason.cancel) {
                 cargarNotas(buscadorNotas.value, ordenarPorFecha);
                 let nota = document.getElementById("nota_seleccionada");
                 let listado = document.getElementById("listado_notas");
                 nota.style.display = "none";
                 listado.style.display = "block";
-              } else {
-                Swal.fire({
-                  icon: "error",
-                  title: "Ups...",
-                  text: "Error al guardar los cambios",
-                });
               }
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-              cargarNotas(buscadorNotas.value, ordenarPorFecha);
-              let nota = document.getElementById("nota_seleccionada");
-              let listado = document.getElementById("listado_notas");
-              nota.style.display = "none";
-              listado.style.display = "block";
-            }
-          });
+            });
+          }
         }
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Ups...",
+          text: "Error al guardar los cambios",
+        });
       }
     }
   }
@@ -240,17 +260,25 @@ document.addEventListener("DOMContentLoaded", function () {
         confirmButtonText: "Sí",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const resp = await fetch(`/notas/${id}`, { method: "DELETE" });
-          if (resp.ok) {
-            cargarNotas(buscadorNotas.value, ordenarPorFecha);
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Nota eliminada",
-              showConfirmButton: false,
-              timer: 1000,
-            });
-          } else {
+          try {
+            const resp = await fetch(`/notas/${id}`, { method: "DELETE" });
+            if (resp.ok) {
+              cargarNotas(buscadorNotas.value, ordenarPorFecha);
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Nota eliminada",
+                showConfirmButton: false,
+                timer: 1000,
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al eliminar la nota.",
+              });
+            }
+          } catch (error) {
             Swal.fire({
               icon: "error",
               title: "Ups...",
@@ -282,21 +310,29 @@ document.addEventListener("DOMContentLoaded", function () {
         confirmButtonText: "Sí",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const resp = await fetch(url_notas, { method: "DELETE" });
-          if (resp.ok) {
-            cargarNotas(buscadorNotas.value, ordenarPorFecha);
-            let nota = document.getElementById("nota_seleccionada");
-            let listado = document.getElementById("listado_notas");
-            nota.style.display = "none";
-            listado.style.display = "block";
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Nota eliminada",
-              showConfirmButton: false,
-              timer: 1000,
-            });
-          } else {
+          try {
+            const resp = await fetch(url_notas, { method: "DELETE" });
+            if (resp.ok) {
+              cargarNotas(buscadorNotas.value, ordenarPorFecha);
+              let nota = document.getElementById("nota_seleccionada");
+              let listado = document.getElementById("listado_notas");
+              nota.style.display = "none";
+              listado.style.display = "block";
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Nota eliminada",
+                showConfirmButton: false,
+                timer: 1000,
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al eliminar la nota.",
+              });
+            }
+          } catch (error) {
             Swal.fire({
               icon: "error",
               title: "Ups...",
@@ -315,31 +351,40 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       const item = evt.target.closest("li.todas_las_notas");
       const id = item.dataset.idNota;
-      const resp = await fetch(`/notas/${id}`, { method: "GET" });
-      if (resp.ok) {
-        const nota = await resp.json();
-        let nuevaNota = {
-          titulo: nota.titulo + " (copia)",
-          texto: nota.texto,
-          color: nota.color,
-          etiquetas: nota.etiquetas,
-        };
-        const respDuplicar = await fetch("/notas", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(nuevaNota),
-        });
-        if (respDuplicar.ok) {
-          cargarNotas(buscadorNotas.value, ordenarPorFecha);
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Nota duplicada",
-            showConfirmButton: false,
-            timer: 1000,
+      try {
+        const resp = await fetch(`/notas/${id}`, { method: "GET" });
+        if (resp.ok) {
+          const nota = await resp.json();
+          let nuevaNota = {
+            titulo: nota.titulo + " (copia)",
+            texto: nota.texto,
+            color: nota.color,
+            fecha_creacion: nota.fecha_creacion,
+            etiquetas: nota.etiquetas,
+          };
+          const respDuplicar = await fetch("/notas", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(nuevaNota),
           });
+          if (respDuplicar.ok) {
+            cargarNotas(buscadorNotas.value, ordenarPorFecha);
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Nota duplicada",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al duplicar la nota.",
+            });
+          }
         } else {
           Swal.fire({
             icon: "error",
@@ -347,7 +392,7 @@ document.addEventListener("DOMContentLoaded", function () {
             text: "Error al duplicar la nota.",
           });
         }
-      } else {
+      } catch (error) {
         Swal.fire({
           icon: "error",
           title: "Ups...",
@@ -366,30 +411,39 @@ document.addEventListener("DOMContentLoaded", function () {
       let id = item.dataset.idNota;
       let url_notas = `/notas/${id}`;
 
-      const resp = await fetch(url_notas, { method: "GET" });
-      if (resp.ok) {
-        const nota = await resp.json();
-        let nuevaNota = {
-          titulo: nota.titulo + " (copia)",
-          texto: nota.texto,
-          color: nota.color,
-          etiquetas: nota.etiquetas,
-        };
-        const respDuplicar = await fetch("/notas", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(nuevaNota),
-        });
-        if (respDuplicar.ok) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Nota duplicada",
-            showConfirmButton: false,
-            timer: 1000,
+      try {
+        const resp = await fetch(url_notas, { method: "GET" });
+        if (resp.ok) {
+          const nota = await resp.json();
+          let nuevaNota = {
+            titulo: nota.titulo + " (copia)",
+            texto: nota.texto,
+            color: nota.color,
+            fecha_creacion: nota.fecha_creacion,
+            etiquetas: nota.etiquetas,
+          };
+          const respDuplicar = await fetch("/notas", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(nuevaNota),
           });
+          if (respDuplicar.ok) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Nota duplicada",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Error al duplicar la nota.",
+            });
+          }
         } else {
           Swal.fire({
             icon: "error",
@@ -397,7 +451,7 @@ document.addEventListener("DOMContentLoaded", function () {
             text: "Error al duplicar la nota.",
           });
         }
-      } else {
+      } catch (error) {
         Swal.fire({
           icon: "error",
           title: "Ups...",
@@ -411,25 +465,35 @@ document.addEventListener("DOMContentLoaded", function () {
     let nuevaNota = {
       titulo: "Nueva nota",
       texto: "Introduce el texto de tu nota...",
+      fecha_creacion: new Date().toLocaleDateString(),
+      color: "#000000",
       etiquetas: [],
     };
-    const resp = await fetch("/notas", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(nuevaNota),
-    });
-    if (resp.ok) {
-      cargarNotas(buscadorNotas.value, ordenarPorFecha);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Nota creada",
-        showConfirmButton: false,
-        timer: 1000,
+    try {
+      const resp = await fetch("/notas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(nuevaNota),
       });
-    } else {
+      if (resp.ok) {
+        cargarNotas(buscadorNotas.value, ordenarPorFecha);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Nota creada",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Ups...",
+          text: "Error al crear la nota.",
+        });
+      }
+    } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Ups...",
@@ -462,7 +526,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const etiquetas = Array.from(etiquetasElementos).map((etiqueta) =>
           etiqueta.textContent.trim()
         );
-        nota.etiquetas = etiquetas;
+        (nota.fecha_creacion = nota.fecha_creacion),
+          (nota.etiquetas = etiquetas);
         nota._id = nota._id;
 
         const respEditar = await fetch(url_notas, {
@@ -509,85 +574,93 @@ document.addEventListener("DOMContentLoaded", function () {
       let url_notas = `/notas/${id}`;
       let nuevaEtiqueta = "";
 
-      const resp = await fetch(url_notas, { method: "GET" });
+      try {
+        const resp = await fetch(url_notas, { method: "GET" });
 
-      Swal.fire({
-        title: "Etiqueta tu nota",
-        input: "text",
-        showCancelButton: true,
-        confirmButtonText: "Etiquetar",
-        cancelButtonText: "Cancelar",
-        showLoaderOnConfirm: true,
-        preConfirm: async (valor) => {
-          try {
-            if (valor === "") {
-              Swal.fire(
-                "Aviso",
-                "No se puede crear una etiqueta vacía",
-                "warning"
-              );
-            } else {
-              nuevaEtiqueta = valor;
-            }
-          } catch (error) {
-            Swal.fire({
-              icon: "error",
-              title: "Ups...",
-              text: "Error al crear la etiqueta",
-            });
-          }
-        },
-        allowOutsideClick: () => !Swal.isLoading(),
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          if (resp.ok) {
-            const nota = await resp.json();
-            if (nuevaEtiqueta !== "") {
-              nota.titulo = item
-                .querySelector(".titulo_nota_seleccionada")
-                .textContent.trim();
-              nota.texto = item
-                .querySelector(".contenido_nota_seleccionada")
-                .textContent.trim();
-              nota.color = item.querySelector("input[type='color']").value;
-              nota._id = nota._id;
-              nota.etiquetas.push(nuevaEtiqueta);
-
-              const respEditar = await fetch(url_notas, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(nota),
-              });
-
-              if (respEditar.ok) {
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "Etiqueta creada",
-                  showConfirmButton: false,
-                  timer: 1000,
-                });
-                cambiosGuardados = true;
-                cargarNotaSeleccionada(id);
+        Swal.fire({
+          title: "Etiqueta tu nota",
+          input: "text",
+          showCancelButton: true,
+          confirmButtonText: "Etiquetar",
+          cancelButtonText: "Cancelar",
+          showLoaderOnConfirm: true,
+          preConfirm: async (valor) => {
+            try {
+              if (valor === "") {
+                Swal.fire(
+                  "Aviso",
+                  "No se puede crear una etiqueta vacía",
+                  "warning"
+                );
               } else {
-                Swal.fire({
-                  icon: "error",
-                  title: "Ups...",
-                  text: "Error al crear la etiqueta",
-                });
+                nuevaEtiqueta = valor;
               }
+            } catch (error) {
+              Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al crear la etiqueta",
+              });
             }
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Ups...",
-              text: "Error al crear la etiqueta",
-            });
+          },
+          allowOutsideClick: () => !Swal.isLoading(),
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            if (resp.ok) {
+              const nota = await resp.json();
+              if (nuevaEtiqueta !== "") {
+                nota.titulo = item
+                  .querySelector(".titulo_nota_seleccionada")
+                  .textContent.trim();
+                nota.texto = item
+                  .querySelector(".contenido_nota_seleccionada")
+                  .textContent.trim();
+                nota.color = item.querySelector("input[type='color']").value;
+                nota._id = nota._id;
+                nota.etiquetas.push(nuevaEtiqueta);
+
+                const respEditar = await fetch(url_notas, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(nota),
+                });
+
+                if (respEditar.ok) {
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Etiqueta creada",
+                    showConfirmButton: false,
+                    timer: 1000,
+                  });
+                  cambiosGuardados = true;
+                  cargarNotaSeleccionada(id);
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Ups...",
+                    text: "Error al crear la etiqueta",
+                  });
+                }
+              }
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al crear la etiqueta",
+              });
+            }
           }
-        }
-      });
+        });
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Ups...",
+          text: "Error al crear la etiqueta",
+        });
+      }
     }
   }
 
@@ -605,88 +678,96 @@ document.addEventListener("DOMContentLoaded", function () {
       let id = item.dataset.idNota;
       let url_notas = `/notas/${id}`;
 
-      const resp = await fetch(url_notas, { method: "GET" });
+      try {
+        const resp = await fetch(url_notas, { method: "GET" });
 
-      Swal.fire({
-        title: "Edita tu etiqueta",
-        input: "text",
-        inputValue: etiquetaAnterior,
-        showCancelButton: true,
-        confirmButtonText: "Modificar",
-        cancelButtonText: "Cancelar",
-        showLoaderOnConfirm: true,
-        preConfirm: async (valor) => {
-          if (valor === "") {
-            Swal.fire(
-              "Aviso",
-              "No se puede modificar una etiqueta vacía",
-              "warning"
-            );
-          } else {
-            etiquetaEditada = valor;
-          }
-          Swal.fire({
-            icon: "error",
-            title: "Ups...",
-            text: "Error al modificar la etiqueta",
-          });
-        },
-        allowOutsideClick: () => !Swal.isLoading(),
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          if (resp.ok) {
-            const nota = await resp.json();
-            if (etiquetaEditada !== "") {
-              nota.titulo = item
-                .querySelector(".titulo_nota_seleccionada")
-                .textContent.trim();
-              nota.texto = item
-                .querySelector(".contenido_nota_seleccionada")
-                .textContent.trim();
-              nota.color = item.querySelector("input[type='color']").value;
-              nota._id = nota._id;
-              nota.etiquetas = nota.etiquetas.map((etiqueta) => {
-                if (etiqueta === etiquetaAnterior) {
-                  return etiquetaEditada; // Reemplaza la etiqueta anterior con la etiqueta editada
-                }
-                return etiqueta; // Devuelve la etiqueta sin cambios si no coincide con la anterior
-              });
-
-              const respEditar = await fetch(url_notas, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(nota),
-              });
-
-              if (respEditar.ok) {
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "Etiqueta modificada",
-                  showConfirmButton: false,
-                  timer: 1000,
-                });
-                cambiosGuardados = true;
-                cargarNotaSeleccionada(id);
-              } else {
-                Swal.fire({
-                  icon: "error",
-                  title: "Ups...",
-                  text: "Error al modificar la etiqueta",
-                });
-              }
+        Swal.fire({
+          title: "Edita tu etiqueta",
+          input: "text",
+          inputValue: etiquetaAnterior,
+          showCancelButton: true,
+          confirmButtonText: "Modificar",
+          cancelButtonText: "Cancelar",
+          showLoaderOnConfirm: true,
+          preConfirm: async (valor) => {
+            if (valor === "") {
+              Swal.fire(
+                "Aviso",
+                "No se puede modificar una etiqueta vacía",
+                "warning"
+              );
+            } else {
+              etiquetaEditada = valor;
             }
-          } else {
             Swal.fire({
               icon: "error",
               title: "Ups...",
               text: "Error al modificar la etiqueta",
             });
+          },
+          allowOutsideClick: () => !Swal.isLoading(),
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            if (resp.ok) {
+              const nota = await resp.json();
+              if (etiquetaEditada !== "") {
+                nota.titulo = item
+                  .querySelector(".titulo_nota_seleccionada")
+                  .textContent.trim();
+                nota.texto = item
+                  .querySelector(".contenido_nota_seleccionada")
+                  .textContent.trim();
+                nota.color = item.querySelector("input[type='color']").value;
+                nota._id = nota._id;
+                nota.etiquetas = nota.etiquetas.map((etiqueta) => {
+                  if (etiqueta === etiquetaAnterior) {
+                    return etiquetaEditada; // Reemplaza la etiqueta anterior con la etiqueta editada
+                  }
+                  return etiqueta; // Devuelve la etiqueta sin cambios si no coincide con la anterior
+                });
+
+                const respEditar = await fetch(url_notas, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(nota),
+                });
+
+                if (respEditar.ok) {
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Etiqueta modificada",
+                    showConfirmButton: false,
+                    timer: 1000,
+                  });
+                  cambiosGuardados = true;
+                  cargarNotaSeleccionada(id);
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Ups...",
+                    text: "Error al modificar la etiqueta",
+                  });
+                }
+              }
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Ups...",
+                text: "Error al modificar la etiqueta",
+              });
+            }
           }
-        }
-      });
+        });
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Ups...",
+          text: "Error al modificar la etiqueta",
+        });
+      }
     }
   }
 
@@ -711,37 +792,45 @@ document.addEventListener("DOMContentLoaded", function () {
         confirmButtonText: "Sí",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const resp = await fetch(url_notas, { method: "GET" });
-          if (resp.ok) {
-            const nota = await resp.json();
-            nota.titulo = item
-              .querySelector(".titulo_nota_seleccionada")
-              .textContent.trim();
-            nota.texto = item
-              .querySelector(".contenido_nota_seleccionada")
-              .textContent.trim();
-            nota.color = item.querySelector("input[type='color']").value;
-            nota._id = nota._id;
-            nota.etiquetas = nota.etiquetas.filter(
-              (etiqueta) => etiqueta !== etiquetaAEliminar.textContent
-            );
-            const respEliminar = await fetch(url_notas, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(nota),
-            });
-            if (respEliminar.ok) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Etiqueta eliminada",
-                showConfirmButton: false,
-                timer: 1000,
+          try {
+            const resp = await fetch(url_notas, { method: "GET" });
+            if (resp.ok) {
+              const nota = await resp.json();
+              nota.titulo = item
+                .querySelector(".titulo_nota_seleccionada")
+                .textContent.trim();
+              nota.texto = item
+                .querySelector(".contenido_nota_seleccionada")
+                .textContent.trim();
+              nota.color = item.querySelector("input[type='color']").value;
+              nota._id = nota._id;
+              nota.etiquetas = nota.etiquetas.filter(
+                (etiqueta) => etiqueta !== etiquetaAEliminar.textContent
+              );
+              const respEliminar = await fetch(url_notas, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(nota),
               });
-              cambiosGuardados = true;
-              cargarNotaSeleccionada(id);
+              if (respEliminar.ok) {
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Etiqueta eliminada",
+                  showConfirmButton: false,
+                  timer: 1000,
+                });
+                cambiosGuardados = true;
+                cargarNotaSeleccionada(id);
+              } else {
+                Swal.fire({
+                  icon: "error",
+                  title: "Ups...",
+                  text: "Error al eliminar la etiqueta",
+                });
+              }
             } else {
               Swal.fire({
                 icon: "error",
@@ -749,7 +838,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: "Error al eliminar la etiqueta",
               });
             }
-          } else {
+          } catch (error) {
             Swal.fire({
               icon: "error",
               title: "Ups...",

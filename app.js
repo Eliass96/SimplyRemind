@@ -56,7 +56,7 @@ app.post("/notas", async function (req, resp) {
       !req.body.color ||
       !req.body.fecha_creacion
     ) {
-      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para crear la nota");
+      resp.status(HTTP_BAD_REQUEST).send("Los datos introducidos no son válidos.");
     } else {
       nuevaNota = await db.nuevaNota(req.body);
       resp
@@ -78,7 +78,7 @@ app.put("/notas/:id", async function (req, resp) {
       !req.body.color ||
       !req.body.fecha_creacion
     ) {
-      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para editar la nota");
+      resp.status(HTTP_BAD_REQUEST).send("Los datos introducidos no son válidos.");
     } else {
       const nota = await Nota.findById(req.params.id);
       if (nota) {
@@ -147,7 +147,7 @@ app.post("/eventos", async function (req, resp) {
       !req.body.color ||
       !req.body.diaEvento
     ) {
-      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para crear el evento.");
+      resp.status(HTTP_BAD_REQUEST).send("Los datos introducidos no son válidos.");
     } else {
       const nuevoEvento = await db.nuevoEvento(req.body);
       resp
@@ -169,7 +169,7 @@ app.put("/eventos/:id", async function (req, resp) {
       !req.body.color ||
       !req.body.diaEvento
     ) {
-      resp.status(HTTP_BAD_REQUEST).send("Faltan datos para editar el evento.");
+      resp.status(HTTP_BAD_REQUEST).send("Los datos introducidos no son válidos.");
     } else {
       const evento = await Evento.findById(req.params.id);
       if (evento) {

@@ -18,7 +18,7 @@ const notaSchema = new mongoose.Schema({
     default: "#000000",
     validate: {
       validator: function(v) {
-        // Verificar el formato dd/MM/yyyy usando una expresión regular
+        // Verificar el formato #RRGGBB usando una expresión regular
         return /^#[A-Fa-f0-9]{6}$/.test(v);
       },
       message: props => `${props.value} no tiene el formato #RRGGBB o es un color inválido.`
@@ -65,7 +65,7 @@ const eventoSchema = new mongoose.Schema(
       default: "#000000",
       validate: {
         validator: function(v) {
-          // Verificar el formato dd/MM/yyyy usando una expresión regular
+          // Verificar el formato #RRGGBB usando una expresión regular
           return /^#[A-Fa-f0-9]{6}$/.test(v);
         },
         message: props => `${props.value} no tiene el formato #RRGGBB o es un color inválido.`
